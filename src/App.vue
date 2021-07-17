@@ -12,6 +12,7 @@ import '@/assets/styles/fonts.module.css';
 
 export default {
   name: 'App',
+
   setup() {
     const layout = shallowRef(AppLayoutDefault);
     const route = useRoute();

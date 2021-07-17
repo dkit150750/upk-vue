@@ -9,17 +9,21 @@
     </div>
   </header>
 </template>
+
 <script>
 import HeaderLinkIcon from '@/components/header/HeaderLinkIcon.vue';
 import HeaderLogo from '@/components/header/HeaderLogo.vue';
+
 export default {
   name: 'TheHeader',
+
   components: {
     HeaderLogo,
     HeaderLinkIcon,
   },
 };
 </script>
+
 <style>
 .header__container {
   display: flex;

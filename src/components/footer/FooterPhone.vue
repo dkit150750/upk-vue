@@ -4,9 +4,11 @@
     <span class="footer-caption">{{ desc }}</span>
   </li>
 </template>
+
 <script>
 export default {
   name: 'FooterPhone',
+
   props: {
     tel: {
       type: String,

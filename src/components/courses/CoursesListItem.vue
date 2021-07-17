@@ -19,6 +19,7 @@
 <script>
 export default {
   name: 'CourseCard',
+
   props: {
     courseId: {
       type: Number,
@@ -37,6 +38,7 @@ export default {
       default: 'hsl(60, 11%, 94%)',
     },
   },
+
   data() {
     return {
       logo: 'logo.png',
@@ -73,6 +75,7 @@ export default {
 
 .course-card__title {
   margin-top: 5px;
+  overflow: hidden;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.05;

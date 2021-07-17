@@ -7,7 +7,7 @@
         :background="course.background"
         :imgSrc="course.imgSrc"
       />
-      <CourseDates />
+      <CourseDates :dates="course.dates" />
       <div>
         <router-link :to="{ name: 'course', params: { courseId: 1 } }">
           1
@@ -49,6 +49,7 @@ export default {
         description: null,
         imgSrc: null,
         background: null,
+        dates: null,
       },
     };
   },

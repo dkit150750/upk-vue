@@ -1,6 +1,6 @@
 <template>
   <div class="courses-list">
-    <CourseListItem
+    <CoursesListItem
       v-for="course in courses"
       :key="course.id"
       :courseId="course.id"
@@ -12,14 +12,15 @@
 </template>
 
 <script>
-import CourseListItem from '@/components/courses/CourseListItem.vue';
+import CoursesListItem from '@/components/courses/CoursesListItem.vue';
 import courses from '@/store/courses.js';
 
 export default {
-  name: 'CourseList',
+  name: 'CoursesList',
   components: {
-    CourseListItem,
+    CoursesListItem,
   },
+
   data() {
     return {
       courses: courses,

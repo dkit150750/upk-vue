@@ -4,17 +4,17 @@
       <h1 class="courses__title">
         Академия дополнительного профессионального образования
       </h1>
-      <CourseList />
+      <CoursesList />
     </div>
   </div>
 </template>
 
 <script>
-import CourseList from '@/components/courses/CourseList.vue';
+import CoursesList from '@/components/courses/CoursesList.vue';
 export default {
   name: 'TheCourses',
   components: {
-    CourseList,
+    CoursesList,
   },
 };
 </script>

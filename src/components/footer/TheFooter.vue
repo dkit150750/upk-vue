@@ -17,10 +17,13 @@
     </div>
   </footer>
 </template>
+
 <script>
 import FooterPhone from '@/components/footer/FooterPhone.vue';
+
 export default {
   name: 'TheFooter',
+
   components: {
     FooterPhone,
   },
@@ -43,6 +46,7 @@ export default {
   },
 };
 </script>
+
 <style>
 .footer {
   background-color: var(--color-gray-800);

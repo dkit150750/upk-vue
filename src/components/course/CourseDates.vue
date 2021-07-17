@@ -2,23 +2,23 @@
   <form class="course-dates" action="">
     <h2 class="course-dates__title">Выбрать дату</h2>
 
-    <div class="dates">
+    <div class="course-dates__wrapper">
       <div class="dates__list">
-        <label class="date">
-          <input class="date__input" type="radio" name="date" checked />
-          <span class="date__value"> 2 сентября </span>
-        </label>
-        <label class="date">
-          <input class="date__input" type="radio" name="date" />
-          <span class="date__value"> 5 сентября </span>
-        </label>
-        <label class="date">
-          <input class="date__input" type="radio" name="date" />
-          <span class="date__value"> 12 сентября </span>
+        <label class="date" v-for="date in dates" :key="date.id">
+          <input
+            class="date__input"
+            type="radio"
+            :value="date.id"
+            v-model="modedlDate"
+          />
+          <span class="date__value">{{ date.value }}</span>
         </label>
       </div>
-      <span class="dates__time">12:20</span>
-      <span class="dates__count">Мест: 12/16</span>
+      <span class="dates__time">{{ selectedDate.time }}</span>
+      <span class="dates__count"
+        >Мест: {{ selectedDate.places }}/{{ selectedDate.placesAll }}</span
+      >
+      <span class="dates__count">Выбрано: {{ modedlDate }}</span>
     </div>
     <button class="course-dates__button" type="submit">Записаться</button>
   </form>
@@ -27,6 +27,24 @@
 <script>
 export default {
   name: 'CourseDates',
+
+  props: {
+    dates: {
+      type: Array,
+    },
+  },
+
+  data() {
+    return {
+      modedlDate: this.dates[0].id,
+    };
+  },
+
+  computed: {
+    selectedDate() {
+      return this.dates.find((date) => date.id === parseInt(this.modedlDate));
+    },
+  },
 };
 </script>
 

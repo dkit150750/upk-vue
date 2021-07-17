@@ -3,11 +3,13 @@
     >ГПОУ ТО "ДКИТ"</router-link
   >
 </template>
+
 <script>
 export default {
   name: 'HeaderLogo',
 };
 </script>
+
 <style>
 .header-logo {
   font-size: 20px;

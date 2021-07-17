@@ -8,21 +8,21 @@ export default [
     dates: [
       {
         id: 1,
-        date: '12 мая',
+        value: '12 мая',
         time: '13:40',
         placesAll: 16,
         places: 14,
       },
       {
         id: 2,
-        date: '15 мая',
+        value: '15 мая',
         time: '12:10',
         placesAll: 16,
         places: 4,
       },
       {
         id: 3,
-        date: '27 мая',
+        value: '27 мая',
         time: '10:40',
         placesAll: 16,
         places: 8,
@@ -39,21 +39,21 @@ export default [
     dates: [
       {
         id: 1,
-        date: '12 мая',
+        value: '12 мая',
         time: '13:40',
         placesAll: 16,
         places: 14,
       },
       {
         id: 2,
-        date: '15 мая',
+        value: '15 мая',
         time: '12:10',
         placesAll: 16,
         places: 4,
       },
       {
         id: 3,
-        date: '27 мая',
+        value: '27 мая',
         time: '10:40',
         placesAll: 16,
         places: 8,
@@ -71,21 +71,21 @@ export default [
     dates: [
       {
         id: 1,
-        date: '12 мая',
+        value: '12 мая',
         time: '13:40',
         placesAll: 16,
         places: 14,
       },
       {
         id: 2,
-        date: '15 мая',
+        value: '15 мая',
         time: '12:10',
         placesAll: 16,
         places: 4,
       },
       {
         id: 3,
-        date: '27 мая',
+        value: '27 мая',
         time: '10:40',
         placesAll: 16,
         places: 8,
@@ -102,21 +102,21 @@ export default [
     dates: [
       {
         id: 1,
-        date: '12 мая',
+        value: '12 мая',
         time: '13:40',
         placesAll: 16,
         places: 14,
       },
       {
         id: 2,
-        date: '15 мая',
+        value: '15 мая',
         time: '12:10',
         placesAll: 16,
         places: 4,
       },
       {
         id: 3,
-        date: '27 мая',
+        value: '27 мая',
         time: '10:40',
         placesAll: 16,
         places: 8,
@@ -133,21 +133,21 @@ export default [
     dates: [
       {
         id: 1,
-        date: '12 мая',
+        value: '12 мая',
         time: '13:40',
         placesAll: 16,
         places: 14,
       },
       {
         id: 2,
-        date: '15 мая',
+        value: '15 мая',
         time: '12:10',
         placesAll: 16,
         places: 4,
       },
       {
         id: 3,
-        date: '27 мая',
+        value: '27 мая',
         time: '10:40',
         placesAll: 16,
         places: 8,
@@ -164,21 +164,21 @@ export default [
     dates: [
       {
         id: 1,
-        date: '12 мая',
+        value: '12 мая',
         time: '13:40',
         placesAll: 16,
         places: 14,
       },
       {
         id: 2,
-        date: '15 мая',
+        value: '15 мая',
         time: '12:10',
         placesAll: 16,
         places: 4,
       },
       {
         id: 3,
-        date: '27 мая',
+        value: '27 мая',
         time: '10:40',
         placesAll: 16,
         places: 8,
