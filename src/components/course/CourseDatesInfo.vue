@@ -27,9 +27,12 @@ export default {
 <style>
 .course-dates__time {
   display: block;
+  font-size: 17px;
 }
 
 .course-dates__places {
   display: block;
+  margin-top: 3px;
+  font-size: 17px;
 }
 </style>
