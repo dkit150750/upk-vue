@@ -4,44 +4,27 @@
       <CourseInformation
         :title="course.title"
         :description="course.description"
-        :backround="course.backround"
+        :background="course.background"
         :imgSrc="course.imgSrc"
       />
+      <CourseDates />
       <div>
-        <router-link
-          class="course-card__title"
-          :to="{ name: 'course', params: { courseId: 1 } }"
-        >
+        <router-link :to="{ name: 'course', params: { courseId: 1 } }">
           1
         </router-link>
-        <router-link
-          class="course-card__title"
-          :to="{ name: 'course', params: { courseId: 2 } }"
-        >
+        <router-link :to="{ name: 'course', params: { courseId: 2 } }">
           2
         </router-link>
-        <router-link
-          class="course-card__title"
-          :to="{ name: 'course', params: { courseId: 3 } }"
-        >
+        <router-link :to="{ name: 'course', params: { courseId: 3 } }">
           3
         </router-link>
-        <router-link
-          class="course-card__title"
-          :to="{ name: 'course', params: { courseId: 4 } }"
-        >
+        <router-link :to="{ name: 'course', params: { courseId: 4 } }">
           4
         </router-link>
-        <router-link
-          class="course-card__title"
-          :to="{ name: 'course', params: { courseId: 5 } }"
-        >
+        <router-link :to="{ name: 'course', params: { courseId: 5 } }">
           5
         </router-link>
-        <router-link
-          class="course-card__title"
-          :to="{ name: 'course', params: { courseId: 6 } }"
-        >
+        <router-link :to="{ name: 'course', params: { courseId: 6 } }">
           6
         </router-link>
       </div>
@@ -51,11 +34,13 @@
 
 <script>
 import CourseInformation from '@/components/course/CourseInformation.vue';
+import CourseDates from '@/components/course/CourseDates.vue';
 import courses from '@/store/courses.js';
 export default {
   name: 'TheCourse',
   components: {
     CourseInformation,
+    CourseDates,
   },
   data() {
     return {
@@ -63,7 +48,7 @@ export default {
         title: null,
         description: null,
         imgSrc: null,
-        backround: null,
+        background: null,
       },
     };
   },
