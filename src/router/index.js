@@ -4,32 +4,39 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('@/views/TheCourses.vue'),
+    component: () =>
+      import(/* webpackChunkName: "the-courses" */ '@/views/TheCourses.vue'),
     meta: {},
   },
   {
     path: '/courses/:courseId(\\d+)',
     name: 'course',
-    component: () => import('@/views/TheCourse.vue'),
+    component: () =>
+      import(/* webpackChunkName: "the-course" */ '@/views/TheCourse.vue'),
     meta: {},
   },
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/TheLogin.vue'),
+    component: () =>
+      import(/* webpackChunkName: "the-login" */ '@/views/TheLogin.vue'),
     meta: {},
   },
   {
     path: '/register',
     name: 'register',
     meta: {},
-    component: () => import('@/views/TheRegister'),
+    component: () =>
+      import(/* webpackChunkName: "the-register" */ '@/views/TheRegister'),
   },
   {
     path: '/reset-password',
     name: 'resetPassword',
     meta: {},
-    component: () => import('@/views/TheResetPassword'),
+    component: () =>
+      import(
+        /* webpackChunkName: "the-reset-password" */ '@/views/TheResetPassword'
+      ),
   },
 ];
 
