@@ -3,7 +3,7 @@
     <h2 class="course-dates__title">Выбрать дату</h2>
 
     <div class="course-dates__wrapper">
-      <CourseDatesList :dates="dates" v-model="modedlDate" />
+      <CourseDatesList :dates="dates" v-model="selectedDateId" />
       <CourseDatesInfo
         :time="selectedDate.time"
         :places="selectedDate.places"
@@ -35,13 +35,15 @@ export default {
 
   data() {
     return {
-      modedlDate: parseInt(this.dates[0].id),
+      selectedDateId: parseInt(this.dates[0].id),
     };
   },
 
   computed: {
     selectedDate() {
-      return this.dates.find((date) => date.id === parseInt(this.modedlDate));
+      return this.dates.find(
+        (date) => date.id === parseInt(this.selectedDateId)
+      );
     },
   },
 };
