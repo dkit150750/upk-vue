@@ -3,40 +3,39 @@
     <h2 class="course-dates__title">Выбрать дату</h2>
 
     <div class="course-dates__wrapper">
-      <div class="dates__list">
-        <label class="date" v-for="date in dates" :key="date.id">
-          <input
-            class="date__input"
-            type="radio"
-            :value="date.id"
-            v-model="modedlDate"
-          />
-          <span class="date__value">{{ date.value }}</span>
-        </label>
-      </div>
-      <span class="dates__time">{{ selectedDate.time }}</span>
-      <span class="dates__count"
-        >Мест: {{ selectedDate.places }}/{{ selectedDate.placesAll }}</span
-      >
-      <span class="dates__count">Выбрано: {{ modedlDate }}</span>
+      <CourseDatesList :dates="dates" v-model="modedlDate" />
+      <CourseDatesInfo
+        :time="selectedDate.time"
+        :places="selectedDate.places"
+        :placesAll="selectedDate.placesAll"
+      />
     </div>
     <button class="course-dates__button" type="submit">Записаться</button>
   </form>
 </template>
 
 <script>
+import CourseDatesList from '@/components/course/CourseDatesList.vue';
+import CourseDatesInfo from '@/components/course/CourseDatesInfo.vue';
+
 export default {
   name: 'CourseDates',
+
+  components: {
+    CourseDatesList,
+    CourseDatesInfo,
+  },
 
   props: {
     dates: {
       type: Array,
+      default: () => [],
     },
   },
 
   data() {
     return {
-      modedlDate: this.dates[0].id,
+      modedlDate: parseInt(this.dates[0].id),
     };
   },
 

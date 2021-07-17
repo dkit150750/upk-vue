@@ -8,26 +8,6 @@
         :imgSrc="course.imgSrc"
       />
       <CourseDates :dates="course.dates" />
-      <div>
-        <router-link :to="{ name: 'course', params: { courseId: 1 } }">
-          1
-        </router-link>
-        <router-link :to="{ name: 'course', params: { courseId: 2 } }">
-          2
-        </router-link>
-        <router-link :to="{ name: 'course', params: { courseId: 3 } }">
-          3
-        </router-link>
-        <router-link :to="{ name: 'course', params: { courseId: 4 } }">
-          4
-        </router-link>
-        <router-link :to="{ name: 'course', params: { courseId: 5 } }">
-          5
-        </router-link>
-        <router-link :to="{ name: 'course', params: { courseId: 6 } }">
-          6
-        </router-link>
-      </div>
     </div>
   </div>
 </template>

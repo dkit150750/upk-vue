@@ -1,7 +1,7 @@
 <template>
   <li class="footer-phone">
     <a class="footer-phone__link" :href="hrefTel">{{ tel }}</a>
-    <span class="footer-caption">{{ desc }}</span>
+    <span class="footer-phone__desc">{{ desc }}</span>
   </li>
 </template>
 
@@ -29,6 +29,11 @@ export default {
 </script>
 
 <style>
+.footer-phone {
+  display: grid;
+  gap: 5px;
+  justify-content: start;
+}
 .footer-phone__link {
   display: inline-block;
   font-size: 16px;
@@ -45,9 +50,8 @@ export default {
   --color-gray-0: hsl(0, 0%, 44%);
 }
 
-.footer-caption {
+.footer-phone__desc {
   display: block;
-  margin-top: 2px;
   font-size: 12px;
   line-height: 16px;
   color: var(--color-gray-0);
