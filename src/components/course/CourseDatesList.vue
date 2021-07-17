@@ -6,7 +6,7 @@
       :id="date.id"
       :value="date.value"
       :modelValue="modelValue"
-      @change="$emit('update:modelValue', $event.target.value)"
+      @change="$emit('update:modelValue', parseInt($event.target.value))"
     />
   </div>
 </template>
@@ -31,16 +31,6 @@ export default {
 
   emits: {
     'update:modelValue': null,
-  },
-
-  data() {
-    return {};
-  },
-
-  computed: {
-    selectedDate() {
-      return this.dates.find((date) => date.id === parseInt(this.modedlDate));
-    },
   },
 };
 </script>

@@ -13,11 +13,11 @@ export default {
       required: true,
     },
     places: {
-      type: String,
+      type: Number,
       required: true,
     },
     placesAll: {
-      type: String,
+      type: Number,
       required: true,
     },
   },
