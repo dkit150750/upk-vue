@@ -16,10 +16,20 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/About.vue'),
-    meta: {
-      layout: 'LayoutAdmin',
-    },
+    component: () => import('@/views/TheLogin.vue'),
+    meta: {},
+  },
+  {
+    path: '/register',
+    name: 'register',
+    meta: {},
+    component: () => import('@/views/TheRegister'),
+  },
+  {
+    path: '/reset-password',
+    name: 'resetPassword',
+    meta: {},
+    component: () => import('@/views/TheResetPassword'),
   },
 ];
 

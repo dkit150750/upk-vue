@@ -1,12 +1,20 @@
 <template>
   <div class="login">
-    <div class="login__wrapper"></div>
+    <div class="login__wrapper">
+      <LoginCard />
+    </div>
   </div>
 </template>
 
 <script>
+import LoginCard from '@/components/login-card/LoginCard.vue';
+
 export default {
   name: 'TheLogin',
+
+  components: {
+    LoginCard,
+  },
 };
 </script>
 
