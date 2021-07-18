@@ -1,5 +1,5 @@
 <template>
-  <article class="course-card course-card--devops">
+  <article class="course-card course-card--devops" ref="course">
     <router-link
       class="course-card__title"
       :to="{ name: 'course', params: { courseId: courseId } }"
@@ -44,6 +44,10 @@ export default {
       logo: 'logo.png',
     };
   },
+
+  mounted() {
+    this.$refs.course.style.setProperty('--color-background', this.background);
+  },
 };
 </script>
 
@@ -55,7 +59,7 @@ export default {
   gap: 10px;
   min-height: 130px;
   padding: 20px 16px;
-  background-color: v-bind(background);
+  background-color: var(--color-background);
   border-radius: 10px;
 }
 

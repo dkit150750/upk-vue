@@ -1,5 +1,5 @@
 <template>
-  <div class="course-information">
+  <div class="course-information" ref="course">
     <div class="course-information__inner">
       <h1 class="course-information__title">
         {{ title }}
@@ -21,6 +21,7 @@
 <script>
 export default {
   name: 'CourseInformation',
+
   props: {
     title: {
       type: String,
@@ -39,6 +40,10 @@ export default {
       default: 'hsl(60, 11%, 94%)',
     },
   },
+
+  mounted() {
+    this.$refs.course.style.setProperty('--color-background', this.background);
+  },
 };
 </script>
 
@@ -47,7 +52,7 @@ export default {
   max-width: 388px;
   margin: 0 auto;
   margin-bottom: 50px;
-  background-color: v-bind(background);
+  background-color: var(--color-background);
   border-radius: 10px;
 }
 

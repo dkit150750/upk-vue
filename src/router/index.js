@@ -38,6 +38,12 @@ const routes = [
         /* webpackChunkName: "the-reset-password" */ '@/views/TheResetPassword'
       ),
   },
+  {
+    path: '/:catchAll(.*)',
+    name: 'notFound',
+    component: () =>
+      import(/* webpackChunkName: "the-not-found" */ '../views/TheNotFound'),
+  },
 ];
 
 const router = createRouter({
