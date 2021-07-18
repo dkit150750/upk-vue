@@ -1,51 +1,37 @@
 <template>
   <div class="login-card">
     <div class="login-card__header">
-      <h1 class="login-card__title">Войти</h1>
+      <h1 class="login-card__title">{{ title }}</h1>
     </div>
-    <form class="login-card__form" action="">
-      <LoginCardInputGroup
-        label="Email"
-        id="email"
-        name="email"
-        type="email"
-        autocomplete="email"
-        placeholder="luke@jedi.com"
-        v-model="email"
-      />
-      <LoginCardInputGroup
-        label="Пароль"
-        id="password"
-        name="password"
-        type="password"
-        autocomplete="current-password"
-        placeholder="password"
-        v-model="password"
-      />
-      <button class="login-card__submit" type="submit">Войти</button>
+    <form class="login-card__form">
+      <slot />
+      <button class="login-card__submit" type="submit">{{ buttonName }}</button>
     </form>
-    <div class="login-card-footer">
-      <a class="login-card-link" href="index.html">Забыли пароль?</a>
+    <div class="login-card__footer" v-if="!isReset">
+      <router-link class="login-card-link" :to="{ name: 'resetPassword' }">
+        Забыли пароль?
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import LoginCardInputGroup from '@/components/login-card/LoginCardInputGroup.vue';
-
 export default {
   name: 'LoginCard',
 
-  components: {
-    LoginCardInputGroup,
-  },
-
-  data() {
-    return {
-      email: null,
-      password: null,
-      error: null,
-    };
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+    buttonName: {
+      type: String,
+      required: true,
+    },
+    isReset: {
+      type: Boolean,
+      default: false,
+    },
   },
 };
 </script>
@@ -54,7 +40,6 @@ export default {
 .login-card {
   --shadow-color: hsl(0, 0%, 87%);
   padding: 50px 15px;
-  margin-bottom: 30px;
   background-color: var(--color-gray-0);
   border-radius: 5px;
   box-shadow: 0 0 140px -10px var(--shadow-color);
@@ -103,7 +88,7 @@ export default {
   background-color: var(--color-primary-800);
 }
 
-.login-card-footer {
+.login-card__footer {
   display: flex;
   justify-content: center;
   margin-top: 40px;

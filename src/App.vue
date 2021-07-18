@@ -8,7 +8,6 @@
 import AppLayoutDefault from '@/layouts/LayoutDefault';
 import { shallowRef, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import '@/assets/styles/fonts.module.css';
 
 export default {
   name: 'App',
@@ -33,6 +32,7 @@ export default {
 </script>
 
 <style>
+@import './assets/styles/fonts.module.css';
 *,
 *::before,
 *::after {
@@ -54,6 +54,12 @@ export default {
   --color-gray-500: hsl(240, 10%, 50%);
   --color-gray-800: hsl(240, 0%, 14%);
   --color-gray-900: hsl(240, 10%, 10%);
+}
+
+@media (min-width: 1500px) {
+  :root {
+    --max-width: 1630px;
+  }
 }
 
 .sr-only {
