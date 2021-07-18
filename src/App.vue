@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import AppLayoutDefault from '@/layouts/LayoutDefault';
+import LayoutDefault from '@/layouts/LayoutDefault';
 import { shallowRef, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
@@ -13,16 +13,16 @@ export default {
   name: 'App',
 
   setup() {
-    const layout = shallowRef(AppLayoutDefault);
+    const layout = shallowRef(LayoutDefault);
     const route = useRoute();
     watch(
       () => route.meta,
       async (meta) => {
         try {
           const component = await require(`@/layouts/${meta.layout}.vue`);
-          layout.value = component?.default || AppLayoutDefault;
+          layout.value = component?.default || LayoutDefault;
         } catch (e) {
-          layout.value = AppLayoutDefault;
+          layout.value = LayoutDefault;
         }
       }
     );
@@ -49,8 +49,12 @@ export default {
   --color-primary-700: hsl(241, 80%, 70%);
   --color-primary-800: hsl(237, 54%, 55%);
   --color-primary-900: hsl(237, 54%, 45%);
-  --color-gray-0: hsl(210, 10%, 98%);
+  --color-gray-0: hsl(210, 0%, 100%);
+  --color-gray-50: hsl(210, 10%, 98%);
+  --color-gray-60: hsl(210, 20%, 98%);
+  --color-gray-70: hsl(0, 0%, 93%);
   --color-gray-100: hsl(0, 0%, 80%);
+  --color-gray-200: hsl(210, 1%, 63%);
   --color-gray-500: hsl(240, 10%, 50%);
   --color-gray-800: hsl(240, 0%, 14%);
   --color-gray-900: hsl(240, 10%, 10%);

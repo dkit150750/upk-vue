@@ -1,9 +1,11 @@
 <template>
-  <TheHeader />
-  <TheMain>
-    <router-view />
-  </TheMain>
-  <TheFooter />
+  <div id="layout">
+    <TheHeader />
+    <TheMain>
+      <router-view />
+    </TheMain>
+    <TheFooter />
+  </div>
 </template>
 
 <script>
@@ -21,7 +23,7 @@ export default {
 </script>
 
 <style>
-#app {
+#layout {
   display: grid;
   grid-template-rows: min-content 1fr min-content;
   min-height: 100vh;

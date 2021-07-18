@@ -43,13 +43,22 @@ const routes = [
     name: 'profile',
     meta: {},
     component: () =>
-      import(/* webpackChunkName: "the-reset-password" */ '@/views/TheRrofile'),
+      import(/* webpackChunkName: "the-profile" */ '@/views/TheRrofile'),
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    meta: { layout: 'LayoutAdmin' },
+    component: () =>
+      import(
+        /* webpackChunkName: "the-not-found" */ '@/views/admin/TheCoursesList'
+      ),
   },
   {
     path: '/:catchAll(.*)',
     name: 'notFound',
     component: () =>
-      import(/* webpackChunkName: "the-not-found" */ '../views/TheNotFound'),
+      import(/* webpackChunkName: "the-not-found" */ '@/views/TheNotFound'),
   },
 ];
 
