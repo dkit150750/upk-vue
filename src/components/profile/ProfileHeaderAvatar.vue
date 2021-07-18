@@ -1,0 +1,87 @@
+<template>
+  <div class="profile-avatar">
+    <div class="profile-avatar__img-wrapper">
+      <img
+        class="profile-avatar__img"
+        :src="require('@/assets/images/avatar_no_image.png')"
+        alt="Валентин Степанов"
+      />
+    </div>
+    <div class="profile-avatar__avatar-icon-wrapper">
+      <ProfileHeaderAvatarIcon />
+    </div>
+    <input
+      class="profile-avatar__input"
+      name="avatar"
+      type="file"
+      accept=".png, .webp, .jpeg, .jpg"
+      tabindex="-1"
+      aria-label="изменить аватар"
+    />
+  </div>
+</template>
+
+<script>
+import ProfileHeaderAvatarIcon from '@/components/profile/ProfileHeaderAvatarIcon.vue';
+
+export default {
+  name: 'ProfileHeaderAvatar',
+
+  components: {
+    ProfileHeaderAvatarIcon,
+  },
+};
+</script>
+
+<style>
+.profile-avatar {
+  position: relative;
+  grid-row: 1 / 3;
+  overflow: hidden;
+  border-radius: 100%;
+}
+
+.profile-avatar__img-wrapper {
+  position: relative;
+  padding-bottom: 100%;
+}
+
+.profile-avatar__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-avatar__avatar-icon-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-color: hsla(0, 0%, 0%, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.profile-avatar:hover .profile-avatar__avatar-icon-wrapper {
+  opacity: 1;
+}
+
+.profile-avatar__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  opacity: 0;
+}
+</style>

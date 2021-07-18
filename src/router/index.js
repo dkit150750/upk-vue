@@ -39,6 +39,13 @@ const routes = [
       ),
   },
   {
+    path: '/profile',
+    name: 'profile',
+    meta: {},
+    component: () =>
+      import(/* webpackChunkName: "the-reset-password" */ '@/views/TheRrofile'),
+  },
+  {
     path: '/:catchAll(.*)',
     name: 'notFound',
     component: () =>
