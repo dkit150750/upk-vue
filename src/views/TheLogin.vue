@@ -8,7 +8,7 @@
         type="email"
         autocomplete="email"
         placeholder="luke@jedi.com"
-        v-model="email"
+        v-model="data.email"
       />
       <LoginCardInputGroup
         label="Пароль"
@@ -17,7 +17,7 @@
         type="password"
         autocomplete="current-password"
         placeholder="password"
-        v-model="password"
+        v-model="data.password"
       />
     </LoginCard>
     <LoginFooter>
@@ -47,8 +47,10 @@ export default {
 
   data() {
     return {
-      email: null,
-      password: null,
+      data: {
+        email: null,
+        password: null,
+      },
       error: null,
     };
   },

@@ -13,7 +13,7 @@
         type="email"
         autocomplete="email"
         placeholder="luke@jedi.com"
-        v-model="email"
+        v-model="data.email"
       />
     </LoginCard>
     <LoginFooter>
@@ -43,7 +43,9 @@ export default {
 
   data() {
     return {
-      email: null,
+      data: {
+        email: null,
+      },
       error: null,
     };
   },

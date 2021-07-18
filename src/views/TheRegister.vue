@@ -12,7 +12,7 @@
         type="text"
         autocomplete="family-name"
         placeholder="Степанов"
-        v-model="surname"
+        v-model="data.surname"
       />
       <LoginCardInputGroup
         label="Имя"
@@ -21,7 +21,7 @@
         type="text"
         autocomplete="given-name"
         placeholder="Валентин"
-        v-model="name"
+        v-model="data.name"
       />
       <LoginCardInputGroup
         label="Отчество"
@@ -30,7 +30,7 @@
         type="text"
         autocomplete="additional-name"
         placeholder="Сергеевич"
-        v-model="patronymic"
+        v-model="data.patronymic"
       />
       <LoginCardInputGroup
         label="Email"
@@ -39,7 +39,7 @@
         type="email"
         autocomplete="email"
         placeholder="luke@jedi.com"
-        v-model="email"
+        v-model="data.email"
       />
       <LoginCardInputGroup
         label="Пароль"
@@ -48,7 +48,7 @@
         type="password"
         autocomplete="new-password"
         placeholder="password"
-        v-model="password"
+        v-model="data.password"
       />
       <LoginCardInputGroup
         label="Подтвердить пароль"
@@ -57,7 +57,7 @@
         type="password"
         autocomplete="new-password"
         placeholder="password"
-        v-model="passwordСonfirm"
+        v-model="data.passwordСonfirm"
       />
     </LoginCard>
     <LoginFooter>
@@ -87,12 +87,14 @@ export default {
 
   data() {
     return {
-      surname: null,
-      name: null,
-      patronymic: null,
-      email: null,
-      password: null,
-      passwordСonfirm: null,
+      data: {
+        surname: null,
+        name: null,
+        patronymic: null,
+        email: null,
+        password: null,
+        passwordСonfirm: null,
+      },
       error: null,
     };
   },
