@@ -1,5 +1,8 @@
 # upk-vue
 
+## [Сайт](https://dkit150750.github.io/upk-vue/)
+## [Админ-панель](https://dkit150750.github.io/upk-vue/)
+
 ## Project setup
 ```
 npm install
