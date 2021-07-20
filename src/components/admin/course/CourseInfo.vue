@@ -1,29 +1,13 @@
 <template>
   <form class="admin-course-info">
-    <CourseInfoInputGroup
-      class="input-group__input--textarea-name"
-      label="Название"
-      id="name"
-      name="name"
-    />
-    <CourseInfoInputGroup
-      label="Название"
-      id="description"
-      name="description"
-    />
+    <slot />
     <button class="admin-course-info__save" type="submit">Сохранить</button>
   </form>
 </template>
 
 <script>
-import CourseInfoInputGroup from '@/components/admin/course/CourseInfoInputGroup.vue';
-
 export default {
   name: 'CourseInfo',
-
-  components: {
-    CourseInfoInputGroup,
-  },
 };
 </script>
 
@@ -37,12 +21,13 @@ export default {
 .admin-course-info__save {
   display: block;
   justify-self: start;
-  padding: 10px 20px;
+  padding: 13px 20px;
   font-family: inherit;
+  font-size: 16px;
   color: var(--color-gray-50);
   cursor: pointer;
   background-color: var(--color-primary-800);
   border: 0;
-  border-radius: 10px;
+  border-radius: 6px;
 }
 </style>

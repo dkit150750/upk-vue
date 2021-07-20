@@ -5,6 +5,8 @@
       class="admin-input-group__input admin-input-group__input--textarea"
       :id="id"
       :name="name"
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)"
       v-bind="$attrs"
     ></textarea>
   </div>
@@ -45,9 +47,9 @@ export default {
 .admin-input-group__input {
   display: block;
   width: 100%;
-  padding: 5px;
+  padding: 10px;
   font: inherit;
-  font-size: 15px;
+  font-size: 16px;
   background-color: var(--color-gray-70);
   border: 0;
   border-radius: 2px;
