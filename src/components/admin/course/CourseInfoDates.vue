@@ -15,11 +15,18 @@
       </div>
     </template>
   </div>
+  <CourseInfoDatesAdd />
 </template>
 
 <script>
+import CourseInfoDatesAdd from '@/components/admin/course/CourseInfoDatesAdd.vue';
+
 export default {
   name: 'CourseInfoDates',
+
+  components: {
+    CourseInfoDatesAdd,
+  },
 
   props: {
     dates: {
