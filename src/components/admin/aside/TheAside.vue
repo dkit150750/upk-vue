@@ -17,6 +17,7 @@
           class="aside__header-btn"
           aria-label="закрыть меню"
           type="button"
+          @click="$emit('clickCloseAside')"
         >
           <span class="aside__header-btn-liner"></span>
           <span class="aside__header-btn-liner"></span>
@@ -25,14 +26,33 @@
       <nav class="aside-nav">
         <ul class="aside-nav__list">
           <li class="aside-nav__item">
-            <a
-              class="aside-nav__link aside-nav__link--active"
-              href="./index.html"
-              >Курсы</a
+            <router-link
+              class="aside-nav__link"
+              active-class="aside-nav__link--active"
+              :to="{ name: 'admin' }"
+              @click="$emit('clickCloseAside')"
             >
+              Курсы
+            </router-link>
           </li>
           <li class="aside-nav__item">
-            <a class="aside-nav__link" href="../index.html">Выйти</a>
+            <router-link
+              class="aside-nav__link"
+              active-class="aside-nav__link--active"
+              :to="{ name: 'users' }"
+              @click="$emit('clickCloseAside')"
+            >
+              Пользователи
+            </router-link>
+          </li>
+          <li class="aside-nav__item">
+            <router-link
+              class="aside-nav__link"
+              active-class="aside-nav__link--active"
+              :to="{ name: 'home' }"
+            >
+              Выйти
+            </router-link>
           </li>
         </ul>
       </nav>
@@ -43,6 +63,10 @@
 <script>
 export default {
   name: 'TheAside',
+
+  emits: {
+    clickCloseAside: null,
+  },
 };
 </script>
 

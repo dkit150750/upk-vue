@@ -15,6 +15,7 @@
         class="admin-main__header-btn"
         aria-label="открыть меню"
         type="button"
+        @click="$emit('clickOpenAside')"
       >
         <span class="admin-main__header-btn-liner"></span>
         <span class="admin-main__header-btn-liner"></span>
@@ -27,6 +28,10 @@
 <script>
 export default {
   name: 'TheMain',
+
+  emits: {
+    clickOpenAside: null,
+  },
 };
 </script>
 

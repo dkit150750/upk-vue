@@ -51,8 +51,15 @@ const routes = [
     meta: { layout: 'LayoutAdmin' },
     component: () =>
       import(
-        /* webpackChunkName: "the-not-found" */ '@/views/admin/TheCoursesList'
+        /* webpackChunkName: "the-courses-list" */ '@/views/admin/TheCoursesList'
       ),
+  },
+  {
+    path: '/admin/users',
+    name: 'users',
+    meta: { layout: 'LayoutAdmin' },
+    component: () =>
+      import(/* webpackChunkName: "the-users" */ '@/views/admin/TheUsers'),
   },
   {
     path: '/:catchAll(.*)',

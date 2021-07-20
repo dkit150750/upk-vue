@@ -60,12 +60,6 @@ export default {
   --color-gray-900: hsl(240, 10%, 10%);
 }
 
-@media (min-width: 1500px) {
-  :root {
-    --max-width: 1630px;
-  }
-}
-
 .sr-only {
   position: absolute;
   width: 1px;
@@ -83,5 +77,6 @@ body {
   line-height: 1.2;
   color: var(--color-gray-900);
   background-color: var(--color-gray-0);
+  overflow-x: hidden;
 }
 </style>

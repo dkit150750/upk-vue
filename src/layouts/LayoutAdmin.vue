@@ -1,7 +1,7 @@
 <template>
-  <div id="layout-admin">
-    <TheAside />
-    <TheMain>
+  <div :class="classObject" id="layout-admin">
+    <TheAside @clickCloseAside="closeAside" />
+    <TheMain @clickOpenAside="openAside">
       <router-view />
     </TheMain>
   </div>
@@ -12,9 +12,34 @@ import TheAside from '@/components/admin/aside/TheAside.vue';
 import TheMain from '@/components/admin/main/TheMain.vue';
 export default {
   name: 'LayoutDefault',
+
   components: {
     TheAside,
     TheMain,
+  },
+
+  data() {
+    return {
+      isOpenAside: false,
+    };
+  },
+
+  computed: {
+    classObject() {
+      return {
+        'show-menu': this.isOpenAside,
+        'page-lock': this.isOpenAside,
+      };
+    },
+  },
+
+  methods: {
+    openAside() {
+      this.isOpenAside = true;
+    },
+    closeAside() {
+      this.isOpenAside = false;
+    },
   },
 };
 </script>
@@ -25,5 +50,10 @@ export default {
   min-height: 100vh;
   overflow-x: hidden;
   background-color: var(--color-gray-60);
+}
+
+.page-lock {
+  height: 100vh;
+  overflow: hidden;
 }
 </style>

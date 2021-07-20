@@ -23,6 +23,16 @@ export default {
 </script>
 
 <style>
+:root {
+  --max-width: 1250px;
+}
+
+@media (min-width: 1500px) {
+  :root {
+    --max-width: 1630px;
+  }
+}
+
 #layout {
   display: grid;
   grid-template-rows: min-content 1fr min-content;
