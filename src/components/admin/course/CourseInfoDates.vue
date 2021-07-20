@@ -1,0 +1,75 @@
+<template>
+  <div class="course-dates">
+    <div class="course-date">
+      <span class="course-date__value">23 марта 2020</span>
+      <span class="course-date__time">23:20</span>
+      <span class="course-date__users">Мест: 13/16</span>
+      <a class="course-date__users-list" href="./users.html">Участники</a>
+    </div>
+    <div class="course-date">
+      <span class="course-date__value">23 марта 2020</span>
+      <span class="course-date__time">23:20</span>
+      <span class="course-date__users">Мест: 13/16</span>
+      <a class="course-date__users-list" href="./users.html">Участники</a>
+    </div>
+    <div class="course-date">
+      <span class="course-date__value">23 марта 2020</span>
+      <span class="course-date__time">23:20</span>
+      <span class="course-date__users">Мест: 13/16</span>
+      <a class="course-date__users-list" href="./users.html">Участники</a>
+    </div>
+    <div class="course-date">
+      <span class="course-date__value">23 марта 2020</span>
+      <span class="course-date__time">23:20</span>
+      <span class="course-date__users">Мест: 13/16</span>
+      <a class="course-date__users-list" href="./users.html">Участники</a>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'CourseInfoDates',
+};
+</script>
+
+<style>
+.course-dates {
+  display: grid;
+  grid-template-columns: max-content;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+@media (min-width: 640px) {
+  .course-dates {
+    grid-template-columns: max-content max-content;
+  }
+}
+
+.course-date {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  gap: 10px 40px;
+  padding: 20px;
+  background-color: var(--color-gray-70);
+  border-radius: 10px;
+}
+
+.course-date__value {
+  grid-column: 1 / -1;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.course-date__time {
+  grid-column: 1 / -1;
+  font-weight: 500;
+}
+
+.course-date__users-list {
+  font-weight: 500;
+  color: var(--color-primary-800);
+  text-decoration: none;
+}
+</style>

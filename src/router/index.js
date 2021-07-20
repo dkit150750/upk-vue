@@ -55,6 +55,13 @@ const routes = [
       ),
   },
   {
+    path: '/admin/courses/:courseId(\\d+)',
+    name: 'admin.course',
+    meta: { layout: 'LayoutAdmin' },
+    component: () =>
+      import(/* webpackChunkName: "the-course" */ '@/views/admin/TheCourse'),
+  },
+  {
     path: '/admin/users',
     name: 'users',
     meta: { layout: 'LayoutAdmin' },

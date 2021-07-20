@@ -1,8 +1,11 @@
 <template>
   <article class="admin-course">
-    <a class="admin-course__title" href="./profession.html">
+    <router-link
+      class="admin-course__title"
+      :to="{ name: 'admin.course', params: { courseId: courseId } }"
+    >
       {{ title }}
-    </a>
+    </router-link>
     <div class="admin-course__pic-wrapper">
       <img
         class="admin-course__pic"
