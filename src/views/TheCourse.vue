@@ -18,10 +18,12 @@ import CourseDates from '@/components/course/CourseDates.vue';
 import courses from '@/store/courses.js';
 export default {
   name: 'TheCourse',
+
   components: {
     CourseInformation,
     CourseDates,
   },
+
   data() {
     return {
       course: {
@@ -33,11 +35,13 @@ export default {
       },
     };
   },
+
   methods: {
     getCourse(id) {
       this.course = courses.find((course) => course.id === parseInt(id));
     },
   },
+
   created() {
     this.getCourse(this.$route.params.courseId);
 
