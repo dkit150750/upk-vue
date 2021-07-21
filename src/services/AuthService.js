@@ -3,14 +3,23 @@ import store from '@/store';
 
 export const authClient = axios.create({
   baseURL: process.env.VUE_APP_API_URL,
-  withCredentials: true, // required to handle the CSRF token
-}); 
+  withCredentials: true, // требуется для обработки токена CSRF
+  headers: { 'X-Custom-Header': getCSRF() },
+});
+
+async function getCSRF() {
+  return await authClient.get('/sanctum/csrf-cookie');
+}
+
+authClient.defaults.headers.common['X-Custom-Header'] = getCSRF();
 
 /*
- * Add a response interceptor
+ * Добавьте перехватчик ответов
  */
 authClient.interceptors.response.use(
-  (response) => {
+  function (response) {
+    // Любой код состояния, который находится в диапазоне 2xx, вызывает срабатывание этой функции
+    // Сделайте что-нибудь с данными ответа
     return response;
   },
   function (error) {
@@ -27,35 +36,39 @@ authClient.interceptors.response.use(
 );
 
 export default {
-  async login(payload) {
-    await authClient.get('/sanctum/csrf-cookie');
+  registerUser(payload) {
+    return authClient.post('/register', payload);
+  },
+
+  login(payload) {
     return authClient.post('/login', payload);
   },
+
   logout() {
     return authClient.post('/logout');
   },
-  async forgotPassword(payload) {
-    await authClient.get('/sanctum/csrf-cookie');
+
+  forgotPassword(payload) {
     return authClient.post('/forgot-password', payload);
   },
-  getAuthUser() {
-    return authClient.get('/api/users/auth');
-  },
-  async resetPassword(payload) {
-    await authClient.get('/sanctum/csrf-cookie');
+
+  resetPassword(payload) {
     return authClient.post('/reset-password', payload);
   },
+
   updatePassword(payload) {
     return authClient.put('/user/password', payload);
   },
-  async registerUser(payload) {
-    await authClient.get('/sanctum/csrf-cookie');
-    return authClient.post('/register', payload);
-  },
+
   sendVerification(payload) {
     return authClient.post('/email/verification-notification', payload);
   },
+
   updateUser(payload) {
     return authClient.put('/user/profile-information', payload);
+  },
+
+  getAuthUser() {
+    return authClient.get('/api/v1/users/auth');
   },
 };

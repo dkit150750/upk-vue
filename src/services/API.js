@@ -11,7 +11,9 @@ export const apiClient = axios.create({
   withCredentials: true, // требуется для обработки токена CSRF
 });
 
-// Добавьте перехватчик ответов
+/*
+ * Добавьте перехватчик ответов
+ */
 apiClient.interceptors.response.use(
   function (response) {
     // Любой код состояния, который находится в диапазоне 2xx, вызывает срабатывание этой функции
