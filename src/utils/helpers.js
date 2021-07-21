@@ -9,7 +9,7 @@ export const getError = (error) => {
     console.error(`API ${error.config.url} не найден`);
     return errorMessage;
   }
-  
+
   if (process.env.NODE_ENV === 'development') {
     console.error(error.response.data);
     console.error(error.response.status);
