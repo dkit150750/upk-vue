@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: '/upk-vue/',
+  // publicPath: '/upk-vue/',
 };
