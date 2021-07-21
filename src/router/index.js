@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import store from '@/store/index';
 
 const routes = [
   {
@@ -79,6 +80,24 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const authUser = store.getters['auth/authUser'];
+  const reqAuth = to.meta.requiresAuth;
+  const loginQuery = { name: 'login', query: { redirect: to.fullPath } };
+
+  if (reqAuth && !authUser) {
+    store.dispatch('auth/getAuthUser').then(() => {
+      if (!store.getters['auth/authUser']) {
+        next(loginQuery);
+      } else {
+        next();
+      }
+    });
+  } else {
+    next(); // обязательно всегда вызывайте next()!
+  }
 });
 
 export default router;
