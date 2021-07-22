@@ -4,14 +4,13 @@ import store from '@/store';
 export const authClient = axios.create({
   baseURL: process.env.VUE_APP_API_URL,
   withCredentials: true, // требуется для обработки токена CSRF
-  headers: { 'X-Custom-Header': getCSRF() },
 });
 
 async function getCSRF() {
-  return await authClient.get('/sanctum/csrf-cookie');
+  await authClient.get('/sanctum/csrf-cookie');
 }
 
-authClient.defaults.headers.common['X-Custom-Header'] = getCSRF();
+getCSRF();
 
 /*
  * Добавьте перехватчик ответов
