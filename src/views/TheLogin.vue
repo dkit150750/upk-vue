@@ -1,6 +1,11 @@
 <template>
   <LoginWrapper>
-    <LoginCard class="login__login-card" title="Войти" buttonName="Войти">
+    <LoginCard
+      class="login__login-card"
+      title="Войти"
+      buttonName="Войти"
+      :isReset="true"
+    >
       <LoginCardInputGroup
         label="Email"
         id="email"

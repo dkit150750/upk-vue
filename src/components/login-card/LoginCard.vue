@@ -7,7 +7,7 @@
       <slot />
       <button class="login-card__submit" type="submit">{{ buttonName }}</button>
     </form>
-    <div class="login-card__footer" v-if="!isReset">
+    <div class="login-card__footer" v-if="isReset">
       <router-link class="login-card-link" :to="{ name: 'resetPassword' }">
         Забыли пароль?
       </router-link>
@@ -39,7 +39,7 @@ export default {
 <style>
 .login-card {
   --shadow-color: hsl(0, 0%, 87%);
-  padding: 50px 15px;
+  padding: 52px 15px 36px;
   background-color: var(--color-gray-0);
   border-radius: 5px;
   box-shadow: 0 0 140px -10px var(--shadow-color);
@@ -47,13 +47,13 @@ export default {
 
 @media (min-width: 350px) {
   .login-card {
-    padding: 50px 30px;
+    padding: 52px 30px 36px;
   }
 }
 
 @media (min-width: 470px) {
   .login-card {
-    padding: 50px 70px;
+    padding: 52px 70px 36px;
   }
 }
 
@@ -74,7 +74,7 @@ export default {
 .login-card__submit {
   display: block;
   padding: 12px 0;
-  margin: 40px 0 0;
+  margin: 40px 0 24px;
   color: var(--color-gray-0);
   cursor: pointer;
   background-color: var(--color-primary-700);
@@ -91,7 +91,7 @@ export default {
 .login-card__footer {
   display: flex;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 10px;
 }
 
 .login-card-link {

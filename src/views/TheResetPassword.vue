@@ -4,7 +4,6 @@
       class="login__login-card"
       title="Восстановление пароля"
       buttonName="Отправить письмо"
-      isReset="true"
     >
       <LoginCardInputGroup
         label="Email"
