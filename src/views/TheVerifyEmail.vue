@@ -12,6 +12,7 @@
         подтвержения.
       </p>
     </LoginCard>
+    <FlashMessage :message="message" @close="message = null" />
   </LoginWrapper>
 </template>
 
@@ -22,6 +23,7 @@ import AuthService from '@/services/AuthService';
 
 import LoginWrapper from '@/components/login-card/LoginWrapper.vue';
 import LoginCard from '@/components/login-card/LoginCard.vue';
+import FlashMessage from '@/components/FlashMessage.vue';
 
 export default {
   name: 'TheVerifyEmail',
@@ -29,6 +31,7 @@ export default {
   components: {
     LoginWrapper,
     LoginCard,
+    FlashMessage,
   },
 
   data() {
