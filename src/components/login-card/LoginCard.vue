@@ -3,12 +3,12 @@
     <div class="login-card__header">
       <h1 class="login-card__title">{{ title }}</h1>
     </div>
-    <form class="login-card__form">
+    <form class="login-card__form" @submit.prevent="$emit('form-submit')">
       <slot />
       <button class="login-card__submit" type="submit">{{ buttonName }}</button>
     </form>
     <div class="login-card__footer" v-if="isReset">
-      <router-link class="login-card-link" :to="{ name: 'resetPassword' }">
+      <router-link class="login-card-link" :to="{ name: 'forgotPassword' }">
         Забыли пароль?
       </router-link>
     </div>
@@ -32,6 +32,10 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+
+  emits: {
+    'form-submit': null,
   },
 };
 </script>

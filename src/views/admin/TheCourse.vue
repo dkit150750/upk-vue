@@ -6,13 +6,13 @@
       label="Название"
       id="name"
       name="name"
-      v-model="course.title"
+      v-model.trim="course.title"
     />
     <CourseInfoInputGroup
       label="Описание"
       id="description"
       name="description"
-      v-model="course.description"
+      v-model.trim="course.description"
     />
   </CourseInfo>
   <CourseInfoDates :dates="course.dates" />

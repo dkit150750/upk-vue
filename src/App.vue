@@ -58,6 +58,9 @@ export default {
   --color-gray-500: hsl(240, 10%, 50%);
   --color-gray-800: hsl(240, 0%, 14%);
   --color-gray-900: hsl(240, 10%, 10%);
+  --color-red-100: hsl(0, 100%, 95%);
+  --color-red-700: hsl(11, 100%, 60%);
+  --color-green-700: hsl(123, 41%, 45%);
 }
 
 .sr-only {

@@ -2,15 +2,23 @@
   <header class="header">
     <div class="header__container">
       <HeaderLogo />
-      <router-link class="header__link" :to="{ name: 'login' }">
-        <HeaderLinkIcon class="header__link-icon" />
-        Войти
-      </router-link>
+      <template v-if="loggedIn">
+        <router-link class="header__link" :to="{ name: 'profile' }">
+          Профиль
+        </router-link>
+      </template>
+      <template v-else>
+        <router-link class="header__link" :to="{ name: 'login' }">
+          <HeaderLinkIcon class="header__link-icon" />
+          Войти
+        </router-link>
+      </template>
     </div>
   </header>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import HeaderLinkIcon from '@/components/header/HeaderLinkIcon.vue';
 import HeaderLogo from '@/components/header/HeaderLogo.vue';
 
@@ -20,6 +28,10 @@ export default {
   components: {
     HeaderLogo,
     HeaderLinkIcon,
+  },
+
+  computed: {
+    ...mapGetters('auth', ['loggedIn']),
   },
 };
 </script>

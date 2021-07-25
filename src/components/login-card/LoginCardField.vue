@@ -1,8 +1,8 @@
 <template>
   <div :class="classObject">
-    <label class="login-input-group__label" :for="id">{{ label }}</label>
+    <label class="login-field__label" :for="id">{{ label }}</label>
     <input
-      class="login-input-group__input"
+      class="login-field__input"
       :id="id"
       :name="name"
       :type="type"
@@ -14,12 +14,15 @@
       @blur="removeFosuc"
       @input="$emit('update:modelValue', $event.target.value)"
     />
+    <span class="login-field__error" v-if="firstError">
+      {{ firstError }}&nbsp;
+    </span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'LoginCardInputGroup',
+  name: 'LoginCardField',
 
   props: {
     modelValue: {
@@ -57,6 +60,13 @@ export default {
       type: Boolean,
       default: false,
     },
+    error: {
+      default: null,
+    },
+  },
+
+  emits: {
+    'update:modelValue': null,
   },
 
   data() {
@@ -66,10 +76,17 @@ export default {
   },
 
   computed: {
+    firstError() {
+      if (Array.isArray(this.error)) {
+        return this.error[0];
+      }
+      return this.error;
+    },
     classObject() {
       return {
-        'login-input-group': true,
-        'login-input-group--active': this.isFocus,
+        'login-field': true,
+        'login-field--fosuc': this.isFocus,
+        'login-field--error': !!this.error,
       };
     },
   },
@@ -86,18 +103,18 @@ export default {
 </script>
 
 <style>
-.login-input-group {
+.login-field {
   position: relative;
   display: grid;
 }
 
-.login-input-group__label {
+.login-field__label {
   display: block;
   padding-bottom: 5px;
   font-weight: 500;
 }
 
-.login-input-group__input {
+.login-field__input {
   display: block;
   width: 100%;
   padding: 10px;
@@ -109,16 +126,17 @@ export default {
   color: inherit;
   background-color: transparent;
   border: none;
+  border-radius: 0;
   border-bottom: 1px solid var(--color-gray-100);
   outline: none;
 }
 
-.login-input-group__input:focus,
-.login-input-group__input:hover {
+.login-field__input:focus,
+.login-field__input:hover {
   border-color: var(--color-primary-800);
 }
 
-.login-input-group::before {
+.login-field::before {
   position: absolute;
   bottom: -1px;
   left: 50%;
@@ -131,7 +149,20 @@ export default {
   transform: translateX(-50%);
 }
 
-.login-input-group--active::before {
+.login-field--fosuc::before {
   width: 100%;
+}
+
+.login-field--error::before {
+  width: 100%;
+  background-color: var(--color-red-700);
+}
+
+.login-field__error {
+  position: absolute;
+  top: 100%;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-red-700);
 }
 </style>

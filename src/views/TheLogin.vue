@@ -5,24 +5,27 @@
       title="Войти"
       buttonName="Войти"
       :isReset="true"
+      @formSubmit="login"
     >
-      <LoginCardInputGroup
+      <LoginCardField
         label="Email"
         id="email"
         name="email"
         type="email"
         autocomplete="email"
         placeholder="luke@jedi.com"
-        v-model="data.email"
+        v-model.trim="user.email"
+        :error="error.email"
       />
-      <LoginCardInputGroup
+      <LoginCardField
         label="Пароль"
         id="password"
         name="password"
         type="password"
         autocomplete="current-password"
         placeholder="password"
-        v-model="data.password"
+        v-model.trim="user.password"
+        :error="error.password"
       />
     </LoginCard>
     <LoginFooter>
@@ -37,8 +40,12 @@
 <script>
 import LoginWrapper from '@/components/login-card/LoginWrapper.vue';
 import LoginCard from '@/components/login-card/LoginCard.vue';
-import LoginCardInputGroup from '@/components/login-card/LoginCardInputGroup.vue';
+import LoginCardField from '@/components/login-card/LoginCardField.vue';
 import LoginFooter from '@/components/login-card/LoginFooter.vue';
+
+import { mapGetters } from 'vuex';
+import AuthService from '@/services/AuthService';
+import { getError } from '@/utils/helpers';
 
 export default {
   name: 'TheLogin',
@@ -46,18 +53,69 @@ export default {
   components: {
     LoginWrapper,
     LoginCard,
-    LoginCardInputGroup,
+    LoginCardField,
     LoginFooter,
   },
 
   data() {
     return {
-      data: {
+      user: {
         email: null,
         password: null,
       },
-      error: null,
+      error: {
+        email: null,
+        password: null,
+      },
     };
+  },
+
+  computed: {
+    ...mapGetters('auth', ['authUser']),
+  },
+
+  methods: {
+    async login() {
+      if (!this.validate()) {
+        return;
+      }
+
+      this.error = {
+        email: null,
+        password: null,
+      };
+      const payload = this.user;
+
+      try {
+        await AuthService.login(payload);
+        await this.$store.dispatch('auth/getAuthUser');
+
+        if (this.authUser) {
+          this.$store.dispatch('auth/setGuest', { value: 'isNotGuest' });
+          this.$router.push({ name: 'profile' });
+        } else {
+          const error = Error(
+            'Невозможно получить пользователя после входа в систему, проверьте настройки API.'
+          );
+          error.name = 'Fetch User';
+          throw error;
+        }
+      } catch (error) {
+        this.error = getError(error);
+      }
+    },
+    validate() {
+      let isValid = true;
+      if (!/@[a-zA-Z0-9-]+/i.test(this.user.email)) {
+        this.error.email = 'Неправильная форма пароля';
+        isValid = false;
+      }
+      if (!this.user.password) {
+        this.error.password = 'Введите пароль';
+        isValid = false;
+      }
+      return isValid;
+    },
   },
 };
 </script>

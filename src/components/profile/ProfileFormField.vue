@@ -1,9 +1,9 @@
 <template>
-  <div :class="classObject">
-    <label class="profile-input-group__label">
+  <div class="profile-form-field">
+    <label :class="classObject">
       {{ label }}
       <input
-        class="profile-input-group__input"
+        class="profile-form-field__input"
         :name="name"
         :type="type"
         :value="modelValue"
@@ -15,12 +15,15 @@
         @input="$emit('update:modelValue', $event.target.value)"
       />
     </label>
+    <span class="profile-form-field__error" v-if="firstError">
+      {{ firstError }}&nbsp;
+    </span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ProfileInfoFormInputGroup',
+  name: 'ProfileFormField',
 
   props: {
     modelValue: {
@@ -54,6 +57,13 @@ export default {
       type: Boolean,
       default: false,
     },
+    error: {
+      default: null,
+    },
+  },
+
+  emits: {
+    'update:modelValue': null,
   },
 
   data() {
@@ -63,10 +73,18 @@ export default {
   },
 
   computed: {
+    firstError() {
+      if (Array.isArray(this.error)) {
+        return this.error[0];
+      }
+      return this.error;
+    },
+
     classObject() {
       return {
-        'profile-input-group': true,
-        'profile-input-group--active': this.isFocus,
+        'profile-form-field__label': true,
+        'profile-form-field__label--focus': this.isFocus && !this.error,
+        'profile-form-field__label--error': !!this.error,
       };
     },
   },
@@ -83,31 +101,35 @@ export default {
 </script>
 
 <style>
-.profile-input-group {
-  --shadow-color: hsl(0, 0%, 89%);
-  display: block;
-  padding: 16px 18px 10px;
+.profile-form-field {
   margin-bottom: 16px;
-  background-color: var(--color-gray-0);
+}
+
+.profile-form-field__label {
+  --shadow-color: hsl(0, 0%, 89%);
+  --background-color: var(--color-gray-0);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  padding: 16px 18px 10px;
+  font-size: 13px;
+  color: var(--color-gray-500);
+  background-color: var(--background-color);
   border-radius: 10px;
   box-shadow: 0 0 0 1.5px var(--shadow-color);
   transition: all 0.3s;
 }
 
-.profile-input-group--active,
-.profile-input-group:hover {
+.profile-form-field__label--focus,
+.profile-form-field__label:not(.profile-form-field__label--error):hover {
   --shadow-color: hsl(240, 5%, 70%);
 }
-
-.profile-input-group__label {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 4px;
-  font-size: 13px;
-  color: var(--color-gray-500);
+.profile-form-field__label--error {
+  --shadow-color: var(--color-red-700);
+  --background-color: var(--color-red-100);
 }
 
-.profile-input-group__input {
+.profile-form-field__input {
   display: block;
   width: 100%;
   padding-right: 0;
@@ -118,5 +140,11 @@ export default {
   background-color: transparent;
   border: 0;
   outline: none;
+}
+
+.profile-form-field__error {
+  font-size: 12px;
+  line-height: 2.4;
+  color: var(--color-red-700);
 }
 </style>

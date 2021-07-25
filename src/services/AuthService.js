@@ -6,12 +6,6 @@ export const authClient = axios.create({
   withCredentials: true, // требуется для обработки токена CSRF
 });
 
-async function getCSRF() {
-  await authClient.get('/sanctum/csrf-cookie');
-}
-
-getCSRF();
-
 /*
  * Добавьте перехватчик ответов
  */
@@ -22,17 +16,32 @@ authClient.interceptors.response.use(
     return response;
   },
   function (error) {
-    if (
-      error.response &&
-      [401, 419].includes(error.response.status) &&
-      store.getters['auth/authUser'] &&
-      !store.getters['auth/guest']
-    ) {
+    console.log('ОШИБКА');
+    console.log('error');
+    console.log(error);
+    console.log('error.response');
+    console.log(error.response);
+    if (error.response && [401, 419].includes(error.response.status)) {
+      getCSRF();
       store.dispatch('auth/logout');
     }
+    // if (
+    //   error.response &&
+    //   [401, 419].includes(error.response.status) &&
+    //   store.getters['auth/authUser'] &&
+    //   !store.getters['auth/guest']
+    // ) {
+    //   store.dispatch('auth/logout');
+    // }
     return Promise.reject(error);
   }
 );
+
+async function getCSRF() {
+  await authClient.get('/sanctum/csrf-cookie');
+}
+
+getCSRF();
 
 export default {
   registerUser(payload) {

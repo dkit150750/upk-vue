@@ -12,8 +12,9 @@
 </template>
 
 <script>
+// import CourseService from '@/services/CourseService';
+
 import CoursesListItem from '@/components/courses/CoursesListItem.vue';
-import courses from '@/store/courses.js';
 
 export default {
   name: 'CoursesList',
@@ -23,8 +24,12 @@ export default {
 
   data() {
     return {
-      courses: courses,
+      courses: [],
     };
+  },
+
+  async created() {
+    // this.courses = await CourseService.getCourses();
   },
 };
 </script>
