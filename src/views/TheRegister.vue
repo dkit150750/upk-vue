@@ -77,13 +77,13 @@
 </template>
 
 <script>
+import AuthService from '@/services/AuthService';
+import { getError } from '@/utils/helpers';
+
 import LoginWrapper from '@/components/login-card/LoginWrapper.vue';
 import LoginCard from '@/components/login-card/LoginCard.vue';
 import LoginCardField from '@/components/login-card/LoginCardField.vue';
 import LoginFooter from '@/components/login-card/LoginFooter.vue';
-
-import AuthService from '@/services/AuthService';
-import { getError } from '@/utils/helpers';
 
 export default {
   name: 'TheLogin',

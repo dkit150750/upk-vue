@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import { getError } from '@/utils/helpers';
 import AuthService from '@/services/AuthService';
+import { getError } from '@/utils/helpers';
 
 import LoginWrapper from '@/components/login-card/LoginWrapper.vue';
 import LoginCard from '@/components/login-card/LoginCard.vue';
