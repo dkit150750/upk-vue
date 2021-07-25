@@ -98,12 +98,12 @@ export default {
   data() {
     return {
       user: {
-        lastname: null,
-        name: null,
-        patronymic: null,
-        email: null,
-        password: 'password',
-        password_confirmation: 'password',
+        lastname: '',
+        name: '',
+        patronymic: '',
+        email: '',
+        password: '',
+        password_confirmation: '',
       },
       error: {
         lastname: null,
@@ -118,7 +118,18 @@ export default {
 
   methods: {
     async register() {
-      this.error = null;
+      if (!this.validate()) {
+        return;
+      }
+
+      this.error = {
+        lastname: null,
+        name: null,
+        patronymic: null,
+        email: null,
+        password: null,
+        password_confirmation: null,
+      };
       const payload = this.user;
 
       try {
@@ -127,6 +138,42 @@ export default {
       } catch (error) {
         this.error = getError(error);
       }
+    },
+
+    validate() {
+      let isValid = true;
+
+      if (!this.user.lastname) {
+        this.error.lastname = 'Введите пароль';
+        isValid = false;
+      }
+
+      if (!this.user.name) {
+        this.error.name = 'Введите пароль';
+        isValid = false;
+      }
+
+      if (!this.user.patronymic) {
+        this.error.patronymic = 'Введите пароль';
+        isValid = false;
+      }
+
+      if (!/@[a-zA-Z0-9-]+/i.test(this.user.email)) {
+        this.error.email = 'Неправильная форма почты';
+        isValid = false;
+      }
+
+      if (!this.user.password) {
+        this.error.password = 'Введите пароль';
+        isValid = false;
+      }
+
+      if (this.user.password !== this.user.password_confirmation) {
+        this.error.password_confirmation = 'Пароль не совпадает';
+        isValid = false;
+      }
+
+      return isValid;
     },
   },
 };
