@@ -86,7 +86,7 @@ import LoginCardField from '@/components/login-card/LoginCardField.vue';
 import LoginFooter from '@/components/login-card/LoginFooter.vue';
 
 export default {
-  name: 'TheLogin',
+  name: 'TheRegister',
 
   components: {
     LoginWrapper,
