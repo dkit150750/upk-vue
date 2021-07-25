@@ -1,11 +1,7 @@
 <template>
   <div class="profile-avatar">
     <div class="profile-avatar__img-wrapper">
-      <img
-        class="profile-avatar__img"
-        :src="require('@/assets/images/avatar_no_image.png')"
-        alt="Валентин Степанов"
-      />
+      <img class="profile-avatar__img" :src="authUser.avatar" :alt="fullName" />
     </div>
     <div class="profile-avatar__avatar-icon-wrapper">
       <ProfileHeaderAvatarIcon />
@@ -22,6 +18,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 import ProfileHeaderAvatarIcon from '@/components/profile/ProfileHeaderAvatarIcon.vue';
 
 export default {
@@ -29,6 +27,13 @@ export default {
 
   components: {
     ProfileHeaderAvatarIcon,
+  },
+
+  computed: {
+    ...mapGetters('auth', ['authUser']),
+    fullName() {
+      return this.authUser.name + ' ' + this.authUser.lastname;
+    },
   },
 };
 </script>

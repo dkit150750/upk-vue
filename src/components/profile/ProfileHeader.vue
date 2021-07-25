@@ -1,12 +1,14 @@
 <template>
   <div class="profile-header">
     <ProfileHeaderAvatar />
-    <h1 class="profile-header__full-name">Валентин Степанов</h1>
-    <p class="profile-header__email">dkit150750@gmail.com</p>
+    <h1 class="profile-header__full-name">{{ fullName }}</h1>
+    <p class="profile-header__email">{{ this.authUser.email }}</p>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 import ProfileHeaderAvatar from '@/components/profile/ProfileHeaderAvatar.vue';
 
 export default {
@@ -14,6 +16,13 @@ export default {
 
   components: {
     ProfileHeaderAvatar,
+  },
+
+  computed: {
+    ...mapGetters('auth', ['authUser']),
+    fullName() {
+      return this.authUser.name + ' ' + this.authUser.lastname;
+    },
   },
 };
 </script>
