@@ -45,8 +45,8 @@
 <script>
 import { mapGetters } from 'vuex';
 import { getError } from '@/utils/helpers';
-
 import AuthService from '@/services/AuthService';
+
 import ProfileFormField from '@/components/profile/ProfileFormField.vue';
 import ProfileLogout from '@/components/profile/ProfileLogout.vue';
 import FlashMessage from '@/components/FlashMessage.vue';
@@ -63,9 +63,9 @@ export default {
   data() {
     return {
       user: {
-        lastname: 'Степанов',
-        name: 'Валентин',
-        patronymic: 'Иванович',
+        lastname: '',
+        name: '',
+        patronymic: '',
         telephone: '',
       },
       error: {
@@ -81,6 +81,13 @@ export default {
   computed: {
     ...mapGetters('auth', ['authUser']),
     isDisabledSaveInfo() {
+      if (
+        this.user.lastname === '' ||
+        this.user.name === '' ||
+        this.user.patronymic === ''
+      ) {
+        return true;
+      }
       return (
         JSON.stringify(Object.values(this.user)) ===
         JSON.stringify(Object.values(this.authUser))
