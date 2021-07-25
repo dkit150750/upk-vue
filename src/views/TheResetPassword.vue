@@ -84,21 +84,9 @@ export default {
     };
   },
 
-  computed: {
-    isDisabled() {
-      if (Object.values(this.user).includes('')) {
-        return true;
-      }
-      if (this.user.password !== this.user.password_confirmation) {
-        return true;
-      }
-      return false;
-    },
-  },
-
   methods: {
     async resetPassword() {
-      if (this.isDisabled) {
+      if (!this.validate()) {
         return;
       }
 
@@ -118,22 +106,26 @@ export default {
         this.error = getError(error);
       }
     },
-  },
 
-  watch: {
-    user: {
-      handler(password) {
-        if (password.password_confirmation === '') {
-          return;
-        }
+    validate() {
+      let isValid = true;
 
-        if (password.password !== password.password_confirmation) {
-          this.error.password_confirmation = 'Пароли не совпадают';
-        } else {
-          this.error.password_confirmation = null;
-        }
-      },
-      deep: true,
+      if (!/@[a-zA-Z0-9-]+/i.test(this.user.email)) {
+        this.error.email = 'Неправильный формат почты';
+        isValid = false;
+      }
+
+      if (!this.user.password) {
+        this.error.password = 'Введите пароль';
+        isValid = false;
+      }
+
+      if (this.user.password !== this.user.password_confirmation) {
+        this.error.password_confirmation = 'Пароль не совпадает';
+        isValid = false;
+      }
+
+      return isValid;
     },
   },
 };
