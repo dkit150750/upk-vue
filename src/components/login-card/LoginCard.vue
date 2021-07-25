@@ -12,10 +12,15 @@
         Забыли пароль?
       </router-link>
     </div>
+    <div class="login-card__footer" v-if="isExit" @click="logout">
+      <button class="login-card-link" type="button">Выйти</button>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'LoginCard',
 
@@ -32,10 +37,18 @@ export default {
       type: Boolean,
       default: false,
     },
+    isExit: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   emits: {
     'form-submit': null,
+  },
+
+  methods: {
+    ...mapActions('auth', ['logout']),
   },
 };
 </script>
@@ -102,5 +115,9 @@ export default {
   font-size: 15px;
   color: #b4b9cb;
   text-decoration: none;
+  font-family: inherit;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
 }
 </style>

@@ -4,6 +4,7 @@
       class="login__login-card"
       title="Подтвердите email"
       buttonName="Отправить письмо еще раз"
+      :isExit="true"
       @formSubmit="sendVerification"
     >
       <p class="login-card__tetx">
