@@ -109,7 +109,7 @@ export default {
       let isValid = true;
 
       if (!/@[a-zA-Z0-9-]+/i.test(this.user.email)) {
-        this.error.email = 'Неправильная форма почты';
+        this.error.email = 'Неправильный формат почты';
         isValid = false;
       }
 

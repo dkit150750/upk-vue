@@ -50,7 +50,7 @@ export default {
 
   data() {
     return {
-      email: null,
+      email: '',
       error: {
         email: null,
       },
@@ -60,6 +60,10 @@ export default {
 
   methods: {
     async forgotPassword() {
+      if (!this.validate()) {
+        return;
+      }
+
       this.error = {
         email: null,
       };
@@ -67,12 +71,23 @@ export default {
       const payload = {
         email: this.email,
       };
+
       try {
         await AuthService.forgotPassword(payload);
         this.message = 'Электронное письмо для сброса пароля отправлено';
       } catch (error) {
         this.error = getError(error);
       }
+    },
+    validate() {
+      let isValid = true;
+
+      if (!/@[a-zA-Z0-9-]+/i.test(this.user.email)) {
+        this.error.email = 'Неправильный формат почты';
+        isValid = false;
+      }
+
+      return isValid;
     },
   },
 };

@@ -144,22 +144,22 @@ export default {
       let isValid = true;
 
       if (!this.user.lastname) {
-        this.error.lastname = 'Введите пароль';
+        this.error.lastname = 'Введите фамилию';
         isValid = false;
       }
 
       if (!this.user.name) {
-        this.error.name = 'Введите пароль';
+        this.error.name = 'Введите ммя';
         isValid = false;
       }
 
       if (!this.user.patronymic) {
-        this.error.patronymic = 'Введите пароль';
+        this.error.patronymic = 'Введите отчество';
         isValid = false;
       }
 
       if (!/@[a-zA-Z0-9-]+/i.test(this.user.email)) {
-        this.error.email = 'Неправильная форма почты';
+        this.error.email = 'Неправильный формат почты';
         isValid = false;
       }
 
