@@ -76,9 +76,6 @@ export default {
       if (Object.values(this.password).includes('')) {
         return true;
       }
-      if (this.password.password !== this.password.password_confirmation) {
-        return true;
-      }
       return false;
     },
   },
@@ -87,6 +84,7 @@ export default {
     async updatePassword() {
       this.error = {
         current_password: null,
+        password: null,
         password_confirmation: null,
       };
       this.message = null;

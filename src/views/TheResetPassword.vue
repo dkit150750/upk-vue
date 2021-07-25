@@ -118,7 +118,7 @@ export default {
       }
 
       if (this.user.password !== this.user.password_confirmation) {
-        this.error.password_confirmation = 'Пароль не совпадает';
+        this.error.password_confirmation = 'Пароли не совпадают';
         isValid = false;
       }
 
