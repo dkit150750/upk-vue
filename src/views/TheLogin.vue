@@ -38,14 +38,14 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import AuthService from '@/services/AuthService';
+import { getError } from '@/utils/helpers';
+
 import LoginWrapper from '@/components/login-card/LoginWrapper.vue';
 import LoginCard from '@/components/login-card/LoginCard.vue';
 import LoginCardField from '@/components/login-card/LoginCardField.vue';
 import LoginFooter from '@/components/login-card/LoginFooter.vue';
-
-import { mapGetters } from 'vuex';
-import AuthService from '@/services/AuthService';
-import { getError } from '@/utils/helpers';
 
 export default {
   name: 'TheLogin',
@@ -104,16 +104,20 @@ export default {
         this.error = getError(error);
       }
     },
+
     validate() {
       let isValid = true;
+
       if (!/@[a-zA-Z0-9-]+/i.test(this.user.email)) {
         this.error.email = 'Неправильная форма пароля';
         isValid = false;
       }
+
       if (!this.user.password) {
         this.error.password = 'Введите пароль';
         isValid = false;
       }
+
       return isValid;
     },
   },
