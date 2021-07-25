@@ -75,6 +75,7 @@ export default {
       try {
         await AuthService.forgotPassword(payload);
         this.message = 'Электронное письмо для сброса пароля отправлено';
+        this.email = '';
       } catch (error) {
         this.error = getError(error);
       }

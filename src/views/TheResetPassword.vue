@@ -44,7 +44,6 @@
       </router-link>
     </LoginFooter>
   </LoginWrapper>
-  <FlashMessage :message="message" @close="message = null" />
 </template>
 
 <script>
@@ -55,7 +54,6 @@ import LoginWrapper from '@/components/login-card/LoginWrapper.vue';
 import LoginCard from '@/components/login-card/LoginCard.vue';
 import LoginCardField from '@/components/login-card/LoginCardField.vue';
 import LoginFooter from '@/components/login-card/LoginFooter.vue';
-import FlashMessage from '@/components/FlashMessage.vue';
 
 export default {
   name: 'TheResetPassword',
@@ -65,7 +63,6 @@ export default {
     LoginCard,
     LoginCardField,
     LoginFooter,
-    FlashMessage,
   },
 
   data() {
@@ -101,7 +98,7 @@ export default {
 
       try {
         await AuthService.resetPassword(payload);
-        this.message = 'Пароль изменен';
+        this.$router.push({ name: 'login' });
       } catch (error) {
         this.error = getError(error);
       }
