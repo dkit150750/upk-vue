@@ -4,27 +4,27 @@
       label="Текущий пароль"
       name="current_password"
       type="password"
-      v-model.trim="password.current_password"
       autocomplete="new-password"
       placeholder="password"
+      v-model.trim="user.current_password"
       :error="error.current_password"
     />
     <ProfileFormField
       label="Пароль"
       name="password"
       type="password"
-      v-model.trim="password.password"
       autocomplete="new-password"
       placeholder="password"
+      v-model.trim="user.password"
       :error="error.password"
     />
     <ProfileFormField
       label="Подтвердить пароль"
       name="password_confirmation"
       type="password"
-      v-model.trim="password.password_confirmation"
       autocomplete="new-password"
       placeholder="password"
+      v-model.trim="user.password_confirmation"
       :error="error.password_confirmation"
     />
     <div class="profile-info-form__buttons">
@@ -57,7 +57,7 @@ export default {
 
   data() {
     return {
-      password: {
+      user: {
         current_password: '',
         password: '',
         password_confirmation: '',
@@ -73,7 +73,7 @@ export default {
 
   computed: {
     isDisabled() {
-      if (Object.values(this.password).includes('')) {
+      if (Object.values(this.user).includes('')) {
         return true;
       }
       return false;
@@ -82,36 +82,40 @@ export default {
 
   methods: {
     async updatePassword() {
+      if (!this.validate()) {
+        return;
+      }
+
       this.error = {
         current_password: null,
         password: null,
         password_confirmation: null,
       };
       this.message = null;
-      const payload = this.password;
+      const payload = this.user;
+
       try {
         await AuthService.updatePassword(payload);
         this.message = 'Пароль обновлен';
+        this.user = {
+          current_password: null,
+          password: null,
+          password_confirmation: null,
+        };
       } catch (error) {
         this.error = getError(error);
       }
     },
-  },
 
-  watch: {
-    password: {
-      handler(password) {
-        if (password.password_confirmation === '') {
-          return;
-        }
+    validate() {
+      let isValid = true;
 
-        if (password.password !== password.password_confirmation) {
-          this.error.password_confirmation = 'Пароли не совпадают';
-        } else {
-          this.error.password_confirmation = null;
-        }
-      },
-      deep: true,
+      if (this.user.password !== this.user.password_confirmation) {
+        this.error.password_confirmation = 'Пароли не совпадают';
+        isValid = false;
+      }
+
+      return isValid;
     },
   },
 };
