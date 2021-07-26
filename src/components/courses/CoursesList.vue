@@ -33,7 +33,7 @@ export default {
       const response = await CourseService.getCourses();
       this.courses = response.data.data;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   },
 };
