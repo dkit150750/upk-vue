@@ -5,14 +5,14 @@
       :key="course.id"
       :courseId="course.id"
       :title="course.title"
-      :imgSrc="course.imgSrc"
+      :picture="course.picture"
       :background="course.background"
     />
   </div>
 </template>
 
 <script>
-// import CourseService from '@/services/CourseService';
+import CourseService from '@/services/CourseService';
 
 import CoursesListItem from '@/components/courses/CoursesListItem.vue';
 
@@ -29,7 +29,12 @@ export default {
   },
 
   async created() {
-    // this.courses = await CourseService.getCourses();
+    try {
+      const response = await CourseService.getCourses();
+      this.courses = response.data.data;
+    } catch (error) {
+      console.log(error)
+    }
   },
 };
 </script>
