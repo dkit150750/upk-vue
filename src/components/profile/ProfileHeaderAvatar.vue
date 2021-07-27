@@ -6,7 +6,11 @@
     <div class="profile-avatar__avatar-icon-wrapper">
       <ProfileHeaderAvatarIcon />
     </div>
-    <label class="profile-avatar__label" aria-label="изменить аватар" for="avatar"></label>
+    <label
+      class="profile-avatar__label"
+      for="avatar"
+      aria-label="изменить аватар"
+    ></label>
     <input
       class="profile-avatar__input"
       id="avatar"
