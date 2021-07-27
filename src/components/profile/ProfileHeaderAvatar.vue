@@ -6,19 +6,23 @@
     <div class="profile-avatar__avatar-icon-wrapper">
       <ProfileHeaderAvatarIcon />
     </div>
+    <label class="profile-avatar__label" aria-label="изменить аватар" for="avatar"></label>
     <input
       class="profile-avatar__input"
+      id="avatar"
       name="avatar"
       type="file"
-      accept=".png, .webp, .jpeg, .jpg"
+      accept="image/*"
       tabindex="-1"
-      aria-label="изменить аватар"
+      @change="uploadAvatar"
     />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import FileService from '@/services/FileService';
+import { getError } from '@/utils/helpers';
 
 import ProfileHeaderAvatarIcon from '@/components/profile/ProfileHeaderAvatarIcon.vue';
 
@@ -29,10 +33,36 @@ export default {
     ProfileHeaderAvatarIcon,
   },
 
+  data() {
+    return {
+      endpoint: '/users/auth/avatar',
+    };
+  },
+
   computed: {
     ...mapGetters('auth', ['authUser']),
     fullName() {
       return this.authUser.name + ' ' + this.authUser.lastname;
+    },
+  },
+
+  methods: {
+    async uploadAvatar(event) {
+      console.log(event.target.files);
+      const file = event.target.files[0];
+      const payload = {};
+      const formData = new FormData();
+      formData.append('avatar', file);
+      payload.file = formData;
+      payload.endpoint = this.endpoint;
+
+      try {
+        this.file = null;
+        await FileService.uploadFile(payload);
+        this.$store.dispatch('auth/getAuthUser');
+      } catch (error) {
+        this.error = getError(error);
+      }
     },
   },
 };
@@ -79,7 +109,7 @@ export default {
   opacity: 1;
 }
 
-.profile-avatar__input {
+.profile-avatar__label {
   position: absolute;
   top: 0;
   left: 0;
@@ -88,5 +118,8 @@ export default {
   height: 100%;
   cursor: pointer;
   opacity: 0;
+}
+.profile-avatar__input {
+  display: none;
 }
 </style>

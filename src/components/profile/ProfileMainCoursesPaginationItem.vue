@@ -21,7 +21,6 @@ export default {
 }
 
 .pagination-item__page {
-  --bg-color: hsl(60, 11%, 94%);
   position: absolute;
   top: 0;
   left: 0;
@@ -34,7 +33,7 @@ export default {
   line-height: 1;
   color: inherit;
   text-decoration: none;
-  background-color: var(--bg-color);
+  background-color: var(--profile-card-backgrouind);
   border: 0;
   border-radius: 33%;
   outline: none;

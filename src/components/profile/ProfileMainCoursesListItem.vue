@@ -48,7 +48,6 @@ export default {
 
 <style>
 .main-course-card {
-  --card-background: hsl(60, 11%, 94%);
   position: relative;
   display: grid;
   grid-template-rows: min-content 1fr;
@@ -57,7 +56,7 @@ export default {
   max-width: 600px;
   min-height: 130px;
   padding: 20px 16px;
-  background-color: var(--card-background);
+  background-color: var(--profile-card-backgrouind);
   border-radius: 10px;
 }
 

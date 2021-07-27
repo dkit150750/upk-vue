@@ -31,9 +31,8 @@ export default {
 
 <style>
 .profile-info {
-  --bg-color: hsl(60, 11%, 94%);
   padding: 32px 16px;
-  background-color: var(--bg-color);
+  background-color: var(--profile-card-backgrouind);
   border-radius: 20px;
 }
 
@@ -72,13 +71,8 @@ export default {
 .profile-info__title {
   margin: 0;
   margin-bottom: 14px;
-  font-size: 16px;
-}
-
-@media (min-width: 1024px) {
-  .profile-info__title {
-    font-size: 18px;
-  }
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .profile-info__description {
