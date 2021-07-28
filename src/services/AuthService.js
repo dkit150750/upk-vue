@@ -21,18 +21,14 @@ authClient.interceptors.response.use(
     console.log(error);
     console.log('error.response');
     console.log(error.response);
-    if (error.response && [401, 419].includes(error.response.status)) {
-      getCSRF();
+    if (
+      error.response &&
+      [401, 419].includes(error.response.status) &&
+      store.getters['auth/authUser'] &&
+      !store.getters['auth/guest']
+    ) {
       store.dispatch('auth/logout');
     }
-    // if (
-    //   error.response &&
-    //   [401, 419].includes(error.response.status) &&
-    //   store.getters['auth/authUser'] &&
-    //   !store.getters['auth/guest']
-    // ) {
-    //   store.dispatch('auth/logout');
-    // }
     return Promise.reject(error);
   }
 );
