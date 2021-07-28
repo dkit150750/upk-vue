@@ -71,11 +71,11 @@ export default {
 }
 
 .header-menu-enter-active {
-  transition: all 0.15s ease-out;
+  transition: all 0.15s ease-in;
 }
 
 .header-menu-leave-active {
-  transition: all 0.15s ease-in;
+  transition: all 0.15s ease-out;
 }
 
 .header-menu-enter-from,
