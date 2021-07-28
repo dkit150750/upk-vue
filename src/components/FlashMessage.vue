@@ -90,20 +90,30 @@ export default {
   display: grid;
   grid-template-columns: min-content 1fr min-content;
   align-items: center;
-  padding: 16px 10px;
+  padding: 12px 10px;
   border-radius: 10px;
   background-color: var(--color-gray-0);
-  box-shadow: 0 5px 20px 0 hsla(0, 0%, 0%, 0.3);
+  box-shadow: 0px 4px 16px rgb(0, 0, 0, 0.1),
+    0px 4px 22px 10px rgb(0, 0, 0, 0.04);
   transform: translateX(-50%);
-  min-width: 300px;
+  width: calc(100% - 36px);
+}
+
+@media (min-width: 550px) {
+  .flash-message {
+    width: 500px;
+    left: auto;
+    right: 16px;
+    transform: translateX(0);
+  }
 }
 
 .flash-message-enter-active {
-  transition: all 0.3s ease-out;
+  transition: all 0.2s ease-in;
 }
 
 .flash-message-leave-active {
-  transition: all 0.3s ease-in;
+  transition: all 0.2s ease-out;
 }
 
 .flash-message-enter-from,
@@ -113,7 +123,7 @@ export default {
 }
 
 .flash-message__icon {
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .flash-message__icon svg {
@@ -125,7 +135,13 @@ export default {
 
 .flash-message__text {
   margin: 0;
-  font-size: 14px;
+  font-size: 13px;
+}
+
+@media (min-width: 550px) {
+  .flash-message__text {
+    font-size: 14px;
+  }
 }
 
 .flash-message__close {
