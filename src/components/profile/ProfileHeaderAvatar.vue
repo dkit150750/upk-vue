@@ -21,6 +21,7 @@
       @change="uploadAvatar"
     />
   </div>
+  <FlashMessage :message="message" @close="message = null" />
 </template>
 
 <script>
@@ -29,17 +30,20 @@ import FileService from '@/services/FileService';
 import { getError } from '@/utils/helpers';
 
 import ProfileHeaderAvatarIcon from '@/components/profile/ProfileHeaderAvatarIcon.vue';
+import FlashMessage from '@/components/FlashMessage.vue';
 
 export default {
   name: 'ProfileHeaderAvatar',
 
   components: {
     ProfileHeaderAvatarIcon,
+    FlashMessage,
   },
 
   data() {
     return {
       endpoint: '/users/auth/avatar',
+      message: null,
     };
   },
 
@@ -52,7 +56,6 @@ export default {
 
   methods: {
     async uploadAvatar(event) {
-      console.log(event.target.files);
       const file = event.target.files[0];
       const payload = {};
       const formData = new FormData();
@@ -64,6 +67,7 @@ export default {
         this.file = null;
         await FileService.uploadFile(payload);
         this.$store.dispatch('auth/getAuthUser');
+        this.message = 'Данные обновлены';
       } catch (error) {
         this.error = getError(error);
       }
@@ -78,6 +82,11 @@ export default {
   grid-row: 1 / 3;
   overflow: hidden;
   border-radius: 100%;
+  user-select: none;
+}
+
+.profile-avatar * {
+  user-select: none;
 }
 
 .profile-avatar__img-wrapper {
