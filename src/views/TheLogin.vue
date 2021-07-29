@@ -40,7 +40,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import AuthService from '@/services/AuthService';
-import { getError } from '@/utils/helpers';
+import { getErrorData } from '@/utils/helpers';
 
 import LoginWrapper from '@/components/login-card/LoginWrapper.vue';
 import LoginCard from '@/components/login-card/LoginCard.vue';
@@ -101,7 +101,7 @@ export default {
           throw error;
         }
       } catch (error) {
-        this.error = getError(error);
+        this.error = getErrorData(error);
       }
     },
 

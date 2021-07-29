@@ -18,7 +18,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { getError } from '@/utils/helpers';
+import { getErrorData } from '@/utils/helpers';
 import AuthService from '@/services/AuthService';
 
 import LoginWrapper from '@/components/login-card/LoginWrapper.vue';
@@ -56,7 +56,7 @@ export default {
         await AuthService.sendVerification(payload);
         this.message = 'Письмо с подтверждением отправлено';
       } catch (error) {
-        this.error = getError(error);
+        this.error = getErrorData(error);
       }
     },
   },

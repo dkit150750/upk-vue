@@ -1,5 +1,5 @@
 import router from '@/router';
-import { getError } from '@/utils/helpers';
+import { getErrorData } from '@/utils/helpers';
 import AuthService from '@/services/AuthService';
 
 const state = () => ({
@@ -54,7 +54,7 @@ const actions = {
         router.push({ name: 'login' });
       }
     } catch (error) {
-      commit('SET_ERROR', getError(error));
+      commit('SET_ERROR', getErrorData(error));
     }
   },
 
@@ -65,7 +65,7 @@ const actions = {
       commit('SET_USER', response.data.data);
     } catch (error) {
       commit('SET_USER', null);
-      commit('SET_ERROR', getError(error));
+      commit('SET_ERROR', getErrorData(error));
     } finally {
       commit('SET_LOADING', false);
     }
