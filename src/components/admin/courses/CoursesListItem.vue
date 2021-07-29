@@ -7,11 +7,7 @@
       {{ title }}
     </router-link>
     <div class="admin-course__pic-wrapper">
-      <img
-        class="admin-course__pic"
-        :src="require(`@/assets/${imgSrc}`)"
-        alt="1С:Предприятие"
-      />
+      <img class="admin-course__pic" :src="picture" :alt="title" />
     </div>
   </article>
 </template>
@@ -29,7 +25,7 @@ export default {
       type: String,
       required: true,
     },
-    imgSrc: {
+    picture: {
       type: String,
       required: true,
     },
