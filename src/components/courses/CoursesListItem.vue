@@ -40,10 +40,6 @@ export default {
       logo: 'logo.png',
     };
   },
-
-  mounted() {
-    this.$refs.course.style.setProperty('--color-background', this.background);
-  },
 };
 </script>
 
@@ -55,7 +51,7 @@ export default {
   gap: 10px;
   min-height: 130px;
   padding: 20px 16px;
-  background-color: var(--color-background);
+  background-color: v-bind(background);
   border-radius: 10px;
 }
 
@@ -98,7 +94,7 @@ export default {
   }
 }
 
-.course-card__title::before {
+.course-card__title::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -108,7 +104,8 @@ export default {
 }
 
 @media (min-width: 768px) {
-  .course-card__title::after {
+  .course-card__title::before {
+    z-index: -1;
     position: absolute;
     top: 0;
     left: 0;
@@ -117,12 +114,11 @@ export default {
     content: '';
     border-radius: 10px;
     transition: transform 0.3s;
+    background-color: v-bind(background);
   }
 
-  .course-card__title:focus::after,
-  .course-card__title:hover::after {
-    z-index: -1;
-    background-color: var(--card-background);
+  .course-card__title:focus::before,
+  .course-card__title:hover::before {
     transform: scale(1.025);
   }
 }
