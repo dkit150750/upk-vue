@@ -27,7 +27,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import FileService from '@/services/FileService';
-import { getError } from '@/utils/helpers';
+import { getErrorData } from '@/utils/helpers';
 
 import ProfileHeaderAvatarIcon from '@/components/profile/ProfileHeaderAvatarIcon.vue';
 import FlashMessage from '@/components/FlashMessage.vue';
@@ -69,7 +69,7 @@ export default {
         this.$store.dispatch('auth/getAuthUser');
         this.message = 'Данные обновлены';
       } catch (error) {
-        this.error = getError(error);
+        this.error = getErrorData(error);
       }
     },
   },
