@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'CoursesListItem',
+  name: 'Course',
 
   props: {
     courseId: {

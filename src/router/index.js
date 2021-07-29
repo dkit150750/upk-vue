@@ -74,9 +74,7 @@ const routes = [
     name: 'admin',
     meta: { layout: 'LayoutAdmin', middleware: [admin] },
     component: () =>
-      import(
-        /* webpackChunkName: "the-courses-list" */ '@/views/admin/TheCoursesList'
-      ),
+      import(/* webpackChunkName: "the-courses" */ '@/views/admin/TheCourses'),
   },
   {
     path: '/admin/courses/:courseId(\\d+)',
