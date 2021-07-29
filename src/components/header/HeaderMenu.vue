@@ -4,12 +4,23 @@
       <div class="header-menu__content">
         <ul class="header-menu__list">
           <li class="header-menu__item">
-            <router-link class="header-menu__link" :to="{ name: 'profile' }">
+            <router-link
+              class="header-menu__link"
+              exact-active-class="header-menu__link--active"
+              :to="{ name: 'profile' }"
+              @click="$emit('close')"
+            >
               Профиль
             </router-link>
           </li>
-          <li class="header-menu__item">
-            <a href="" class="header-menu__link">Админка</a>
+          <li class="header-menu__item" v-if="isAdmin">
+            <router-link
+              class="header-menu__link"
+              :to="{ name: 'admin' }"
+              @click="$emit('close')"
+            >
+              Админка
+            </router-link>
           </li>
           <li class="header-menu__item">
             <button class="header-menu__link" type="button" @click="logout">
@@ -23,7 +34,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'HeaderMenu',
@@ -37,6 +48,10 @@ export default {
 
   emits: {
     close: null,
+  },
+
+  computed: {
+    ...mapGetters('auth', ['isAdmin']),
   },
 
   methods: {
@@ -118,6 +133,11 @@ export default {
 
 .header-menu__link:focus,
 .header-menu__link:hover {
+  background-color: var(--profile-card-backgrouind);
+}
+
+.header-menu__link--active {
+  color: var(--color-primary-900);
   background-color: var(--profile-card-backgrouind);
 }
 </style>
