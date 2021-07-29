@@ -42,7 +42,7 @@
 
 <script>
 import AuthService from '@/services/AuthService';
-import { getError } from '@/utils/helpers';
+import { getErrorData } from '@/utils/helpers';
 
 import ProfileFormField from '@/components/profile/ProfileFormField.vue';
 import FlashMessage from '@/components/FlashMessage.vue';
@@ -103,7 +103,7 @@ export default {
           password_confirmation: null,
         };
       } catch (error) {
-        this.error = getError(error);
+        this.error = getErrorData(error);
       }
     },
 
