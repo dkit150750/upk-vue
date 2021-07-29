@@ -2,7 +2,7 @@
   <header class="header">
     <div class="header__container">
       <HeaderLogo />
-      <template v-if="!loggedIn">
+      <template v-if="loggedIn">
         <button
           :class="burgerClass"
           class="burger header__burger"
@@ -76,12 +76,6 @@ export default {
   margin: 0 auto;
 }
 
-@media (min-width: 768px) {
-  .header__container {
-    height: 108px;
-  }
-}
-
 @media (min-width: 550px) {
   .header__container {
     padding: 30px 40px;
@@ -90,6 +84,7 @@ export default {
 
 @media (min-width: 768px) {
   .header__container {
+    height: 108px;
     padding: 36px 40px;
   }
 }
