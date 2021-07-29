@@ -36,7 +36,6 @@
       >
         Сохранить
       </button>
-      <ProfileLogout class="profile-info-form__button" />
     </div>
   </form>
   <FlashMessage :message="message" @close="message = null" />
@@ -44,11 +43,10 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { getError } from '@/utils/helpers';
+import { getErrorData } from '@/utils/helpers';
 import AuthService from '@/services/AuthService';
 
 import ProfileFormField from '@/components/profile/ProfileFormField.vue';
-import ProfileLogout from '@/components/profile/ProfileLogout.vue';
 import FlashMessage from '@/components/FlashMessage.vue';
 
 export default {
@@ -56,7 +54,6 @@ export default {
 
   components: {
     ProfileFormField,
-    ProfileLogout,
     FlashMessage,
   },
 
@@ -113,7 +110,7 @@ export default {
         await this.$store.dispatch('auth/getAuthUser');
         this.message = 'Данные обновлены';
       } catch (error) {
-        this.error = getError(error);
+        this.error = getErrorData(error);
       }
     },
   },
@@ -125,11 +122,6 @@ export default {
 </script>
 
 <style>
-.profile-info-form__buttons {
-  display: flex;
-  justify-content: space-between;
-}
-
 .profile-info-form__button {
   padding: 12px 24px;
   margin-top: 25px;
