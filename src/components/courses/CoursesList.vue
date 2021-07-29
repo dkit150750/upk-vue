@@ -13,7 +13,7 @@
 
 <script>
 import CourseService from '@/services/CourseService';
-import { getError } from '@/utils/helpers';
+import { getErrorData } from '@/utils/helpers';
 
 import CoursesListItem from '@/components/courses/CoursesListItem.vue';
 
@@ -34,7 +34,7 @@ export default {
       const response = await CourseService.getCourses();
       this.courses = response.data.data;
     } catch (error) {
-      console.log(getError(error));
+      console.log(getErrorData(error));
     }
   },
 };
