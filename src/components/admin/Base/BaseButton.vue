@@ -22,7 +22,7 @@ export default {
   display: block;
   padding: 13px 20px;
   font-family: inherit;
-  font-size: 16px;
+  font-size: 14px;
   color: var(--color-gray-50);
   cursor: pointer;
   background-color: var(--color-primary-800);
