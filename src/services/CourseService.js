@@ -7,7 +7,7 @@ export default {
   addCourse() {
     return API.apiClient.post(`/courses`);
   },
-  getCourse(id) {
-    return API.apiClient.get(`/courses/${id}`);
+  getCourseEdit(id) {
+    return API.apiClient.get(`/courses/${id}/edit`);
   },
 };
