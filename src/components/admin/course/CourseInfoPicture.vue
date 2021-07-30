@@ -21,7 +21,6 @@
       @change="uploadAvatar"
     />
   </div>
-  <FlashMessage :message="message" @close="message = null" />
 </template>
 
 <script>
@@ -29,14 +28,12 @@ import FileService from '@/services/FileService';
 import { getErrorData } from '@/utils/helpers';
 
 import CourseInfoPictureIcon from '@/components/admin/course/CourseInfoPictureIcon.vue';
-import FlashMessage from '@/components/FlashMessage.vue';
 
 export default {
   name: 'ProfileHeaderAvatar',
 
   components: {
     CourseInfoPictureIcon,
-    FlashMessage,
   },
 
   props: {
@@ -58,12 +55,6 @@ export default {
     updatePicture: null,
   },
 
-  data() {
-    return {
-      message: null,
-    };
-  },
-
   computed: {
     endpoint() {
       return `/courses/${this.id}/picture`;
@@ -82,7 +73,6 @@ export default {
       try {
         this.file = null;
         const response = await FileService.uploadFile(payload);
-        this.message = 'Данные обновлены';
         this.$emit('updatePicture', response.data.data);
       } catch (error) {
         this.error = getErrorData(error);
@@ -97,7 +87,8 @@ export default {
   position: relative;
   overflow: hidden;
   user-select: none;
-  max-width: 300px;
+  width: 100%;
+  max-width: 200px;
 }
 
 .course-info-picture * {

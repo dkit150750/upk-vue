@@ -1,44 +1,36 @@
 <template>
-  <div class="course-dates">
-    <template v-if="dates.length">
-      <div class="course-date" v-for="date in dates" :key="date.id">
-        <span class="course-date__value">{{ date.value }}</span>
-        <button
-          class="course-date__remove"
-          aria-label="удалить запись"
-        ></button>
-        <span class="course-date__time">{{ date.time }}</span>
-        <span class="course-date__users"
-          >Мест: {{ date.places }}/{{ date.placesAll }}</span
-        >
-        <a class="course-date__users-list" href="./users.html">Участники</a>
-      </div>
-    </template>
+  <div class="course-lectures">
+    <div class="course-lecture" v-for="lecture in lectures" :key="lecture.id">
+      <span class="course-lecture__date">{{ lecture.date }}</span>
+      <button
+        class="course-lecture__remove"
+        aria-label="удалить запись"
+      ></button>
+      <span class="course-lecture__time">{{ lecture.time }}</span>
+      <span class="course-lecture__users"
+        >Мест: {{ lecture.places }}/{{ lecture.total_places }}</span
+      >
+      <a class="course-lecture__users-list" href="./users.html">Участники</a>
+    </div>
   </div>
   <CourseInfoDatesAdd />
 </template>
 
 <script>
-import CourseInfoDatesAdd from '@/components/admin/course/CourseInfoDatesAdd.vue';
-
 export default {
-  name: 'CourseInfoDates',
-
-  components: {
-    CourseInfoDatesAdd,
-  },
+  name: 'CourseInfoLectures',
 
   props: {
-    dates: {
+    lectures: {
       taype: Array,
-      require: true,
+      default: () => [],
     },
   },
 };
 </script>
 
 <style>
-.course-dates {
+.course-lectures {
   display: grid;
   grid-template-columns: max-content;
   gap: 30px;
@@ -46,12 +38,12 @@ export default {
 }
 
 @media (min-width: 640px) {
-  .course-dates {
+  .course-lectures {
     grid-template-columns: max-content max-content;
   }
 }
 
-.course-date {
+.course-lecture {
   display: grid;
   grid-template-columns: max-content max-content;
   gap: 10px 40px;
@@ -60,12 +52,12 @@ export default {
   border-radius: 10px;
 }
 
-.course-date__value {
+.course-lecture__date {
   font-size: 18px;
   font-weight: 600;
 }
 
-.course-date__remove {
+.course-lecture__remove {
   grid-column: 2 /3;
   grid-row: 1 / 3;
   align-items: flex-start;
@@ -80,8 +72,8 @@ export default {
   border-radius: 5px;
 }
 
-.course-date__remove::before,
-.course-date__remove::after {
+.course-lecture__remove::before,
+.course-lecture__remove::after {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -93,19 +85,19 @@ export default {
   content: '';
 }
 
-.course-date__remove::before {
+.course-lecture__remove::before {
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
-.course-date__remove::after {
+.course-lecture__remove::after {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-.course-date__time {
+.course-lecture__time {
   font-weight: 500;
 }
 
-.course-date__users-list {
+.course-lecture__users-list {
   font-weight: 500;
   color: var(--color-primary-800);
   text-decoration: none;
