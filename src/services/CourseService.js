@@ -10,4 +10,7 @@ export default {
   getCourseEdit(id) {
     return API.apiClient.get(`/courses/${id}/edit`);
   },
+  updateCourse(payload) {
+    return API.apiClient.put(`/courses/${payload.id}`, payload);
+  },
 };
