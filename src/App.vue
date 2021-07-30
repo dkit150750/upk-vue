@@ -60,6 +60,7 @@ export default {
   --color-gray-900: hsl(240, 10%, 10%);
   --color-red-100: hsl(0, 100%, 95%);
   --color-red-700: hsl(11, 100%, 60%);
+  --color-red-800: hsl(11deg 100% 44%);
   --color-green-700: hsl(123, 41%, 45%);
 }
 
