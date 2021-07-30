@@ -28,7 +28,7 @@
           <li class="aside-nav__item">
             <router-link
               class="aside-nav__link"
-              active-class="aside-nav__link--active"
+              exact-active-class="aside-nav__link--active"
               :to="{ name: 'admin' }"
               @click="$emit('clickCloseAside')"
             >
@@ -38,7 +38,7 @@
           <li class="aside-nav__item">
             <router-link
               class="aside-nav__link"
-              active-class="aside-nav__link--active"
+              exact-active-class="aside-nav__link--active"
               :to="{ name: 'users' }"
               @click="$emit('clickCloseAside')"
             >
@@ -48,7 +48,7 @@
           <li class="aside-nav__item">
             <router-link
               class="aside-nav__link"
-              active-class="aside-nav__link--active"
+              exact-active-class="aside-nav__link--active"
               :to="{ name: 'home' }"
             >
               Выйти
