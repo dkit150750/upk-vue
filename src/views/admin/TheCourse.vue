@@ -1,51 +1,79 @@
 <template>
   <h1 class="main__title">Инофрмация о курсе</h1>
   <CourseInfo class="main__course-info">
-    <CourseInfoInputGroup
+    <CourseInfoField
       class="input-group__input--textarea-name"
       label="Название"
       id="name"
       name="name"
       v-model.trim="course.title"
     />
-    <CourseInfoInputGroup
+    <CourseInfoField
       label="Описание"
       id="description"
       name="description"
       v-model.trim="course.description"
     />
+    <CourseInfoPicture
+      :id="course.id"
+      :title="course.title"
+      :picture="course.picture"
+      @updatePicture="setPicture"
+    />
+    <CourseInfoField
+      label="Цвет"
+      id="background"
+      name="background"
+      type="text"
+      v-model.trim="course.background"
+    />
   </CourseInfo>
-  <CourseInfoDates :dates="course.dates" />
+  <CourseInfoDates v-if="course.dates" :dates="course.dates" />
 </template>
 
 <script>
+import CourseService from '@/services/CourseService';
+import { getErrorData } from '@/utils/helpers';
+
 import CourseInfo from '@/components/admin/course/CourseInfo.vue';
-import CourseInfoInputGroup from '@/components/admin/course/CourseInfoInputGroup.vue';
+import CourseInfoField from '@/components/admin/course/CourseInfoField.vue';
+import CourseInfoPicture from '@/components/admin/course/CourseInfoPicture.vue';
 import CourseInfoDates from '@/components/admin/course/CourseInfoDates.vue';
-import courses from '@/store/courses.js';
 
 export default {
   name: 'TheCourse',
 
   components: {
     CourseInfo,
-    CourseInfoInputGroup,
+    CourseInfoField,
+    CourseInfoPicture,
     CourseInfoDates,
   },
 
   data() {
     return {
       course: {
-        title: null,
-        description: null,
-        dates: null,
+        id: '',
+        title: '',
+        description: '',
+        picture: '',
+        dates: [],
       },
     };
   },
 
   methods: {
-    getCourse(id) {
-      this.course = courses.find((course) => course.id === parseInt(id));
+    async getCourse(id) {
+      try {
+        const response = await CourseService.getCourseEdit(id);
+        this.course = response.data.data;
+      } catch (error) {
+        console.log(getErrorData(error));
+      }
+    },
+
+    setPicture(picture) {
+      this.course.picture = picture;
     },
   },
 
@@ -55,6 +83,10 @@ export default {
     this.$watch(
       () => this.$route.params.courseId,
       (courseId) => {
+        if (!courseId) {
+          return;
+        }
+        console.log(courseId);
         this.getCourse(courseId);
       }
     );
