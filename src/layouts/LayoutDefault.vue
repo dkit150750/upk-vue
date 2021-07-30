@@ -12,6 +12,7 @@
 import TheHeader from '@/components/header/TheHeader.vue';
 import TheMain from '@/components/main/TheMain.vue';
 import TheFooter from '@/components/footer/TheFooter.vue';
+
 export default {
   name: 'LayoutDefault',
   components: {
