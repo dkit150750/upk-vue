@@ -45,9 +45,8 @@ export default {
   methods: {
     async addCourse() {
       try {
-        await CourseService.addCourse();
-        const response = await CourseService.getCourses();
-        this.courses = response.data.data;
+        const response = await CourseService.addCourse();
+        this.courses.unshift(response.data.data);
       } catch (error) {
         console.log(getErrorData(error));
       }
