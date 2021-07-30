@@ -14,7 +14,7 @@ export default {
 <style>
 .admin-course-info {
   display: grid;
-  gap: 60px;
+  gap: 45px;
   max-width: 500px;
 }
 
