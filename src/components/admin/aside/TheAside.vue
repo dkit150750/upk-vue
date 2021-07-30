@@ -98,6 +98,20 @@ export default {
   transform: translateX(0);
 }
 
+.aside::before {
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  bottom: 0;
+  content: none;
+}
+
+.show-menu .aside::before {
+  content: '';
+}
+
 .aside__header {
   display: flex;
   align-items: center;
