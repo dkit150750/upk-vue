@@ -1,5 +1,6 @@
 <template>
   <aside class="aside">
+    <div class="aside__overlay" @click="$emit('clickCloseAside')"></div>
     <div class="aside__inner">
       <div class="aside__header">
         <div class="logo">
@@ -98,7 +99,7 @@ export default {
   transform: translateX(0);
 }
 
-.aside::before {
+.aside__overlay {
   z-index: -1;
   position: fixed;
   top: 0;
@@ -106,10 +107,11 @@ export default {
   width: 100vw;
   bottom: 0;
   content: none;
+  pointer-events: none;
 }
 
-.show-menu .aside::before {
-  content: '';
+.show-menu .aside__overlay {
+  pointer-events: all;
 }
 
 .aside__header {
