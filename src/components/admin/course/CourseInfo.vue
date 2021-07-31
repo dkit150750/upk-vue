@@ -6,13 +6,18 @@
         <BaseButton class="admin-course-info__save" type="submit">
           Сохранить
         </BaseButton>
-        <BaseButton class="admin-course-info__del">Удалить</BaseButton>
+        <BaseButton class="admin-course-info__del" @click="deleteCourse">
+          Удалить
+        </BaseButton>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import CourseService from '@/services/CourseService';
+import { getErrorData } from '@/utils/helpers';
+
 import BaseButton from '@/components/admin/base/BaseButton.vue';
 
 export default {
@@ -22,14 +27,30 @@ export default {
     BaseButton,
   },
 
+  props: {
+    id: {
+      type: Number,
+      required: true,
+    },
+  },
+
   emits: {
     updateCourse: null,
+    deleteCourse: null,
   },
 
   methods: {
     updateCourse() {
-      console.log(2);
       this.$emit('updateCourse');
+    },
+
+    async deleteCourse() {
+      try {
+        await CourseService.deleteCourse(this.id);
+        this.$emit('deleteCourse');
+      } catch (error) {
+        console.log(getErrorData(error));
+      }
     },
   },
 };

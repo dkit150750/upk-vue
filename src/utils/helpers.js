@@ -1,6 +1,8 @@
 export const getErrorData = (error) => {
   if (process.env.NODE_ENV === 'development') {
-    console.error(error.response.data);
+    if (error.response.data) {
+      console.error(error.response.data);
+    }
     console.error(error.response.status);
     console.error(error.response.headers);
   }

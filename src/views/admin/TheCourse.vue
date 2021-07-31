@@ -1,6 +1,11 @@
 <template>
   <h1 class="main__title">Инофрмация о курсе</h1>
-  <CourseInfo class="main__course-info" @updateCourse="updateCourse">
+  <CourseInfo
+    class="main__course-info"
+    :id="course.id"
+    @updateCourse="updateCourse"
+    @deleteCourse="deleteCourse"
+  >
     <BaseField
       label="Название"
       id="name"
@@ -30,8 +35,21 @@
       v-model.trim="course.background"
     />
   </CourseInfo>
-  <CourseInfoLectureAdd />
-  <CourseInfoLectures v-if="lectures.length" :lectures="lectures" />
+  <CourseInfoLectureAdd :course_id="course.id" @addLecture="addLecture" />
+
+  <LecturesList>
+    <LecturesListItem
+      v-for="lecture in course.lectures"
+      :key="lecture.id"
+      :id="lecture.id"
+      :date="lecture.date"
+      :time="lecture.time"
+      :cabinet="lecture.cabinet"
+      :places="lecture.places"
+      :total_places="lecture.total_places"
+      @deleteLecture="deleteLecture"
+    />
+  </LecturesList>
   <FlashMessage :message="message" @close="message = null" />
 </template>
 
@@ -44,7 +62,8 @@ import FlashMessage from '@/components/FlashMessage.vue';
 import CourseInfo from '@/components/admin/course/CourseInfo.vue';
 import CourseInfoPicture from '@/components/admin/course/CourseInfoPicture.vue';
 import CourseInfoLectureAdd from '@/components/admin/course/CourseInfoLectureAdd.vue';
-import CourseInfoLectures from '@/components/admin/course/CourseInfoLectures.vue';
+import LecturesList from '@/components/admin/course/LecturesList.vue';
+import LecturesListItem from '@/components/admin/course/LecturesListItem.vue';
 
 export default {
   name: 'TheCourse',
@@ -53,8 +72,9 @@ export default {
     BaseField,
     CourseInfo,
     CourseInfoPicture,
-    CourseInfoLectures,
     CourseInfoLectureAdd,
+    LecturesList,
+    LecturesListItem,
     FlashMessage,
   },
 
@@ -66,8 +86,8 @@ export default {
         description: '',
         picture: '',
         background: '',
+        lectures: [],
       },
-      lectures: [],
       message: null,
     };
   },
@@ -83,7 +103,6 @@ export default {
     },
 
     async updateCourse() {
-      console.log(1);
       try {
         const course = this.course;
         const payload = {
@@ -93,7 +112,9 @@ export default {
           background: course.background,
         };
         const response = await CourseService.updateCourse(payload);
-        this.course = response.data.data;
+        Object.keys(response.data.data).forEach((key) => {
+          this.course[key] = response.data.data[key];
+        });
         this.lectures = this.course.lectures ?? [];
       } catch (error) {
         console.log(getErrorData(error));
@@ -103,6 +124,24 @@ export default {
     setPicture(picture) {
       this.course.picture = picture;
       this.message = 'Данные обновлены';
+    },
+
+    deleteCourse() {
+      this.$router.push({ name: 'admin' });
+    },
+
+    addLecture(lecture) {
+      this.course.lectures.unshift(lecture);
+      this.message = null;
+      this.message = 'Запись создана';
+    },
+
+    deleteLecture(id) {
+      this.course.lectures = this.course.lectures.filter(
+        (lecture) => lecture.id !== id
+      );
+      this.message = null;
+      this.message = 'Запись удалена';
     },
   },
 
@@ -115,7 +154,6 @@ export default {
         if (!courseId) {
           return;
         }
-        console.log(courseId);
         this.getCourse(courseId);
       }
     );

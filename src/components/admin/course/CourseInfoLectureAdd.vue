@@ -1,7 +1,7 @@
 <template>
   <div class="add-lecture">
     <h2 class="add-lecture__title">Добавить лекцию</h2>
-    <form class="add-lecture__form" @submit.prevent="addLecture">
+    <form class="add-lecture__form" @submit.prevent="storeLecture">
       <BaseField
         class="add-lecture__field-fill"
         label="Дата проведения"
@@ -40,6 +40,9 @@
 </template>
 
 <script>
+import LectureService from '@/services/LectureService';
+import { getErrorData } from '@/utils/helpers';
+
 import BaseButton from '@/components/admin/base/BaseButton.vue';
 import BaseField from '@/components/admin/base/BaseField.vue';
 
@@ -49,6 +52,14 @@ export default {
   components: {
     BaseButton,
     BaseField,
+  },
+
+  props: {
+    course_id: Number,
+  },
+
+  emits: {
+    addLecture: null,
   },
 
   data() {
@@ -74,7 +85,22 @@ export default {
       return `${year}-${month}-${day}`;
     },
 
-    addLecture() {},
+    async storeLecture() {
+      try {
+        const payload = this.lecture;
+        if (!this.course_id) {
+          return;
+        }
+        payload.course_id = this.course_id;
+        const response = await LectureService.addLecture(payload);
+        this.lecture.date = this.getDate();
+        this.lecture.time = '13:30';
+        this.lecture.total_places = '16';
+        this.$emit('addLecture', response.data.data);
+      } catch (error) {
+        console.log(getErrorData(error));
+      }
+    },
   },
 };
 </script>

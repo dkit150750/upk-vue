@@ -13,4 +13,7 @@ export default {
   updateCourse(payload) {
     return API.apiClient.put(`/courses/${payload.id}`, payload);
   },
+  deleteCourse(id) {
+    return API.apiClient.delete(`/courses/${id}`);
+  },
 };
