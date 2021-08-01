@@ -19,9 +19,9 @@
     </LoginCard>
     <LoginFooter>
       У вас уже есть аккаунт?
-      <router-link class="login-footer__link" :to="{ name: 'login' }"
-        >Войти</router-link
-      >
+      <router-link class="login-footer__link" :to="{ name: 'login' }">
+        Войти
+      </router-link>
     </LoginFooter>
   </LoginWrapper>
   <teleport to="#app">
@@ -64,7 +64,6 @@ export default {
         email: null,
       },
       message: null,
-      messageError: null,
     };
   },
 
@@ -77,13 +76,14 @@ export default {
       this.error = {
         email: null,
       };
-      this.message = null;
       const payload = {
         email: this.email,
       };
 
       try {
         await AuthService.forgotPassword(payload);
+        this.message = null;
+        await this.$nextTick();
         this.message = 'Электронное письмо для сброса пароля отправлено';
         this.email = '';
       } catch (error) {
@@ -95,7 +95,7 @@ export default {
       let isValid = true;
 
       if (!/@[a-zA-Z0-9-]+/i.test(this.email)) {
-        this.error.email = 'Неправильный формат почты';
+        this.error.email = 'Неправильный формат email';
         isValid = false;
       }
 

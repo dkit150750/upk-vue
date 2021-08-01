@@ -30,9 +30,9 @@
     </LoginCard>
     <LoginFooter>
       Новый пользователь?
-      <router-link class="login-footer__link" :to="{ name: 'register' }"
-        >Зарегистрируйтесь</router-link
-      >
+      <router-link class="login-footer__link" :to="{ name: 'register' }">
+        Зарегистрируйтесь
+      </router-link>
     </LoginFooter>
   </LoginWrapper>
 </template>
@@ -109,7 +109,7 @@ export default {
       let isValid = true;
 
       if (!/@[a-zA-Z0-9-]+/i.test(this.user.email)) {
-        this.error.email = 'Неправильный формат почты';
+        this.error.email = 'Неправильный формат email';
         isValid = false;
       }
 
