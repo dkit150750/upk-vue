@@ -41,10 +41,6 @@ export default {
 }
 
 :root {
-  /* --color-primary-800: hsl(246, 100%, 58%);
-  --color-gray-0: hsl(240, 2%, 98%);
-  --color-primary-800: hsl(241, 100%, 62%); */
-
   --max-width: 1250px;
   --color-primary-700: hsl(241, 80%, 70%);
   --color-primary-800: hsl(237, 54%, 55%);
@@ -60,7 +56,7 @@ export default {
   --color-gray-900: hsl(0, 1%, 10%);
   --color-red-100: hsl(0, 100%, 95%);
   --color-red-700: hsl(11, 100%, 60%);
-  --color-red-800: hsl(11deg 100% 44%);
+  --color-red-800: hsl(11, 100%, 44%);
   --color-green-700: hsl(123, 41%, 45%);
 }
 
