@@ -3,12 +3,8 @@
     <div class="footer__container">
       <address class="footer__contacts">
         <ul class="footer__phones">
-          <FooterPhone
-            v-for="phone in phones"
-            :key="phone.id"
-            :tel="phone.tel"
-            :desc="phone.desc"
-          />
+          <FooterPhone tel="8 (800) 500-05-22" desc="Контактный центр" />
+          <FooterPhone tel="+7 499 444 90 36" desc="Отдел заботы о студентах" />
         </ul>
         <p class="footer__address">
           Донской, микрорайон Бобрик-Гора, ул. 30 лет Победы, 4
@@ -26,23 +22,6 @@ export default {
 
   components: {
     FooterPhone,
-  },
-
-  data() {
-    return {
-      phones: [
-        {
-          id: 1,
-          tel: '8 (800) 500-05-22',
-          desc: 'Контактный центр',
-        },
-        {
-          id: 2,
-          tel: '+7 499 444 90 36',
-          desc: 'Отдел заботы о студентах',
-        },
-      ],
-    };
   },
 };
 </script>
