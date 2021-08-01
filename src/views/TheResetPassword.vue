@@ -117,6 +117,11 @@ export default {
         isValid = false;
       }
 
+      if (this.user.password.length < 8) {
+        this.error.password = 'Длина пароля меньше 8 символов';
+        isValid = false;
+      }
+
       if (this.user.password !== this.user.password_confirmation) {
         this.error.password_confirmation = 'Пароли не совпадают';
         isValid = false;

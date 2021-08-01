@@ -118,6 +118,11 @@ export default {
         isValid = false;
       }
 
+      if (this.user.password.length < 8) {
+        this.error.password = 'Длина пароля меньше 8 символов';
+        isValid = false;
+      }
+
       return isValid;
     },
   },
