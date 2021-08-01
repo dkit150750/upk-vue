@@ -1,5 +1,5 @@
 <template>
-  <form class="lectures" @submit.prevent="recordUser">
+  <form class="lectures" @submit.prevent="submitHandler">
     <h2 class="lectures__title">Выбрать дату</h2>
 
     <div class="lectures__wrapper">
@@ -57,7 +57,7 @@ export default {
   },
 
   emits: {
-    addPlaces: null,
+    record: null,
   },
 
   data() {
@@ -83,7 +83,7 @@ export default {
   },
 
   methods: {
-    async recordUser() {
+    async submitHandler() {
       if (!this.loggedIn) {
         this.$router.push({ name: 'login' });
         return;
@@ -111,7 +111,7 @@ export default {
           this.messageError = null;
           await this.$nextTick();
           this.message = 'Приглашение выслано на почту';
-          this.$emit('addPlaces', payload.lecture_id);
+          this.$emit('record', payload.lecture_id);
         }
       } catch (error) {
         console.log(getErrorData(error));

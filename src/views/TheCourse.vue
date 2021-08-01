@@ -1,17 +1,22 @@
 <template>
   <div class="course">
     <div class="course__conataner">
-      <CourseInformation
-        :title="course.title"
-        :description="course.description"
-        :background="course.background"
-        :picture="course.picture"
-      />
-      <Lectures
-        v-if="course.lectures.length"
-        :lectures="course.lectures"
-        @addPlaces="addPlacesHandler"
-      />
+      <template v-if="!isLoading">
+        <CourseInformation
+          :title="course.title"
+          :description="course.description"
+          :background="course.background"
+          :picture="course.picture"
+        />
+        <Lectures
+          v-if="course.lectures.length"
+          :lectures="course.lectures"
+          @record="plusPlaces"
+        />
+      </template>
+      <template v-else>
+        <h2>Загрузка...</h2>
+      </template>
     </div>
   </div>
 </template>
@@ -30,10 +35,18 @@ export default {
     Lectures,
   },
 
+  async beforeRouteUpdate(to) {
+    this.getCourse(to.params.courseId);
+  },
+
+  created() {
+    this.getCourse(this.$route.params.courseId);
+  },
+
   data() {
     return {
       course: {
-        id: 0,
+        id: null,
         title: '',
         description: '',
         picture: '',
@@ -41,6 +54,7 @@ export default {
         lectures: [],
       },
       message: null,
+      isLoading: true,
     };
   },
 
@@ -49,35 +63,20 @@ export default {
       try {
         const response = await CourseService.getCourse(id);
         this.course = response.data.data;
+        this.isLoading = false;
       } catch (error) {
         console.log(getErrorData(error));
       }
     },
 
-    addPlacesHandler(id) {
-      console.log(id);
+    plusPlaces(id) {
       this.course.lectures = this.course.lectures.map((lecture) => {
-        console.log(lecture);
         if (lecture.id === id) {
           lecture.places = lecture.places + 1;
         }
         return lecture;
       });
     },
-  },
-
-  created() {
-    this.getCourse(this.$route.params.courseId);
-
-    this.$watch(
-      () => this.$route.params.courseId,
-      (courseId) => {
-        if (!courseId) {
-          return;
-        }
-        this.getCourse(courseId);
-      }
-    );
   },
 };
 </script>

@@ -28,18 +28,18 @@ export default {
   },
 
   months: [
-    'январь',
-    'февраль',
-    'март',
-    'апрель',
-    'май',
-    'июнь',
-    'июль',
-    'август',
-    'сентябрь',
-    'октябрь',
-    'ноябрь',
-    'декабрь',
+    'января',
+    'февраля',
+    'марта',
+    'апреля',
+    'мая',
+    'июня',
+    'июля',
+    'августа',
+    'сентября',
+    'октября',
+    'ноября',
+    'декабря',
   ],
 
   computed: {
@@ -49,7 +49,7 @@ export default {
     fullDate() {
       const dateArray = this.date.split('-');
       const month = this.$options.months[parseInt(dateArray[1])];
-      return `${dateArray[2]} ${month} ${dateArray[0]}`;
+      return `${dateArray[2]} ${month}`;
     },
   },
 };
