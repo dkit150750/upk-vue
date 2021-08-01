@@ -1,5 +1,5 @@
 <template>
-  <article class="course-card course-card--devops" ref="course">
+  <article class="course-card">
     <router-link
       class="course-card__title"
       :to="{ name: 'course', params: { courseId: courseId } }"
@@ -33,12 +33,6 @@ export default {
       type: String,
       default: 'hsl(60, 11%, 94%)',
     },
-  },
-
-  data() {
-    return {
-      logo: 'logo.png',
-    };
   },
 };
 </script>

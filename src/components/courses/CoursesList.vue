@@ -1,13 +1,23 @@
 <template>
   <div class="courses-list">
-    <CoursesListItem
-      v-for="course in courses"
-      :key="course.id"
-      :courseId="course.id"
-      :title="course.title"
-      :picture="course.picture"
-      :background="course.background"
-    />
+    <template v-if="!isLoading">
+      <template v-if="courses">
+        <CoursesListItem
+          v-for="course in courses"
+          :key="course.id"
+          :courseId="course.id"
+          :title="course.title"
+          :picture="course.picture"
+          :background="course.background"
+        />
+      </template>
+      <template v-else>
+        <h2>Курсов нет</h2>
+      </template>
+    </template>
+    <template v-else>
+      <h2>Загрузка...</h2>
+    </template>
   </div>
 </template>
 
@@ -26,6 +36,7 @@ export default {
   data() {
     return {
       courses: [],
+      isLoading: true,
     };
   },
 
@@ -33,6 +44,7 @@ export default {
     try {
       const response = await CourseService.getCourses();
       this.courses = response.data.data;
+      this.isLoading = false;
     } catch (error) {
       console.log(getErrorData(error));
     }
