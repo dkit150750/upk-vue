@@ -1,6 +1,6 @@
 <template>
-  <nav class="pagination">
-    <ul class="pagination__list">
+  <nav class="records-pagination">
+    <ul class="records-pagination__list">
       <slot />
     </ul>
   </nav>
@@ -8,12 +8,12 @@
 
 <script>
 export default {
-  name: 'ProfileMainCoursesPagination',
+  name: 'RecordsPagination',
 };
 </script>
 
 <style>
-.pagination__list {
+.records-pagination__list {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   gap: 5px;

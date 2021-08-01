@@ -37,7 +37,16 @@
       </button>
     </div>
   </form>
-  <FlashMessage :message="message" @close="message = null" />
+  <teleport to="#app">
+    <transition name="flash-message">
+      <FlashMessage
+        v-if="message || messageError"
+        :message="message"
+        :error="messageError"
+        @close="messageError = message = null"
+      />
+    </transition>
+  </teleport>
 </template>
 
 <script>
@@ -68,6 +77,7 @@ export default {
         password_confirmation: null,
       },
       message: null,
+      messageError: null,
     };
   },
 

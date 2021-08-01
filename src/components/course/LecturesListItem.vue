@@ -1,19 +1,19 @@
 <template>
-  <label class="dates-item">
+  <label class="lecture">
     <input
-      class="dates-item__input"
+      class="lecture__input"
       type="radio"
       name="date"
       :checked="shouldBeChecked"
       :value="id"
     />
-    <span class="dates-item__value">{{ value }}</span>
+    <span class="lecture__date">{{ fullDate }}</span>
   </label>
 </template>
 
 <script>
 export default {
-  name: 'CourseDatesListItem',
+  name: 'LecturesListItem',
 
   props: {
     modelValue: Number,
@@ -21,33 +21,53 @@ export default {
       type: Number,
       required: true,
     },
-    value: {
+    date: {
       type: String,
       required: true,
     },
   },
 
+  months: [
+    'январь',
+    'февраль',
+    'март',
+    'апрель',
+    'май',
+    'июнь',
+    'июль',
+    'август',
+    'сентябрь',
+    'октябрь',
+    'ноябрь',
+    'декабрь',
+  ],
+
   computed: {
     shouldBeChecked() {
       return this.modelValue === this.id;
+    },
+    fullDate() {
+      const dateArray = this.date.split('-');
+      const month = this.$options.months[parseInt(dateArray[1])];
+      return `${dateArray[2]} ${month} ${dateArray[0]}`;
     },
   },
 };
 </script>
 
 <style>
-.dates-item {
+.lecture {
   position: relative;
 }
 
-.dates-item__value {
+.lecture__date {
   position: relative;
   font-size: 17px;
   font-weight: 500;
   cursor: pointer;
 }
 
-.dates-item__value::before {
+.lecture__date::before {
   position: absolute;
   bottom: -4px;
   left: 50%;
@@ -58,11 +78,11 @@ export default {
   transform: translateX(-50%);
 }
 
-.dates-item__input:checked + .dates-item__value::before {
+.lecture__input:checked + .lecture__date::before {
   width: 100%;
 }
 
-.dates-item__input {
+.lecture__input {
   position: absolute;
   appearance: none;
 }

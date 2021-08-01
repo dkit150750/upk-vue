@@ -50,7 +50,16 @@
       @deleteLecture="deleteLecture"
     />
   </LecturesList>
-  <FlashMessage :message="message" @close="message = null" />
+  <teleport to="#app">
+    <transition name="flash-message">
+      <FlashMessage
+        v-if="message || messageError"
+        :message="message"
+        :error="messageError"
+        @close="messageError = message = null"
+      />
+    </transition>
+  </teleport>
 </template>
 
 <script>
@@ -89,13 +98,14 @@ export default {
         lectures: [],
       },
       message: null,
+      messageError: null,
     };
   },
 
   methods: {
     async getCourse(id) {
       try {
-        const response = await CourseService.getCourseEdit(id);
+        const response = await CourseService.getCourse(id);
         this.course = response.data.data;
       } catch (error) {
         console.log(getErrorData(error));

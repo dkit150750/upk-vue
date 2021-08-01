@@ -1,25 +1,25 @@
 <template>
-  <div class="main-courses-list">
+  <div class="records-list">
     <slot />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ProfileMainCoursesList',
+  name: 'RecordsList',
 };
 </script>
 
 <style>
-.main-courses-list {
+.records-list {
   display: grid;
   gap: 20px;
-  justify-content: center;
+  justify-items: center;
   margin-bottom: 30px;
 }
 
 @media (min-width: 1024px) {
-  .main-courses-list {
+  .records-list {
     grid-template-columns: 1fr 1fr;
   }
 }

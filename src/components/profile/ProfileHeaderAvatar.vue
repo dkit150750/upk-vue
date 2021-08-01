@@ -21,7 +21,16 @@
       @change="uploadAvatar"
     />
   </div>
-  <FlashMessage :message="message" @close="message = null" />
+  <teleport to="#app">
+    <transition name="flash-message">
+      <FlashMessage
+        v-if="message || messageError"
+        :message="message"
+        :error="messageError"
+        @close="messageError = message = null"
+      />
+    </transition>
+  </teleport>
 </template>
 
 <script>
@@ -44,6 +53,7 @@ export default {
     return {
       endpoint: '/users/auth/avatar',
       message: null,
+      messageError: null,
     };
   },
 

@@ -1,0 +1,162 @@
+<template>
+  <form class="lectures" @submit.prevent="recordUser">
+    <h2 class="lectures__title">Выбрать дату</h2>
+
+    <div class="lectures__wrapper">
+      <LecturesList
+        class="lectures__list"
+        :lectures="lectures"
+        v-model="selectedLectureId"
+      />
+      <LecturesInfo
+        :time="selectedLecture.time"
+        :cabinet="selectedLecture.cabinet"
+        :places="selectedLecture.places"
+        :total_places="selectedLecture.total_places"
+      />
+    </div>
+    <button class="lectures__button" type="submit" :disabled="isDisabled">
+      Записаться
+    </button>
+  </form>
+  <teleport to="#app">
+    <transition name="flash-message">
+      <FlashMessage
+        v-if="message || messageError"
+        :message="message"
+        :error="messageError"
+        @close="messageError = message = null"
+      />
+    </transition>
+  </teleport>
+</template>
+
+<script>
+import RecordService from '@/services/RecordService';
+import { getErrorData } from '@/utils/helpers';
+import { mapGetters } from 'vuex';
+
+import LecturesList from '@/components/course/LecturesList.vue';
+import LecturesInfo from '@/components/course/LecturesInfo.vue';
+import FlashMessage from '@/components/FlashMessage.vue';
+
+export default {
+  name: 'Lectures',
+
+  components: {
+    LecturesList,
+    LecturesInfo,
+    FlashMessage,
+  },
+
+  props: {
+    lectures: {
+      type: Array,
+      default: () => [],
+    },
+  },
+
+  emits: {
+    addPlaces: null,
+  },
+
+  data() {
+    return {
+      selectedLectureId: parseInt(this.lectures[0].id),
+      message: null,
+      messageError: null,
+    };
+  },
+
+  computed: {
+    ...mapGetters('auth', ['loggedIn']),
+
+    selectedLecture() {
+      return this.lectures.find(
+        (lecture) => lecture.id === parseInt(this.selectedLectureId)
+      );
+    },
+
+    isDisabled() {
+      return this.selectedLecture.total_places === this.selectedLecture.places;
+    },
+  },
+
+  methods: {
+    async recordUser() {
+      if (!this.loggedIn) {
+        this.$router.push({ name: 'login' });
+        return;
+      }
+
+      try {
+        const payload = {
+          lecture_id: this.selectedLectureId,
+        };
+
+        const isRecord = await RecordService.hasRecord(payload);
+
+        if (isRecord.data.data) {
+          this.message = null;
+          this.messageError = null;
+          await this.$nextTick();
+          this.messageError = isRecord.data.message;
+          return;
+        }
+
+        const response = await RecordService.setRecord(payload);
+
+        if (response.data.data) {
+          this.message = null;
+          this.messageError = null;
+          await this.$nextTick();
+          this.message = 'Приглашение выслано на почту';
+          this.$emit('addPlaces', payload.lecture_id);
+        }
+      } catch (error) {
+        console.log(getErrorData(error));
+      }
+    },
+  },
+};
+</script>
+
+<style>
+.lectures {
+  padding: 20px 0;
+}
+
+@media (min-width: 550px) {
+  .lectures {
+    padding: 40px 0;
+  }
+}
+
+.lectures__title {
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.lectures__list {
+  margin-bottom: 20px;
+}
+
+.lectures__button {
+  display: block;
+  padding: 13px 20px;
+  margin-top: 30px;
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--color-gray-50);
+  cursor: pointer;
+  background-color: var(--color-primary-800);
+  border: 0;
+  border-radius: 6px;
+}
+
+.lectures__button:disabled {
+  --color-gray-0: hsl(48, 4%, 50%);
+  --color-primary-800: hsl(0, 0%, 90%);
+  cursor: auto;
+}
+</style>

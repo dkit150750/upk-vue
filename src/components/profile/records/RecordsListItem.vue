@@ -1,25 +1,24 @@
 <template>
-  <article class="main-course-card">
-    <p class="main-course-card__date">
-      23 сентября 2019<br />
-      12:40
+  <article class="record-card">
+    <p class="record-card__date">
+      {{ fullDate }}<br />
+      {{ time }}
     </p>
-    <a class="main-course-card__title" href="profession.html">
-      Сетевое и сестемное администрирование
-    </a>
-    <div class="main-course-card__pic-wrapper">
-      <img
-        class="main-course-card__pic"
-        :src="require(`@/assets/${imgSrc}`)"
-        :alt="title"
-      />
+    <router-link
+      class="record-card__title"
+      :to="{ name: 'course', params: { courseId: courseId } }"
+    >
+      {{ title }}
+    </router-link>
+    <div class="record-card__pic-wrapper">
+      <img class="record-card__pic" :src="picture" :alt="title" />
     </div>
   </article>
 </template>
 
 <script>
 export default {
-  name: 'ProfileMainCoursesListItem',
+  name: 'RecordsListItem',
 
   props: {
     courseId: {
@@ -38,21 +37,45 @@ export default {
       type: String,
       required: true,
     },
-    imgSrc: {
+    picture: {
       type: String,
       required: true,
+    },
+  },
+
+  months: [
+    'январь',
+    'февраль',
+    'март',
+    'апрель',
+    'май',
+    'июнь',
+    'июль',
+    'август',
+    'сентябрь',
+    'октябрь',
+    'ноябрь',
+    'декабрь',
+  ],
+
+  computed: {
+    fullDate() {
+      const dateArray = this.date.split('-');
+      const month = this.$options.months[parseInt(dateArray[1])];
+      return `${dateArray[2]} ${month} ${dateArray[0]}`;
     },
   },
 };
 </script>
 
 <style>
-.main-course-card {
+.record-card {
   position: relative;
   display: grid;
   grid-template-rows: min-content 1fr;
   grid-template-columns: minmax(10px, 1fr) 72px;
-  gap: 10px;
+  gap: 10px 40px;
+  width: 100%;
   max-width: 600px;
   min-height: 130px;
   padding: 20px 16px;
@@ -61,20 +84,20 @@ export default {
 }
 
 @media (min-width: 500px) {
-  .main-course-card {
+  .record-card {
     grid-template-columns: 1fr 120px;
     min-height: 174px;
     padding: 24px;
   }
 }
 
-.main-course-card__date {
+.record-card__date {
   margin: 0;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.3;
 }
 
-.main-course-card__title {
+.record-card__title {
   font-size: 16px;
   font-weight: 500;
   line-height: 1.05;
@@ -85,18 +108,18 @@ export default {
 }
 
 @media (min-width: 500px) {
-  .main-course-card__title {
+  .record-card__title {
     font-size: 18px;
   }
 }
 
 @media (min-width: 1000px) {
-  .main-course-card__title {
+  .record-card__title {
     font-size: 20px;
   }
 }
 
-.main-course-card__title::before {
+.record-card__title::before {
   position: absolute;
   top: 0;
   left: 0;
@@ -105,12 +128,12 @@ export default {
   content: '';
 }
 
-.main-course-card__pic-wrapper {
+.record-card__pic-wrapper {
   grid-row: 1 / 3;
   grid-column: 2 / 3;
 }
 
-.main-course-card__pic {
+.record-card__pic {
   display: block;
   max-width: 100%;
 }

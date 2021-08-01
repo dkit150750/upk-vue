@@ -1,10 +1,10 @@
 <template>
-  <div class="dates-list">
-    <CourseDatesListItem
-      v-for="date in dates"
-      :key="date.id"
-      :id="date.id"
-      :value="date.value"
+  <div class="lectures-list">
+    <LecturesListItem
+      v-for="lecture in lectures"
+      :key="lecture.id"
+      :id="lecture.id"
+      :date="lecture.date"
       :modelValue="modelValue"
       @change="$emit('update:modelValue', parseInt($event.target.value))"
     />
@@ -12,18 +12,18 @@
 </template>
 
 <script>
-import CourseDatesListItem from '@/components/course/CourseDatesListItem.vue';
+import LecturesListItem from '@/components/course/LecturesListItem.vue';
 
 export default {
-  name: 'CourseDatesList',
+  name: 'LecturesList',
 
   components: {
-    CourseDatesListItem,
+    LecturesListItem,
   },
 
   props: {
     modelValue: Number,
-    dates: {
+    lectures: {
       type: Array,
       default: () => [],
     },
@@ -36,10 +36,9 @@ export default {
 </script>
 
 <style>
-.dates-list {
+.lectures-list {
   display: flex;
   flex-wrap: wrap;
   gap: 10px 20px;
-  margin-bottom: 20px;
 }
 </style>

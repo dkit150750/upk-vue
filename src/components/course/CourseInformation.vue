@@ -4,12 +4,14 @@
       <h1 class="course-information__title">
         {{ title }}
       </h1>
-      <div class="course-information__pic-wrapper">
-        <img
-          class="course-information__pic"
-          :src="require(`@/assets/${imgSrc}`)"
-          :alt="title"
-        />
+      <div class="course-information__pic">
+        <div class="course-information__pic-wrapper">
+          <img
+            class="course-information__pic-img"
+            :src="picture"
+            :alt="title"
+          />
+        </div>
       </div>
       <p class="course-information__description">
         {{ description }}
@@ -27,7 +29,7 @@ export default {
       type: String,
       required: true,
     },
-    imgSrc: {
+    picture: {
       type: String,
       required: true,
     },
@@ -40,10 +42,6 @@ export default {
       default: 'hsl(60, 11%, 94%)',
     },
   },
-
-  mounted() {
-    this.$refs.course.style.setProperty('--color-background', this.background);
-  },
 };
 </script>
 
@@ -52,7 +50,7 @@ export default {
   max-width: 388px;
   margin: 0 auto;
   margin-bottom: 50px;
-  background-color: var(--color-background);
+  background-color: v-bind(background);
   border-radius: 10px;
 }
 
@@ -145,24 +143,34 @@ export default {
 }
 
 .course-information__pic {
-  display: block;
-  max-width: 100%;
-}
-
-.course-information__pic-wrapper {
   margin-top: 16px;
   margin-bottom: 10px;
 }
 
 @media (min-width: 768px) {
-  .course-information__pic-wrapper {
+  .course-information__pic {
     grid-row: 1 / 3;
     grid-column: 2 / 3;
     margin: 0;
   }
 }
 
+.course-information__pic-wrapper {
+  position: relative;
+  padding-bottom: 100%;
+}
+
+.course-information__pic-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .course-information__description {
+  align-self: flex-start;
   margin: 0;
   font-size: 15px;
   line-height: 1.5;

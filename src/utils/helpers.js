@@ -1,5 +1,8 @@
 export const getErrorData = (error) => {
   if (process.env.NODE_ENV === 'development') {
+    if (!error.response) {
+      return null;
+    }
     if (error.response.data) {
       console.error(error.response.data);
     }

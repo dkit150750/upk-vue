@@ -16,7 +16,13 @@ const getters = {
     return state.user ? state.user.isAdmin : false;
   },
   isEmailVerified: (state) => {
-    return !!state.user.emailVerified;
+    if (!state.user) {
+      return false;
+    }
+    if (state.user.emailVerified) {
+      return true;
+    }
+    return false;
   },
   error: (state) => {
     return state.error;

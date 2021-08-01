@@ -12,7 +12,16 @@
         подтвержения.
       </p>
     </LoginCard>
-    <FlashMessage :message="message" @close="message = null" />
+    <teleport to="#app">
+      <transition name="flash-message">
+        <FlashMessage
+          v-if="message || messageError"
+          :message="message"
+          :error="messageError"
+          @close="messageError = message = null"
+        />
+      </transition>
+    </teleport>
   </LoginWrapper>
 </template>
 
@@ -37,6 +46,7 @@ export default {
   data() {
     return {
       error: null,
+      messageError: null,
       message: null,
     };
   },

@@ -5,40 +5,64 @@
         :title="course.title"
         :description="course.description"
         :background="course.background"
-        :imgSrc="course.imgSrc"
+        :picture="course.picture"
       />
-      <CourseDates :dates="course.dates" />
+      <Lectures
+        v-if="course.lectures.length"
+        :lectures="course.lectures"
+        @addPlaces="addPlacesHandler"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import CourseService from '@/services/CourseService';
+import { getErrorData } from '@/utils/helpers';
+
 import CourseInformation from '@/components/course/CourseInformation.vue';
-import CourseDates from '@/components/course/CourseDates.vue';
-import courses from '@/store/courses.js';
+import Lectures from '@/components/course/Lectures.vue';
 export default {
   name: 'TheCourse',
 
   components: {
     CourseInformation,
-    CourseDates,
+    Lectures,
   },
 
   data() {
     return {
       course: {
-        title: null,
-        description: null,
-        imgSrc: null,
-        background: null,
-        dates: null,
+        id: 0,
+        title: '',
+        description: '',
+        picture: '',
+        background: '',
+        lectures: [],
       },
+      message: null,
     };
   },
 
   methods: {
-    getCourse(id) {
-      this.course = courses.find((course) => course.id === parseInt(id));
+    async getCourse(id) {
+      try {
+        const response = await CourseService.getCourse(id);
+        this.course = response.data.data;
+      } catch (error) {
+        console.log(getErrorData(error));
+      }
+    },
+
+    addPlacesHandler(id) {
+      console.log(id);
+      this.course.lectures = this.course.lectures.map((lecture) => {
+        console.log(lecture);
+        if (lecture.id === id) {
+          lecture.places = lecture.places + 1;
+        }
+        return lecture;
+      });
     },
   },
 
@@ -48,6 +72,9 @@ export default {
     this.$watch(
       () => this.$route.params.courseId,
       (courseId) => {
+        if (!courseId) {
+          return;
+        }
         this.getCourse(courseId);
       }
     );
