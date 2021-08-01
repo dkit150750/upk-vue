@@ -1,7 +1,7 @@
 <template>
-  <router-link class="header-logo" :to="{ name: 'home' }"
-    >ГПОУ ТО "ДКИТ"</router-link
-  >
+  <router-link class="header-logo" :to="{ name: 'home' }">
+    ГПОУ ТО "ДКИТ"
+  </router-link>
 </template>
 
 <script>

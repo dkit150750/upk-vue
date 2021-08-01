@@ -9,7 +9,6 @@
           aria-label="открыть меню"
           @click="openMenu"
         >
-          <!-- <img src="" alt="аватар" /> -->
           <span class="burger__line"></span>
           <span class="burger__line"></span>
           <span class="burger__line"></span>
