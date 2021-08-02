@@ -52,12 +52,7 @@
   </LecturesList>
   <teleport to="#app">
     <transition name="flash-message">
-      <FlashMessage
-        v-if="message || messageError"
-        :message="message"
-        :error="messageError"
-        @close="messageError = message = null"
-      />
+      <FlashMessage v-if="message" :message="message" @close="message = null" />
     </transition>
   </teleport>
 </template>
@@ -98,7 +93,6 @@ export default {
         lectures: [],
       },
       message: null,
-      messageError: null,
     };
   },
 
@@ -131,8 +125,10 @@ export default {
       }
     },
 
-    setPicture(picture) {
+    async setPicture(picture) {
       this.course.picture = picture;
+      this.message = null;
+      await this.$nextTick();
       this.message = 'Данные обновлены';
     },
 
@@ -140,17 +136,19 @@ export default {
       this.$router.push({ name: 'admin' });
     },
 
-    addLecture(lecture) {
+    async addLecture(lecture) {
       this.course.lectures.unshift(lecture);
       this.message = null;
+      await this.$nextTick();
       this.message = 'Запись создана';
     },
 
-    deleteLecture(id) {
+    async deleteLecture(id) {
       this.course.lectures = this.course.lectures.filter(
         (lecture) => lecture.id !== id
       );
       this.message = null;
+      await this.$nextTick();
       this.message = 'Запись удалена';
     },
   },

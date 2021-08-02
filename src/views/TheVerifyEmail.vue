@@ -15,10 +15,9 @@
     <teleport to="#app">
       <transition name="flash-message">
         <FlashMessage
-          v-if="message || messageError"
+          v-if="message"
           :message="message"
-          :error="messageError"
-          @close="messageError = message = null"
+          @close="message = null"
         />
       </transition>
     </teleport>
@@ -46,7 +45,6 @@ export default {
   data() {
     return {
       error: null,
-      messageError: null,
       message: null,
     };
   },
@@ -58,12 +56,13 @@ export default {
   methods: {
     async sendVerification() {
       this.error = null;
-      this.message = null;
       const payload = {
         user: this.authUser.id,
       };
       try {
         await AuthService.sendVerification(payload);
+        this.message = null;
+        await this.$nextTick();
         this.message = 'Письмо с подтверждением отправлено';
       } catch (error) {
         this.error = getErrorData(error);

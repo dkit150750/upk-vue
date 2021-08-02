@@ -1,6 +1,6 @@
 <template>
   <div class="profile-header">
-    <ProfileHeaderAvatar />
+    <ProfileHeaderAvatar @update="$emit('update')" />
     <h1 class="profile-header__full-name">{{ fullName }}</h1>
     <p class="profile-header__email">{{ this.authUser.email }}</p>
   </div>
@@ -16,6 +16,10 @@ export default {
 
   components: {
     ProfileHeaderAvatar,
+  },
+
+  emits: {
+    update: null,
   },
 
   computed: {

@@ -21,16 +21,6 @@
       @change="uploadAvatar"
     />
   </div>
-  <teleport to="#app">
-    <transition name="flash-message">
-      <FlashMessage
-        v-if="message || messageError"
-        :message="message"
-        :error="messageError"
-        @close="messageError = message = null"
-      />
-    </transition>
-  </teleport>
 </template>
 
 <script>
@@ -39,21 +29,21 @@ import FileService from '@/services/FileService';
 import { getErrorData } from '@/utils/helpers';
 
 import ProfileHeaderAvatarIcon from '@/components/profile/ProfileHeaderAvatarIcon.vue';
-import FlashMessage from '@/components/FlashMessage.vue';
 
 export default {
   name: 'ProfileHeaderAvatar',
 
   components: {
     ProfileHeaderAvatarIcon,
-    FlashMessage,
+  },
+
+  emits: {
+    update: null,
   },
 
   data() {
     return {
       endpoint: '/users/auth/avatar',
-      message: null,
-      messageError: null,
     };
   },
 
@@ -76,8 +66,8 @@ export default {
       try {
         this.file = null;
         await FileService.uploadFile(payload);
+        this.$emit('update');
         this.$store.dispatch('auth/getAuthUser');
-        this.message = 'Данные обновлены';
       } catch (error) {
         this.error = getErrorData(error);
       }

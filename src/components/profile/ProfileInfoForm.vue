@@ -38,16 +38,6 @@
       </button>
     </div>
   </form>
-  <teleport to="#app">
-    <transition name="flash-message">
-      <FlashMessage
-        v-if="message || messageError"
-        :message="message"
-        :error="messageError"
-        @close="messageError = message = null"
-      />
-    </transition>
-  </teleport>
 </template>
 
 <script>
@@ -56,14 +46,20 @@ import { getErrorData } from '@/utils/helpers';
 import AuthService from '@/services/AuthService';
 
 import ProfileFormField from '@/components/profile/ProfileFormField.vue';
-import FlashMessage from '@/components/FlashMessage.vue';
 
 export default {
   name: 'ProfileInfoForm',
 
   components: {
     ProfileFormField,
-    FlashMessage,
+  },
+
+  created() {
+    this.user = Object.assign({}, this.authUser);
+  },
+
+  emits: {
+    update: null,
   },
 
   data() {
@@ -80,14 +76,17 @@ export default {
         patronymic: null,
         telephone: null,
       },
-      message: null,
-      messageError: null,
+      isLoading: false,
     };
   },
 
   computed: {
     ...mapGetters('auth', ['authUser']),
     isDisabledSaveInfo() {
+      if (this.isLoading) {
+        return true;
+      }
+
       if (
         this.user.lastname === '' ||
         this.user.name === '' ||
@@ -95,22 +94,28 @@ export default {
       ) {
         return true;
       }
+
       return (
-        JSON.stringify(Object.values(this.user)) ===
-        JSON.stringify(Object.values(this.authUser))
+        this.user.lastname === this.authUser.lastname &&
+        this.user.name === this.authUser.name &&
+        this.user.patronymic === this.authUser.patronymic &&
+        this.user.telephone === this.authUser.telephone
       );
     },
   },
 
   methods: {
     async updateUser() {
+      if (this.isLoading) {
+        return;
+      }
+      this.isLoading = true;
       this.error = {
         lastname: null,
         name: null,
         patronymic: null,
         telephone: null,
       };
-      this.message = null;
 
       const payload = this.user;
       payload.email = this.authUser.email;
@@ -118,15 +123,12 @@ export default {
       try {
         await AuthService.updateUser(payload);
         await this.$store.dispatch('auth/getAuthUser');
-        this.message = 'Данные обновлены';
+        this.$emit('update');
       } catch (error) {
         this.error = getErrorData(error);
       }
+      this.isLoading = false;
     },
-  },
-
-  created() {
-    this.user = Object.assign({}, this.authUser);
   },
 };
 </script>

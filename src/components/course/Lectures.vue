@@ -65,6 +65,7 @@ export default {
       selectedLectureId: parseInt(this.lectures[0].id),
       message: null,
       messageError: null,
+      isLoading: false,
     };
   },
 
@@ -78,12 +79,20 @@ export default {
     },
 
     isDisabled() {
-      return this.selectedLecture.total_places === this.selectedLecture.places;
+      return (
+        this.selectedLecture.total_places === this.selectedLecture.places ||
+        this.isLoading
+      );
     },
   },
 
   methods: {
     async submitHandler() {
+      if (this.isLoading) {
+        return;
+      }
+
+      this.isLoading = true;
       if (!this.loggedIn) {
         this.$router.push({ name: 'login' });
         return;
@@ -116,6 +125,7 @@ export default {
       } catch (error) {
         console.log(getErrorData(error));
       }
+      this.isLoading = false;
     },
   },
 };

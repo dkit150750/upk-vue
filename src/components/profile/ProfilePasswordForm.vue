@@ -37,16 +37,6 @@
       </button>
     </div>
   </form>
-  <teleport to="#app">
-    <transition name="flash-message">
-      <FlashMessage
-        v-if="message || messageError"
-        :message="message"
-        :error="messageError"
-        @close="messageError = message = null"
-      />
-    </transition>
-  </teleport>
 </template>
 
 <script>
@@ -54,14 +44,16 @@ import AuthService from '@/services/AuthService';
 import { getErrorData } from '@/utils/helpers';
 
 import ProfileFormField from '@/components/profile/ProfileFormField.vue';
-import FlashMessage from '@/components/FlashMessage.vue';
 
 export default {
   name: 'ProfilePasswordForm',
 
   components: {
     ProfileFormField,
-    FlashMessage,
+  },
+
+  emits: {
+    update: null,
   },
 
   data() {
@@ -76,13 +68,16 @@ export default {
         password: null,
         password_confirmation: null,
       },
-      message: null,
-      messageError: null,
+      isLoading: false,
     };
   },
 
   computed: {
     isDisabled() {
+      if (this.isLoading) {
+        return true;
+      }
+
       if (Object.values(this.user).includes('')) {
         return true;
       }
@@ -95,18 +90,21 @@ export default {
       if (!this.validate()) {
         return;
       }
+      if (this.isLoading) {
+        return;
+      }
+      this.isLoading = true;
 
       this.error = {
         current_password: null,
         password: null,
         password_confirmation: null,
       };
-      this.message = null;
       const payload = this.user;
 
       try {
         await AuthService.updatePassword(payload);
-        this.message = 'Пароль обновлен';
+        this.$emit('update');
         this.user = {
           current_password: null,
           password: null,
@@ -115,6 +113,8 @@ export default {
       } catch (error) {
         this.error = getErrorData(error);
       }
+
+      this.isLoading = false;
     },
 
     validate() {

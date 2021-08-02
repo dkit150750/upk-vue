@@ -1,67 +1,78 @@
 <template>
   <ProfileWrapper>
-    <ProfileHeader class="profile__header" />
+    <ProfileHeader class="profile__header" @update="showPopup" />
     <ProfileInfo
       class="profile__profile-info"
       title="О себе"
       description="Просьба заполнять реальные данные"
     >
-      <ProfileInfoForm />
+      <ProfileInfoForm @update="showPopup" />
     </ProfileInfo>
 
     <ProfileInfo title="Изменение пароля">
-      <ProfilePasswordForm />
+      <ProfilePasswordForm @update="showPopup" />
     </ProfileInfo>
 
     <Records>
-      <RecordsList>
-        <RecordsListItem
-          v-for="record in records"
-          :key="record.id"
-          :date="record.date"
-          :time="record.time"
-          :title="record.course.title"
-          :picture="record.course.picture"
-          :courseId="record.course.id"
-        />
-      </RecordsList>
-      <RecordsPagination>
-        <RecordsPaginationItem v-if="page >= 2" page="1">
-          1
-        </RecordsPaginationItem>
-        <RecordsPaginationItem v-if="page >= 7" :page="page - 5">
-          ...
-        </RecordsPaginationItem>
-        <RecordsPaginationItem v-if="page >= 4" :page="page - 2">
-          {{ page - 2 }}
-        </RecordsPaginationItem>
-        <RecordsPaginationItem v-if="page >= 3" :page="page - 1">
-          {{ page - 1 }}
-        </RecordsPaginationItem>
-        <RecordsPaginationItem
-          class="records-pagination-item--active"
-          :page="page"
-        >
-          {{ page }}
-        </RecordsPaginationItem>
-        <RecordsPaginationItem v-if="page <= pages - 2" :page="page + 1">
-          {{ page + 1 }}
-        </RecordsPaginationItem>
-        <RecordsPaginationItem v-if="page <= pages - 3" :page="page + 2">
-          {{ page + 2 }}
-        </RecordsPaginationItem>
-        <RecordsPaginationItem v-if="page <= pages - 6" :page="page + 5">
-          ...
-        </RecordsPaginationItem>
-        <RecordsPaginationItem
-          v-if="page <= pages - 1 && page !== pages"
-          :page="pages"
-        >
-          {{ pages }}
-        </RecordsPaginationItem>
-      </RecordsPagination>
+      <template v-if="!isLoading">
+        <template v-if="records">
+          <RecordsList>
+            <RecordsListItem
+              v-for="record in records"
+              :key="record.id"
+              :date="record.date"
+              :time="record.time"
+              :title="record.course.title"
+              :picture="record.course.picture"
+              :courseId="record.course.id"
+            />
+          </RecordsList>
+          <RecordsPagination>
+            <RecordsPaginationItem v-if="page >= 2" page="1">
+              1
+            </RecordsPaginationItem>
+            <RecordsPaginationItem v-if="page >= 7" :page="page - 5">
+              ...
+            </RecordsPaginationItem>
+            <RecordsPaginationItem v-if="page >= 4" :page="page - 2">
+              {{ page - 2 }}
+            </RecordsPaginationItem>
+            <RecordsPaginationItem v-if="page >= 3" :page="page - 1">
+              {{ page - 1 }}
+            </RecordsPaginationItem>
+            <RecordsPaginationItem
+              class="records-pagination-item--active"
+              :page="page"
+            >
+              {{ page }}
+            </RecordsPaginationItem>
+            <RecordsPaginationItem v-if="page <= pages - 2" :page="page + 1">
+              {{ page + 1 }}
+            </RecordsPaginationItem>
+            <RecordsPaginationItem v-if="page <= pages - 3" :page="page + 2">
+              {{ page + 2 }}
+            </RecordsPaginationItem>
+            <RecordsPaginationItem v-if="page <= pages - 6" :page="page + 5">
+              ...
+            </RecordsPaginationItem>
+            <RecordsPaginationItem
+              v-if="page <= pages - 1 && page !== pages"
+              :page="pages"
+            >
+              {{ pages }}
+            </RecordsPaginationItem>
+          </RecordsPagination>
+        </template>
+        <h2 v-else>Нет записей</h2>
+      </template>
+      <h2 v-else>Загрузка...</h2>
     </Records>
   </ProfileWrapper>
+  <teleport to="#app">
+    <transition name="flash-message">
+      <FlashMessage v-if="message" :message="message" @close="message = null" />
+    </transition>
+  </teleport>
 </template>
 
 <script>
@@ -80,6 +91,8 @@ import RecordsListItem from '@/components/profile/records/RecordsListItem.vue';
 import RecordsPagination from '@/components/profile/records/RecordsPagination.vue';
 import RecordsPaginationItem from '@/components/profile/records/RecordsPaginationItem.vue';
 
+import FlashMessage from '@/components/FlashMessage.vue';
+
 export default {
   name: 'TheProfile',
 
@@ -94,18 +107,7 @@ export default {
     RecordsListItem,
     RecordsPagination,
     RecordsPaginationItem,
-  },
-
-  data() {
-    return {
-      password: {
-        password: null,
-        'password.confirm': null,
-      },
-      records: [],
-      page: 1,
-      pages: 1,
-    };
+    FlashMessage,
   },
 
   created() {
@@ -120,6 +122,20 @@ export default {
     this.getRecords(pageNumber);
   },
 
+  data() {
+    return {
+      password: {
+        password: null,
+        'password.confirm': null,
+      },
+      records: [],
+      page: 1,
+      pages: 1,
+      message: null,
+      isLoading: true,
+    };
+  },
+
   methods: {
     async getRecords(page) {
       try {
@@ -127,10 +143,16 @@ export default {
         this.page = response.data.data.from;
         this.pages = response.data.data.last_page;
         this.records = response.data.data.data;
-        console.log(response.data.data.data);
+        this.isLoading = false;
       } catch (error) {
         console.log(getErrorData(error));
       }
+    },
+
+    async showPopup() {
+      this.message = null;
+      await this.$nextTick();
+      this.message = 'Данные обоновлены';
     },
   },
 };

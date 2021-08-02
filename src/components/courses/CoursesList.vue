@@ -11,13 +11,9 @@
           :background="course.background"
         />
       </template>
-      <template v-else>
-        <h2>Курсов нет</h2>
-      </template>
+      <h2 v-else>Курсов нет</h2>
     </template>
-    <template v-else>
-      <h2>Загрузка...</h2>
-    </template>
+    <h2 v-else>Загрузка...</h2>
   </div>
 </template>
 

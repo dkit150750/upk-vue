@@ -26,12 +26,7 @@
   </LoginWrapper>
   <teleport to="#app">
     <transition name="flash-message">
-      <FlashMessage
-        v-if="message || messageError"
-        :message="message"
-        :error="messageError"
-        @close="messageError = message = null"
-      />
+      <FlashMessage v-if="message" :message="message" @close="message = null" />
     </transition>
   </teleport>
 </template>
