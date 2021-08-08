@@ -79,22 +79,22 @@
 import RecordService from '@/services/RecordService';
 import { getErrorData } from '@/utils/helpers';
 
-import ProfileWrapper from '@/components/profile/ProfileWrapper.vue';
-import ProfileHeader from '@/components/profile/ProfileHeader.vue';
-import ProfileInfo from '@/components/profile/ProfileInfo.vue';
-import ProfileInfoForm from '@/components/profile/ProfileInfoForm.vue';
-import ProfilePasswordForm from '@/components/profile/ProfilePasswordForm.vue';
+import ProfileWrapper from '@/components/RrofilePage/ProfileWrapper.vue';
+import ProfileHeader from '@/components/RrofilePage/ProfileHeader.vue';
+import ProfileInfo from '@/components/RrofilePage/ProfileInfo.vue';
+import ProfileInfoForm from '@/components/RrofilePage/ProfileInfoForm.vue';
+import ProfilePasswordForm from '@/components/RrofilePage/ProfilePasswordForm.vue';
 
-import Records from '@/components/profile/records/Records.vue';
-import RecordsList from '@/components/profile/records/RecordsList.vue';
-import RecordsListItem from '@/components/profile/records/RecordsListItem.vue';
-import RecordsPagination from '@/components/profile/records/RecordsPagination.vue';
-import RecordsPaginationItem from '@/components/profile/records/RecordsPaginationItem.vue';
+import Records from '@/components/RrofilePage/records/Records.vue';
+import RecordsList from '@/components/RrofilePage/records/RecordsList.vue';
+import RecordsListItem from '@/components/RrofilePage/records/RecordsListItem.vue';
+import RecordsPagination from '@/components/RrofilePage/records/RecordsPagination.vue';
+import RecordsPaginationItem from '@/components/RrofilePage/records/RecordsPaginationItem.vue';
 
 import FlashMessage from '@/components/FlashMessage.vue';
 
 export default {
-  name: 'TheProfile',
+  name: 'RrofilePage',
 
   components: {
     ProfileWrapper,

@@ -67,7 +67,7 @@ const routes = [
     name: 'profile',
     meta: { middleware: [auth, email] },
     component: () =>
-      import(/* webpackChunkName: "the-profile" */ '@/views/TheRrofile'),
+      import(/* webpackChunkName: "profile-page" */ '@/views/RrofilePage'),
   },
   {
     path: '/admin',

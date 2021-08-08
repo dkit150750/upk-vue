@@ -28,7 +28,7 @@ import { mapGetters } from 'vuex';
 import FileService from '@/services/FileService';
 import { getErrorData } from '@/utils/helpers';
 
-import ProfileHeaderAvatarIcon from '@/components/profile/ProfileHeaderAvatarIcon.vue';
+import ProfileHeaderAvatarIcon from '@/components/RrofilePage/ProfileHeaderAvatarIcon.vue';
 
 export default {
   name: 'ProfileHeaderAvatar',

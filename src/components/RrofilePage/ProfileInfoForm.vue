@@ -45,7 +45,7 @@ import { mapGetters } from 'vuex';
 import { getErrorData } from '@/utils/helpers';
 import AuthService from '@/services/AuthService';
 
-import ProfileFormField from '@/components/profile/ProfileFormField.vue';
+import ProfileFormField from '@/components/RrofilePage/ProfileFormField.vue';
 
 export default {
   name: 'ProfileInfoForm',

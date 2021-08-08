@@ -9,7 +9,7 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import ProfileHeaderAvatar from '@/components/profile/ProfileHeaderAvatar.vue';
+import ProfileHeaderAvatar from '@/components/RrofilePage/ProfileHeaderAvatar.vue';
 
 export default {
   name: 'ProfileHeader',

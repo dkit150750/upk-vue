@@ -43,7 +43,7 @@
 import AuthService from '@/services/AuthService';
 import { getErrorData } from '@/utils/helpers';
 
-import ProfileFormField from '@/components/profile/ProfileFormField.vue';
+import ProfileFormField from '@/components/RrofilePage/ProfileFormField.vue';
 
 export default {
   name: 'ProfilePasswordForm',
