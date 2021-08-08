@@ -11,7 +11,7 @@
           :background="course.background"
         />
       </template>
-      <h2 v-else>Курсов нет</h2>
+      <p class="courses-list__null" v-else>Курсов пока нет...</p>
     </template>
     <template v-else>
       <CoursesListItem v-for="n in 6" :key="n" picture="loading" />
@@ -69,5 +69,9 @@ export default {
     grid-template-columns: repeat(3, 1fr);
     gap: 32px;
   }
+}
+
+.courses-list__null {
+  font-size: 28px;
 }
 </style>
