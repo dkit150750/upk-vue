@@ -13,7 +13,9 @@
       </template>
       <h2 v-else>Курсов нет</h2>
     </template>
-    <h2 v-else>Загрузка...</h2>
+    <template v-else>
+      <CoursesListItem v-for="n in 6" :key="n" picture="loading" />
+    </template>
   </div>
 </template>
 
@@ -21,7 +23,7 @@
 import CourseService from '@/services/CourseService';
 import { getErrorData } from '@/utils/helpers';
 
-import CoursesListItem from '@/components/courses/CoursesListItem.vue';
+import CoursesListItem from '@/components/index/CoursesListItem.vue';
 
 export default {
   name: 'CoursesList',

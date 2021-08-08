@@ -2,23 +2,28 @@
   <article class="course-card">
     <router-link
       class="course-card__title"
+      v-if="courseId"
       :to="{ name: 'course', params: { courseId: courseId } }"
     >
       {{ title }}
     </router-link>
+    <span v-else class="course-card__title-null"></span>
     <div class="course-card__pic-wrapper">
-      <img
-        class="course-card__pic"
-        v-if="picture"
-        :src="picture"
-        :alt="title"
-      />
-      <img
-        class="course-card__pic"
-        v-else
-        :src="require('@/assets/images/picture.webp')"
-        :alt="title"
-      />
+      <span class="course-card__pic-null" v-if="picture === 'loading'"></span>
+      <template v-else>
+        <img
+          class="course-card__pic"
+          v-if="picture"
+          :src="picture"
+          :alt="title"
+        />
+        <img
+          class="course-card__pic"
+          v-else
+          :src="require('@/assets/images/picture.webp')"
+          :alt="title"
+        />
+      </template>
     </div>
   </article>
 </template>
@@ -30,15 +35,12 @@ export default {
   props: {
     courseId: {
       type: Number,
-      required: true,
     },
     title: {
       type: String,
-      required: true,
     },
     picture: {
       type: String,
-      required: true,
     },
     background: {
       type: String,
@@ -128,8 +130,21 @@ export default {
   }
 }
 
+.course-card__title-null {
+  display: block;
+  height: 1em;
+  background-color: #dddddd;
+}
+
 .course-card__pic {
   display: block;
   max-width: 100%;
+}
+
+.course-card__pic-null {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #dddddd;
 }
 </style>

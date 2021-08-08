@@ -12,7 +12,7 @@ const routes = [
     name: 'home',
     meta: {},
     component: () =>
-      import(/* webpackChunkName: "the-courses" */ '@/views/TheCourses.vue'),
+      import(/* webpackChunkName: "the-home" */ '@/views/HomePage.vue'),
   },
   {
     path: '/courses/:courseId(\\d+)',
