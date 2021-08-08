@@ -11,7 +11,7 @@
           :background="course.background"
         />
       </template>
-      <p class="courses-list__null" v-else>Курсов пока нет...</p>
+      <p class="courses-list__list-null" v-else>Курсов пока нет...</p>
     </template>
     <template v-else>
       <CoursesListItem v-for="n in 6" :key="n" picture="loading" />
@@ -71,7 +71,7 @@ export default {
   }
 }
 
-.courses-list__null {
+.courses-list__list-null {
   font-size: 28px;
 }
 </style>

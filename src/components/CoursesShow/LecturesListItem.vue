@@ -4,7 +4,7 @@
       class="lecture__input"
       type="radio"
       name="date"
-      :checked="shouldBeChecked"
+      :checked="isChecked"
       :value="id"
     />
     <span class="lecture__date">{{ fullDate }}</span>
@@ -16,7 +16,7 @@ export default {
   name: 'LecturesListItem',
 
   props: {
-    modelValue: Number,
+    selectId: Number,
     id: {
       type: Number,
       required: true,
@@ -43,8 +43,8 @@ export default {
   ],
 
   computed: {
-    shouldBeChecked() {
-      return this.modelValue === this.id;
+    isChecked() {
+      return this.selectId === this.id;
     },
     fullDate() {
       const dateArray = this.date.split('-');

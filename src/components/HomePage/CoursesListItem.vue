@@ -10,20 +10,18 @@
     <span v-else class="course-card__title-null"></span>
     <div class="course-card__pic-wrapper">
       <span class="course-card__pic-null" v-if="picture === 'loading'"></span>
-      <template v-else>
-        <img
-          class="course-card__pic"
-          v-if="picture"
-          :src="picture"
-          :alt="title"
-        />
-        <img
-          class="course-card__pic"
-          v-else
-          :src="require('@/assets/images/picture.webp')"
-          :alt="title"
-        />
-      </template>
+      <img
+        class="course-card__pic"
+        v-else-if="picture"
+        :src="picture"
+        :alt="title"
+      />
+      <img
+        class="course-card__pic"
+        v-else
+        :src="require('@/assets/images/picture.webp')"
+        :alt="title"
+      />
     </div>
   </article>
 </template>

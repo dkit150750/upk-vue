@@ -14,9 +14,7 @@
           @record="plusPlaces"
         />
       </template>
-      <template v-else>
-        <h2>Загрузка...</h2>
-      </template>
+      <CourseInformation v-else picture="loading" />
     </div>
   </div>
 </template>

@@ -1,14 +1,33 @@
 <template>
   <div class="course-information" ref="course">
     <div class="course-information__inner">
-      <h1 class="course-information__title">
+      <h1 class="course-information__title" v-if="title">
         {{ title }}
       </h1>
+      <template v-else>
+        <span class="course-information__title-null"></span>
+        <span
+          class="
+            course-information__title-null course-information__title-null--short
+          "
+        ></span>
+      </template>
       <div class="course-information__pic">
         <div class="course-information__pic-wrapper">
+          <span
+            class="course-card__pic-null"
+            v-if="picture === 'loading'"
+          ></span>
           <img
             class="course-information__pic-img"
+            v-else-if="picture"
             :src="picture"
+            :alt="title"
+          />
+          <img
+            class="course-information__pic-img"
+            v-else
+            :src="require('@/assets/images/picture.webp')"
             :alt="title"
           />
         </div>
@@ -27,15 +46,12 @@ export default {
   props: {
     title: {
       type: String,
-      required: true,
     },
     picture: {
       type: String,
-      required: true,
     },
     description: {
       type: String,
-      required: true,
     },
     background: {
       type: String,
@@ -142,6 +158,16 @@ export default {
   }
 }
 
+.course-information__title-null {
+  display: block;
+  height: 1em;
+  background-color: var(--color-gray-100);
+}
+
+.course-information__title-null--short {
+  max-width: 200px;
+}
+
 .course-information__pic {
   margin-top: 16px;
   margin-bottom: 10px;
@@ -167,6 +193,15 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.course-card__pic-null {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: var(--color-gray-100);
 }
 
 .course-information__description {

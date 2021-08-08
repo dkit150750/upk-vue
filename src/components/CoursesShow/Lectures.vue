@@ -3,11 +3,16 @@
     <h2 class="lectures__title">Выбрать дату</h2>
 
     <div class="lectures__wrapper">
-      <LecturesList
-        class="lectures__list"
-        :lectures="lectures"
-        v-model="selectedLectureId"
-      />
+      <LecturesList class="lectures__list">
+        <LecturesListItem
+          v-for="lecture in lectures"
+          :key="lecture.id"
+          :id="lecture.id"
+          :date="lecture.date"
+          :selectId="selectedLectureId"
+          @change="changeLecture"
+        />
+      </LecturesList>
       <LecturesInfo
         :time="selectedLecture.time"
         :cabinet="selectedLecture.cabinet"
@@ -37,6 +42,7 @@ import { getErrorData } from '@/utils/helpers';
 import { mapGetters } from 'vuex';
 
 import LecturesList from '@/components/CoursesShow/LecturesList.vue';
+import LecturesListItem from '@/components/CoursesShow/LecturesListItem.vue';
 import LecturesInfo from '@/components/CoursesShow/LecturesInfo.vue';
 import FlashMessage from '@/components/FlashMessage.vue';
 
@@ -45,6 +51,7 @@ export default {
 
   components: {
     LecturesList,
+    LecturesListItem,
     LecturesInfo,
     FlashMessage,
   },
@@ -87,6 +94,10 @@ export default {
   },
 
   methods: {
+    changeLecture(event) {
+      this.selectedLectureId = parseInt(event.target.value);
+    },
+
     async submitHandler() {
       if (this.isLoading) {
         return;
