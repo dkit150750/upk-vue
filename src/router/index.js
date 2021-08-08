@@ -10,7 +10,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    meta: { layout: 'LayoutDefault' },
+    meta: {},
     component: () =>
       import(/* webpackChunkName: "home-page" */ '@/views/HomePage.vue'),
   },
