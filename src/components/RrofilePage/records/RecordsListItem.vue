@@ -11,7 +11,18 @@
       {{ title }}
     </router-link>
     <div class="record-card__pic-wrapper">
-      <img class="record-card__pic" :src="picture" :alt="title" />
+      <img
+        class="record-card__pic"
+        v-if="picture"
+        :src="picture"
+        :alt="title"
+      />
+      <img
+        class="record-card__pic"
+        v-else
+        :src="require('@/assets/images/picture.webp')"
+        :alt="title"
+      />
     </div>
   </article>
 </template>
