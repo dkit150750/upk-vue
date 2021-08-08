@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import CoursesList from '@/components/index/CoursesList.vue';
+import CoursesList from '@/components/HomePage/CoursesList.vue';
 export default {
-  name: 'TheCourses',
+  name: 'HomePage',
   components: {
     CoursesList,
   },
