@@ -17,7 +17,7 @@ export const getErrorData = (error) => {
   return null;
 };
 
-export const getErrorNessage = (error) => {
+export const getErrorMessage = (error) => {
   const errorMessage = 'Ошибка API, попробуйте еще раз.';
 
   if (error.name === 'Fetch User') {
