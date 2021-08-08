@@ -1,36 +1,34 @@
 <template>
-  <transition name="header-menu">
-    <div class="header-menu" v-if="isOpen" @click.self="$emit('close')">
-      <div class="header-menu__content">
-        <ul class="header-menu__list">
-          <li class="header-menu__item">
-            <router-link
-              class="header-menu__link"
-              exact-active-class="header-menu__link--active"
-              :to="{ name: 'profile' }"
-              @click="$emit('close')"
-            >
-              Профиль
-            </router-link>
-          </li>
-          <li class="header-menu__item" v-if="isAdmin">
-            <router-link
-              class="header-menu__link"
-              :to="{ name: 'admin' }"
-              @click="$emit('close')"
-            >
-              Админка
-            </router-link>
-          </li>
-          <li class="header-menu__item">
-            <button class="header-menu__link" type="button" @click="logout">
-              Выйти
-            </button>
-          </li>
-        </ul>
-      </div>
+  <div class="header-menu" @click.self="$emit('close')">
+    <div class="header-menu__content">
+      <ul class="header-menu__list">
+        <li class="header-menu__item">
+          <router-link
+            class="header-menu__link"
+            exact-active-class="header-menu__link--active"
+            :to="{ name: 'profile' }"
+            @click="$emit('close')"
+          >
+            Профиль
+          </router-link>
+        </li>
+        <li class="header-menu__item" v-if="isAdmin">
+          <router-link
+            class="header-menu__link"
+            :to="{ name: 'admin' }"
+            @click="$emit('close')"
+          >
+            Админка
+          </router-link>
+        </li>
+        <li class="header-menu__item">
+          <button class="header-menu__link" type="button" @click="logout">
+            Выйти
+          </button>
+        </li>
+      </ul>
     </div>
-  </transition>
+  </div>
 </template>
 
 <script>
@@ -38,13 +36,6 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'HeaderMenu',
-
-  props: {
-    isOpen: {
-      type: Boolean,
-      required: true,
-    },
-  },
 
   emits: {
     close: null,
