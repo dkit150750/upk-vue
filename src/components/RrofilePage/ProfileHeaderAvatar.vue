@@ -1,7 +1,18 @@
 <template>
   <div class="profile-avatar">
     <div class="profile-avatar__img-wrapper">
-      <img class="profile-avatar__img" :src="authUser.avatar" :alt="fullName" />
+      <img
+        class="profile-avatar__img"
+        v-if="authUser.avatar"
+        :src="authUser.avatar"
+        :alt="fullName"
+      />
+      <img
+        class="profile-avatar__img"
+        v-else
+        :src="require('@/assets/images/picture.webp')"
+        :alt="fullName"
+      />
     </div>
     <div class="profile-avatar__avatar-icon-wrapper">
       <ProfileHeaderAvatarIcon />
