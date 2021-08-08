@@ -63,9 +63,9 @@
             </RecordsPaginationItem>
           </RecordsPagination>
         </template>
-        <h2 v-else>Нет записей</h2>
+        <p v-else>Нет записей</p>
       </template>
-      <h2 v-else>Загрузка...</h2>
+      <p v-else>Загрузка...</p>
     </Records>
   </ProfileWrapper>
   <teleport to="#app">
