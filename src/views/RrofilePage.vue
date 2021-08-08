@@ -15,7 +15,7 @@
 
     <Records>
       <template v-if="!isLoading">
-        <template v-if="records">
+        <template v-if="records.length">
           <RecordsList>
             <RecordsListItem
               v-for="record in records"

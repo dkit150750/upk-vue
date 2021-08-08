@@ -1,7 +1,7 @@
 <template>
   <div class="courses-list">
     <template v-if="!isLoading">
-      <template v-if="courses">
+      <template v-if="courses.length">
         <CoursesListItem
           v-for="course in courses"
           :key="course.id"
