@@ -19,7 +19,7 @@ const routes = [
     name: 'course',
     meta: {},
     component: () =>
-      import(/* webpackChunkName: "the-course" */ '@/views/TheCourse.vue'),
+      import(/* webpackChunkName: "courses-show" */ '@/views/CoursesShow.vue'),
   },
   {
     path: '/login',

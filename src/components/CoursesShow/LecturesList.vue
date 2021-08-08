@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import LecturesListItem from '@/components/course/LecturesListItem.vue';
+import LecturesListItem from '@/components/CoursesShow/LecturesListItem.vue';
 
 export default {
   name: 'LecturesList',

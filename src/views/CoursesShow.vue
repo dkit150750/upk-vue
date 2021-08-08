@@ -25,10 +25,10 @@
 import CourseService from '@/services/CourseService';
 import { getErrorData } from '@/utils/helpers';
 
-import CourseInformation from '@/components/course/CourseInformation.vue';
-import Lectures from '@/components/course/Lectures.vue';
+import CourseInformation from '@/components/CoursesShow/CourseInformation.vue';
+import Lectures from '@/components/CoursesShow/Lectures.vue';
 export default {
-  name: 'TheCourse',
+  name: 'CoursesShow',
 
   components: {
     CourseInformation,

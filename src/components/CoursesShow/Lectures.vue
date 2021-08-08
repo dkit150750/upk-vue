@@ -36,8 +36,8 @@ import RecordService from '@/services/RecordService';
 import { getErrorData } from '@/utils/helpers';
 import { mapGetters } from 'vuex';
 
-import LecturesList from '@/components/course/LecturesList.vue';
-import LecturesInfo from '@/components/course/LecturesInfo.vue';
+import LecturesList from '@/components/CoursesShow/LecturesList.vue';
+import LecturesInfo from '@/components/CoursesShow/LecturesInfo.vue';
 import FlashMessage from '@/components/FlashMessage.vue';
 
 export default {

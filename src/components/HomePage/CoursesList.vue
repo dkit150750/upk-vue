@@ -23,7 +23,7 @@
 import CourseService from '@/services/CourseService';
 import { getErrorData } from '@/utils/helpers';
 
-import CoursesListItem from '@/components/index/CoursesListItem.vue';
+import CoursesListItem from '@/components/HomePage/CoursesListItem.vue';
 
 export default {
   name: 'CoursesList',
