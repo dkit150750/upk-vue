@@ -133,7 +133,7 @@ export default {
 .course-card__title-null {
   display: block;
   height: 1em;
-  background-color: #dddddd;
+  background-color: var(--color-gray-100);
 }
 
 .course-card__pic {
@@ -145,6 +145,6 @@ export default {
   display: block;
   width: 100%;
   height: 100%;
-  background-color: #dddddd;
+  background-color: var(--color-gray-100);
 }
 </style>
