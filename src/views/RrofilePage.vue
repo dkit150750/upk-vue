@@ -152,7 +152,7 @@ export default {
     async showPopup() {
       this.message = null;
       await this.$nextTick();
-      this.message = 'Данные обоновлены';
+      this.message = 'Данные обновлены';
     },
   },
 };
