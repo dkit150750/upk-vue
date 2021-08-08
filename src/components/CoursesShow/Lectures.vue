@@ -64,7 +64,7 @@ export default {
   },
 
   emits: {
-    record: null,
+    success: null,
   },
 
   data() {
@@ -104,6 +104,7 @@ export default {
       }
 
       this.isLoading = true;
+
       if (!this.loggedIn) {
         this.$router.push({ name: 'login' });
         return;
@@ -121,6 +122,7 @@ export default {
           this.messageError = null;
           await this.$nextTick();
           this.messageError = isRecord.data.message;
+          this.isLoading = false;
           return;
         }
 
@@ -131,7 +133,7 @@ export default {
           this.messageError = null;
           await this.$nextTick();
           this.message = 'Приглашение выслано на почту';
-          this.$emit('record', payload.lecture_id);
+          this.$emit('success', payload.lecture_id);
         }
       } catch (error) {
         console.log(getErrorData(error));
@@ -173,6 +175,7 @@ export default {
   background-color: var(--color-primary-800);
   border: 0;
   border-radius: 6px;
+  transition: all 0.3s;
 }
 
 .lectures__button:disabled {

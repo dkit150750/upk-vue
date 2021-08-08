@@ -11,8 +11,9 @@
         <Lectures
           v-if="course.lectures.length"
           :lectures="course.lectures"
-          @record="plusPlaces"
+          @success="plusPlaces"
         />
+        <p class="course__lectures-null" v-else>Записи на курс пока нет...</p>
       </template>
       <CourseInformation v-else picture="loading" />
     </div>
@@ -98,5 +99,9 @@ export default {
     padding-bottom: 170px;
     padding-left: 40px;
   }
+}
+
+.course__lectures-null {
+  font-size: 24px;
 }
 </style>
