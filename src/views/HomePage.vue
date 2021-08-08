@@ -16,6 +16,12 @@ export default {
   components: {
     CoursesList,
   },
+
+  created() {
+    if (!this.$store.getters['auth/authUser']) {
+      this.$store.dispatch('auth/getAuthUser');
+    }
+  },
 };
 </script>
 
