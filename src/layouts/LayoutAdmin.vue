@@ -11,7 +11,7 @@
 import TheAside from '@/components/admin/aside/TheAside.vue';
 import TheMain from '@/components/admin/main/TheMain.vue';
 export default {
-  name: 'LayoutDefault',
+  name: 'LayoutAdmin',
 
   components: {
     TheAside,
