@@ -7,7 +7,18 @@
       {{ title }}
     </router-link>
     <div class="course-card__pic-wrapper">
-      <img class="course-card__pic" :src="picture" :alt="title" />
+      <img
+        class="course-card__pic"
+        v-if="picture"
+        :src="picture"
+        :alt="title"
+      />
+      <img
+        class="course-card__pic"
+        v-else
+        :src="require('@/assets/images/picture.webp')"
+        :alt="title"
+      />
     </div>
   </article>
 </template>
