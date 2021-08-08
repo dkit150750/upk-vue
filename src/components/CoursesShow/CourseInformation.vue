@@ -15,7 +15,7 @@
       <div class="course-information__pic">
         <div class="course-information__pic-wrapper">
           <span
-            class="course-card__pic-null"
+            class="course-information__pic-null"
             v-if="picture === 'loading'"
           ></span>
           <img
@@ -195,7 +195,7 @@ export default {
   object-fit: contain;
 }
 
-.course-card__pic-null {
+.course-information__pic-null {
   position: absolute;
   top: 0;
   left: 0;
