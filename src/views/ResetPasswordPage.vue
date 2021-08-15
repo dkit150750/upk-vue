@@ -2,40 +2,10 @@
   <LoginWrapper>
     <LoginCard
       class="login__login-card"
-      title="Зарегистрируйтесь"
-      buttonName="Зарегистироваться"
-      @formSubmit="register"
+      title="Сбросить пароль"
+      buttonName="Сбросить"
+      @formSubmit="resetPassword"
     >
-      <LoginCardField
-        label="Фамилия"
-        id="lastname"
-        name="lastname"
-        type="text"
-        autocomplete="family-name"
-        placeholder="Степанов"
-        v-model.trim="user.lastname"
-        :error="error.lastname"
-      />
-      <LoginCardField
-        label="Имя"
-        id="name"
-        name="name"
-        type="text"
-        autocomplete="given-name"
-        placeholder="Валентин"
-        v-model.trim="user.name"
-        :error="error.name"
-      />
-      <LoginCardField
-        label="Отчество"
-        id="patronymic"
-        name="patronymic"
-        type="text"
-        autocomplete="additional-name"
-        placeholder="Сергеевич"
-        v-model.trim="user.patronymic"
-        :error="error.patronymic"
-      />
       <LoginCardField
         label="Email"
         id="email"
@@ -69,9 +39,9 @@
     </LoginCard>
     <LoginFooter>
       У вас уже есть аккаунт?
-      <router-link class="login-footer__link" :to="{ name: 'login' }"
-        >Войти</router-link
-      >
+      <router-link class="login-footer__link" :to="{ name: 'login' }">
+        Войти
+      </router-link>
     </LoginFooter>
   </LoginWrapper>
 </template>
@@ -86,7 +56,7 @@ import LoginCardField from '@/components/LoginCard/LoginCardField.vue';
 import LoginFooter from '@/components/LoginCard/LoginFooter.vue';
 
 export default {
-  name: 'TheRegister',
+  name: 'ResetPasswordPage',
 
   components: {
     LoginWrapper,
@@ -98,30 +68,22 @@ export default {
   data() {
     return {
       user: {
-        lastname: '',
-        name: '',
-        patronymic: '',
         email: '',
         password: '',
         password_confirmation: '',
       },
       error: {
-        lastname: null,
-        name: null,
-        patronymic: null,
         email: null,
         password: null,
         password_confirmation: null,
       },
+      message: null,
     };
   },
 
   methods: {
-    async register() {
+    async resetPassword() {
       this.error = {
-        lastname: null,
-        name: null,
-        patronymic: null,
         email: null,
         password: null,
         password_confirmation: null,
@@ -130,11 +92,13 @@ export default {
       if (!this.validate()) {
         return;
       }
+      this.message = null;
       const payload = this.user;
+      payload.token = this.$route.query.token;
 
       try {
-        await AuthService.registerUser(payload);
-        this.$router.push({ name: 'profile' });
+        await AuthService.resetPassword(payload);
+        this.$router.push({ name: 'login' });
       } catch (error) {
         this.error = getErrorData(error);
       }
@@ -142,21 +106,6 @@ export default {
 
     validate() {
       let isValid = true;
-
-      if (!this.user.lastname) {
-        this.error.lastname = 'Введите фамилию';
-        isValid = false;
-      }
-
-      if (!this.user.name) {
-        this.error.name = 'Введите ммя';
-        isValid = false;
-      }
-
-      if (!this.user.patronymic) {
-        this.error.patronymic = 'Введите отчество';
-        isValid = false;
-      }
 
       if (!/@[a-zA-Z0-9-]+/i.test(this.user.email)) {
         this.error.email = 'Неправильно указан email';

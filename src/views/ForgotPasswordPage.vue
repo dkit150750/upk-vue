@@ -42,7 +42,7 @@ import LoginFooter from '@/components/LoginCard/LoginFooter.vue';
 import FlashMessage from '@/components/FlashMessage.vue';
 
 export default {
-  name: 'TheForgotPassword',
+  name: 'ForgotPasswordPage',
 
   components: {
     LoginWrapper,

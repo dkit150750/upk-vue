@@ -26,14 +26,16 @@ const routes = [
     name: 'login',
     meta: { layout: 'LayoutDefault', middleware: [guest] },
     component: () =>
-      import(/* webpackChunkName: "the-login" */ '@/views/TheLogin.vue'),
+      import(/* webpackChunkName: "login-page" */ '@/views/LoginPage.vue'),
   },
   {
     path: '/register',
     name: 'register',
     meta: { layout: 'LayoutDefault', middleware: [guest] },
     component: () =>
-      import(/* webpackChunkName: "the-register" */ '@/views/TheRegister'),
+      import(
+        /* webpackChunkName: "register-page" */ '@/views/RegisterPage.vue'
+      ),
   },
   {
     path: '/forgot-password',
@@ -41,7 +43,7 @@ const routes = [
     meta: { layout: 'LayoutDefault', middleware: [guest] },
     component: () =>
       import(
-        /* webpackChunkName: "the-forgot-password" */ '@/views/TheForgotPassword'
+        /* webpackChunkName: "forgot-password-page" */ '@/views/ForgotPasswordPage.vue'
       ),
   },
   {
@@ -50,7 +52,7 @@ const routes = [
     meta: { layout: 'LayoutDefault', middleware: [guest] },
     component: () =>
       import(
-        /* webpackChunkName: "the-reset-password" */ '@/views/TheResetPassword'
+        /* webpackChunkName: "reset-password-page" */ '@/views/ResetPasswordPage.vue'
       ),
   },
   {
@@ -59,7 +61,7 @@ const routes = [
     meta: { layout: 'LayoutDefault', middleware: [auth] },
     component: () =>
       import(
-        /* webpackChunkName: "the-verify-email" */ '@/views/TheVerifyEmail'
+        /* webpackChunkName: "verify-email-page" */ '@/views/VerifyEmailPage.vue'
       ),
   },
   {
@@ -67,35 +69,41 @@ const routes = [
     name: 'profile',
     meta: { layout: 'LayoutDefault', middleware: [auth, email] },
     component: () =>
-      import(/* webpackChunkName: "profile-page" */ '@/views/RrofilePage'),
+      import(/* webpackChunkName: "profile-page" */ '@/views/RrofilePage.vue'),
   },
   {
     path: '/admin',
     name: 'admin',
     meta: { layout: 'LayoutAdmin', middleware: [admin] },
     component: () =>
-      import(/* webpackChunkName: "the-courses" */ '@/views/admin/TheCourses'),
+      import(
+        /* webpackChunkName: "the-courses" */ '@/views/admin/TheCourses.vue'
+      ),
   },
   {
     path: '/admin/courses/:courseId(\\d+)',
     name: 'admin.course',
     meta: { layout: 'LayoutAdmin', middleware: [admin] },
     component: () =>
-      import(/* webpackChunkName: "the-course" */ '@/views/admin/TheCourse'),
+      import(
+        /* webpackChunkName: "the-course" */ '@/views/admin/TheCourse.vue'
+      ),
   },
   {
     path: '/admin/users',
     name: 'users',
     meta: { layout: 'LayoutAdmin' },
     component: () =>
-      import(/* webpackChunkName: "the-users" */ '@/views/admin/TheUsers'),
+      import(/* webpackChunkName: "the-users" */ '@/views/admin/TheUsers.vue'),
   },
   {
     path: '/:catchAll(.*)',
     name: 'notFound',
     meta: { layout: 'LayoutDefault' },
     component: () =>
-      import(/* webpackChunkName: "the-not-found" */ '@/views/TheNotFound'),
+      import(
+        /* webpackChunkName: "not-found-page" */ '@/views/NotFoundPage.vue'
+      ),
   },
 ];
 

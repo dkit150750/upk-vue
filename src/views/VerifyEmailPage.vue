@@ -34,7 +34,7 @@ import LoginCard from '@/components/LoginCard/LoginCard.vue';
 import FlashMessage from '@/components/FlashMessage.vue';
 
 export default {
-  name: 'TheVerifyEmail',
+  name: 'VerifyEmailPage',
 
   components: {
     LoginWrapper,

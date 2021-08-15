@@ -48,7 +48,7 @@ import LoginCardField from '@/components/LoginCard/LoginCardField.vue';
 import LoginFooter from '@/components/LoginCard/LoginFooter.vue';
 
 export default {
-  name: 'TheLogin',
+  name: 'LoginPage',
 
   components: {
     LoginWrapper,
@@ -84,7 +84,7 @@ export default {
       if (!this.validate()) {
         return;
       }
-      
+
       const payload = this.user;
 
       try {
