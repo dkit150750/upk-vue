@@ -20,7 +20,7 @@ import BaseButton from '@/components/admin/base/BaseButton.vue';
 import Course from '@/components/admin/courses/Course.vue';
 
 export default {
-  name: 'TheCourses',
+  name: 'HomePage',
 
   components: {
     Course,

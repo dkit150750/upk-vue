@@ -76,9 +76,7 @@ const routes = [
     name: 'admin',
     meta: { layout: 'LayoutAdmin', middleware: [admin] },
     component: () =>
-      import(
-        /* webpackChunkName: "the-courses" */ '@/views/admin/TheCourses.vue'
-      ),
+      import(/* webpackChunkName: "home-page" */ '@/views/admin/HomePage.vue'),
   },
   {
     path: '/admin/courses/:courseId(\\d+)',
@@ -86,7 +84,7 @@ const routes = [
     meta: { layout: 'LayoutAdmin', middleware: [admin] },
     component: () =>
       import(
-        /* webpackChunkName: "the-course" */ '@/views/admin/TheCourse.vue'
+        /* webpackChunkName: "courses-edit" */ '@/views/admin/CoursesEdit.vue'
       ),
   },
   {
@@ -94,7 +92,9 @@ const routes = [
     name: 'users',
     meta: { layout: 'LayoutAdmin' },
     component: () =>
-      import(/* webpackChunkName: "the-users" */ '@/views/admin/TheUsers.vue'),
+      import(
+        /* webpackChunkName: "users-index" */ '@/views/admin/UsersIndex.vue'
+      ),
   },
   {
     path: '/:catchAll(.*)',
