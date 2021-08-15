@@ -30,9 +30,20 @@ export default {
 </script>
 
 <style>
+.light .profile-section {
+  --section-color: var(--page-color);
+  --section-background: var(--color-gray-150);
+}
+
+.dark .profile-section {
+  --section-color: var(--color-gray-500);
+  --section-background: var(--color-gray-1000);
+}
+
 .profile-section {
   padding: 32px 16px;
-  background-color: var(--color-gray-150);
+  color: var(--page-color);
+  background-color: var(--section-background);
   border-radius: 20px;
 }
 

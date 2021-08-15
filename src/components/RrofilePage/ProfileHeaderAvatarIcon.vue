@@ -22,7 +22,7 @@ export default {
 .profil-header-avatar-icon {
   display: block;
   height: 24px;
-  color: var(--color-gray-0);
+  color: var(--color-white);
   pointer-events: none;
 }
 </style>

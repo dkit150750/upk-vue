@@ -28,15 +28,7 @@
       placeholder="8 (999) 750 15 03"
       :error="error.telephone"
     />
-    <div class="profile-section-form__buttons">
-      <button
-        class="profile-section-form__button"
-        type="submit"
-        :disabled="isDisabledSaveInfo"
-      >
-        Сохранить
-      </button>
-    </div>
+    <ProfileFormButton :disabled="isDisabledSaveInfo" />
   </form>
 </template>
 
@@ -46,12 +38,14 @@ import { getErrorData } from '@/utils/helpers';
 import AuthService from '@/services/AuthService';
 
 import ProfileFormField from '@/components/RrofilePage/ProfileFormField.vue';
+import ProfileFormButton from '@/components/RrofilePage/ProfileFormButton.vue';
 
 export default {
   name: 'ProfileInfoForm',
 
   components: {
     ProfileFormField,
+    ProfileFormButton,
   },
 
   created() {
@@ -95,9 +89,6 @@ export default {
         return true;
       }
 
-      console.log(this.user.telephone);
-      console.log(this.authUser.telephone);
-
       return (
         this.user.lastname === this.authUser.lastname &&
         this.user.name === this.authUser.name &&
@@ -135,30 +126,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.profile-section-form__button {
-  --button-color: var(--color-white);
-  --button-background: var(--color-primary-800);
-  padding: 12px 24px;
-  margin-top: 25px;
-  color: var(--button-color);
-  cursor: pointer;
-  background-color: var(--button-background);
-  border: 0;
-  border-radius: 5px;
-  outline: none;
-  transition: background-color 0.15s ease-out;
-}
-
-.profile-section-form__button:disabled {
-  --button-color: var(--color-gray-500);
-  --button-background: var(--color-gray-200);
-  cursor: auto;
-}
-
-.profile-section-form__button:not(:disabled):focus,
-.profile-section-form__button:not(:disabled):hover {
-  --button-background: var(--color-gray-900);
-}
-</style>

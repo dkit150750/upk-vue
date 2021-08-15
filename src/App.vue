@@ -43,10 +43,10 @@ export default {
   --color-gray-200: #e9e8e7;
   --color-gray-300: #d3d5da;
   --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
+  --color-gray-500: #71747a;
   --color-gray-600: #4b5563;
   --color-gray-700: #384252;
-  --color-gray-800: #232a34;
+  --color-gray-800: #272b30;
   --color-gray-900: #181b20;
   --color-gray-1000: #121316;
   --color-gray-1100: #070709;

@@ -22,7 +22,11 @@
           </router-link>
         </li>
         <li class="header-menu__item">
-          <button class="header-menu__link" type="button" @click="logout">
+          <button
+            class="header-menu__link"
+            type="button"
+            @click="logoutHandler"
+          >
             Выйти
           </button>
         </li>
@@ -47,6 +51,11 @@ export default {
 
   methods: {
     ...mapActions('auth', ['logout']),
+    logoutHandler() {
+      this.$emit('close');
+      this.$router.push({ name: 'login' });
+      this.logout();
+    },
   },
 };
 </script>
@@ -98,7 +107,7 @@ export default {
 
 .dark .header-menu__content {
   --menu-background: var(--color-gray-1100);
-  --menu-shadow: none;
+  --menu-shadow: 0 0 0 2px var(--color-gray-800);
 }
 
 .header-menu__content {
@@ -107,6 +116,7 @@ export default {
   border-radius: 16px;
   background-color: var(--menu-background);
   box-shadow: var(--menu-shadow);
+  overflow: hidden;
 }
 
 .header-menu__list {
@@ -131,7 +141,6 @@ export default {
   cursor: pointer;
   outline: none;
 }
-
 
 .light .header-menu__link:focus,
 .light .header-menu__link:hover {

@@ -41,6 +41,10 @@ export default {
   --max-width: 1250px;
 }
 
+#layout.transiton-lock * {
+  transition: none !important;
+}
+
 #layout.light {
   --color-null: var(--color-gray-300);
   --page-color: var(--color-gray-1000);

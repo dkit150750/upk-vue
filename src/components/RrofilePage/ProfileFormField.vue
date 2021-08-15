@@ -105,28 +105,49 @@ export default {
   margin-bottom: 16px;
 }
 
+.light .profile-form-field__label {
+  --field-color: var(--color-gray-500);
+  --field-shadow-color: var(--color-gray-300);
+  --field-background: var(--color-white);
+}
+
+.dark .profile-form-field__label {
+  --field-color: var(--color-gray-100);
+  --field-shadow-color: var(--color-gray-800);
+  --field-background: var(--color-gray-1100);
+}
+
 .profile-form-field__label {
-  --shadow-color: hsl(0, 0%, 89%);
-  --background-color: var(--color-gray-0);
   display: grid;
   grid-template-columns: 1fr;
   gap: 4px;
   padding: 16px 18px 10px;
   font-size: 13px;
-  color: var(--color-gray-500);
-  background-color: var(--background-color);
+  color: var(--field-color);
+  background-color: var(--field-background);
   border-radius: 10px;
-  box-shadow: 0 0 0 1.5px var(--shadow-color);
+  box-shadow: 0 0 0 1.5px var(--field-shadow-color);
   transition: all 0.3s;
 }
 
-.profile-form-field__label--focus,
-.profile-form-field__label:not(.profile-form-field__label--error):hover {
-  --shadow-color: hsl(240, 5%, 70%);
+.light .profile-form-field__label--focus,
+.light .profile-form-field__label:not(.profile-form-field__label--error):hover {
+  --field-shadow-color: var(--color-gray-500);
 }
-.profile-form-field__label--error {
-  --shadow-color: var(--color-red-700);
-  --background-color: var(--color-red-100);
+
+.dark .profile-form-field__label--focus,
+.dark .profile-form-field__label:not(.profile-form-field__label--error):hover {
+  --field-shadow-color: var(--color-gray-400);
+}
+
+.light .profile-form-field__label--error {
+  --field-shadow-color: var(--color-red-600);
+  --field-background: var(--color-red-100);
+}
+
+.dark .profile-form-field__label--error {
+  --field-shadow-color: var(--color-red-500);
+  --field-background: var(--color-red-900);
 }
 
 .profile-form-field__input {
@@ -140,6 +161,14 @@ export default {
   background-color: transparent;
   border: 0;
   outline: none;
+}
+
+.light .profile-form-field__input {
+  color: var(--color-gray-900);
+}
+
+.dark .profile-form-field__input {
+  color: var(--color-gray-400);
 }
 
 .profile-form-field__error {

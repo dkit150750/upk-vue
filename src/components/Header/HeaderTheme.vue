@@ -43,13 +43,21 @@ export default {
       const layout = document.querySelector('#layout');
 
       if (layout.classList.contains('dark')) {
+        layout.classList.add('transiton-lock');
         layout.classList.remove('dark');
         layout.classList.add('light');
         this.setTheme('light');
+        setTimeout(() => {
+          layout.classList.remove('transiton-lock');
+        }, 0);
       } else {
+        layout.classList.add('transiton-lock');
         layout.classList.remove('light');
         layout.classList.add('dark');
         this.setTheme('dark');
+        setTimeout(() => {
+          layout.classList.remove('transiton-lock');
+        }, 0);
       }
     },
   },

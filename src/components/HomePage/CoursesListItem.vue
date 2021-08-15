@@ -56,10 +56,10 @@ export default {
       }
 
       if (this.theme === 'light') {
-        return 'hsl(60, 10%, 95%)';
+        return 'var(--color-gray-150)';
       }
 
-      return '#232a34';
+      return 'var(--color-gray-800)';
     },
   },
 };
