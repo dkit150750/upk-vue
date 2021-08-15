@@ -3,7 +3,11 @@
     <div class="login-card__header">
       <h1 class="login-card__title">{{ title }}</h1>
     </div>
-    <form class="login-card__form" novalidate @submit.prevent="$emit('formSubmit')">
+    <form
+      class="login-card__form"
+      novalidate
+      @submit.prevent="$emit('formSubmit')"
+    >
       <slot />
       <button class="login-card__submit" type="submit">{{ buttonName }}</button>
     </form>
@@ -44,7 +48,7 @@ export default {
   },
 
   emits: {
-    'formSubmit': null,
+    formSubmit: null,
   },
 
   methods: {
@@ -59,7 +63,7 @@ export default {
   --login-card-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.1);
 }
 
-.dark .login-card  {
+.dark .login-card {
   --login-card-background: var(--color-gray-1000);
   --login-card-shadow: none;
 }

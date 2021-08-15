@@ -1,5 +1,10 @@
 <template>
-  <button :class="burgerClass" class="burger" type="button" aria-label="открыть меню">
+  <button
+    :class="burgerClass"
+    class="burger"
+    type="button"
+    aria-label="открыть меню"
+  >
     <span class="burger__line"></span>
     <span class="burger__line"></span>
     <span class="burger__line"></span>
