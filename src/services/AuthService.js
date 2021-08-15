@@ -34,7 +34,11 @@ authClient.interceptors.response.use(
 );
 
 async function getCSRF() {
-  await authClient.get('/sanctum/csrf-cookie');
+  try {
+    await authClient.get('/sanctum/csrf-cookie');
+  } catch (error) {
+    console.log('CSRF не получен');
+  }
 }
 
 getCSRF();

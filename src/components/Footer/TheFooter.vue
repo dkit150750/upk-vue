@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import FooterPhone from '@/components/footer/FooterPhone.vue';
+import FooterPhone from '@/components/Footer/FooterPhone.vue';
 
 export default {
   name: 'TheFooter',
@@ -27,8 +27,24 @@ export default {
 </script>
 
 <style>
+.light .footer {
+  --footer-color: var(--color-gray-400);
+  --footer-background: var(--color-gray-800);
+}
+
+.dark .footer {
+  --footer-color: var(--color-gray-400);
+  --footer-background: var(--color-gray-1000);
+}
+
 .footer {
-  background-color: var(--color-gray-800);
+  background-color: var(--footer-background);
+  color: var(--footer-color);
+}
+
+.dark {
+  --page-color: var(--color-gray-100);
+  --page-background: var(--color-gray-900);
 }
 
 .footer__container {
@@ -61,6 +77,5 @@ export default {
   max-width: 300px;
   margin: 0;
   font-size: 15px;
-  color: var(--color-gray-0);
 }
 </style>

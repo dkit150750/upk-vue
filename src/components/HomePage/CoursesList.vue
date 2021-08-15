@@ -72,6 +72,6 @@ export default {
 }
 
 .courses-list__list-null {
-  font-size: 28px;
+  font-size: 20px;
 }
 </style>

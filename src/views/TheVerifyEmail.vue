@@ -7,7 +7,7 @@
       :isExit="true"
       @formSubmit="sendVerification"
     >
-      <p class="login-card__tetx">
+      <p class="login-card__text">
         На почту <b>{{ authUser.email }}</b> было выслано письмо для
         подтвержения.
       </p>
@@ -29,8 +29,8 @@ import { mapGetters } from 'vuex';
 import { getErrorData } from '@/utils/helpers';
 import AuthService from '@/services/AuthService';
 
-import LoginWrapper from '@/components/login-card/LoginWrapper.vue';
-import LoginCard from '@/components/login-card/LoginCard.vue';
+import LoginWrapper from '@/components/LoginCard/LoginWrapper.vue';
+import LoginCard from '@/components/LoginCard/LoginCard.vue';
 import FlashMessage from '@/components/FlashMessage.vue';
 
 export default {
@@ -73,7 +73,7 @@ export default {
 </script>
 
 <style>
-.login-card__tetx {
+.login-card__text {
   margin: 0;
 }
 </style>

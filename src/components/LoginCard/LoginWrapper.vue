@@ -16,7 +16,7 @@ export default {
 .login {
   display: flex;
   height: 100%;
-  padding: 56px 0 110px;
+  padding: 56px 12px 110px;
 }
 
 @media (min-width: 400px) {

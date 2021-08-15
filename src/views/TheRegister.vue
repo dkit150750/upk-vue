@@ -80,10 +80,10 @@
 import AuthService from '@/services/AuthService';
 import { getErrorData } from '@/utils/helpers';
 
-import LoginWrapper from '@/components/login-card/LoginWrapper.vue';
-import LoginCard from '@/components/login-card/LoginCard.vue';
-import LoginCardField from '@/components/login-card/LoginCardField.vue';
-import LoginFooter from '@/components/login-card/LoginFooter.vue';
+import LoginWrapper from '@/components/LoginCard/LoginWrapper.vue';
+import LoginCard from '@/components/LoginCard/LoginCard.vue';
+import LoginCardField from '@/components/LoginCard/LoginCardField.vue';
+import LoginFooter from '@/components/LoginCard/LoginFooter.vue';
 
 export default {
   name: 'TheRegister',
@@ -118,10 +118,6 @@ export default {
 
   methods: {
     async register() {
-      if (!this.validate()) {
-        return;
-      }
-
       this.error = {
         lastname: null,
         name: null,
@@ -130,6 +126,10 @@ export default {
         password: null,
         password_confirmation: null,
       };
+
+      if (!this.validate()) {
+        return;
+      }
       const payload = this.user;
 
       try {
@@ -159,7 +159,7 @@ export default {
       }
 
       if (!/@[a-zA-Z0-9-]+/i.test(this.user.email)) {
-        this.error.email = 'Неправильный формат email';
+        this.error.email = 'Неправильно указан email';
         isValid = false;
       }
 

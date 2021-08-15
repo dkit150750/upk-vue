@@ -46,7 +46,8 @@ export default {
   height: 2px;
   content: '';
   background-color: var(--color-primary-800);
-  transition: background-color 0.2s;
+  transition: background-color 0.1s;
+  pointer-events: none;
 }
 
 .login-footer__link:focus::before,

@@ -90,13 +90,23 @@ export default {
   opacity: 0;
 }
 
+.light .header-menu__content {
+  --menu-background: var(--page-background);
+  --menu-shadow: 0px 4px 16px rgb(0, 0, 0, 0.1),
+    0px 4px 22px 10px rgb(0, 0, 0, 0.04);
+}
+
+.dark .header-menu__content {
+  --menu-background: var(--color-gray-1100);
+  --menu-shadow: none;
+}
+
 .header-menu__content {
   width: 270px;
   padding: 8px 0;
   border-radius: 16px;
-  background-color: var(--color-gray-0);
-  box-shadow: 0px 4px 16px rgb(0, 0, 0, 0.1),
-    0px 4px 22px 10px rgb(0, 0, 0, 0.04);
+  background-color: var(--menu-background);
+  box-shadow: var(--menu-shadow);
 }
 
 .header-menu__list {
@@ -115,20 +125,29 @@ export default {
   font-size: 16px;
   font-family: inherit;
   text-decoration: none;
-  color: var(--ui-sb-color-text-main);
+  color: var(--page-color);
   border: 0;
   background-color: transparent;
   cursor: pointer;
   outline: none;
 }
 
-.header-menu__link:focus,
-.header-menu__link:hover {
-  background-color: var(--profile-card-backgrouind);
+
+.light .header-menu__link:focus,
+.light .header-menu__link:hover {
+  background-color: var(--color-gray-150);
 }
 
-.header-menu__link--active {
+.dark .header-menu__link:focus,
+.dark .header-menu__link:hover {
+  background-color: var(--color-gray-1000);
+}
+
+.light .header-menu__link--active {
   color: var(--color-primary-900);
-  background-color: var(--profile-card-backgrouind);
+}
+
+.dark .header-menu__link--active {
+  color: var(--color-primary-600);
 }
 </style>

@@ -35,10 +35,10 @@
 import AuthService from '@/services/AuthService';
 import { getErrorData } from '@/utils/helpers';
 
-import LoginWrapper from '@/components/login-card/LoginWrapper.vue';
-import LoginCard from '@/components/login-card/LoginCard.vue';
-import LoginCardField from '@/components/login-card/LoginCardField.vue';
-import LoginFooter from '@/components/login-card/LoginFooter.vue';
+import LoginWrapper from '@/components/LoginCard/LoginWrapper.vue';
+import LoginCard from '@/components/LoginCard/LoginCard.vue';
+import LoginCardField from '@/components/LoginCard/LoginCardField.vue';
+import LoginFooter from '@/components/LoginCard/LoginFooter.vue';
 import FlashMessage from '@/components/FlashMessage.vue';
 
 export default {
@@ -64,13 +64,13 @@ export default {
 
   methods: {
     async forgotPassword() {
-      if (!this.validate()) {
-        return;
-      }
-
       this.error = {
         email: null,
       };
+
+      if (!this.validate()) {
+        return;
+      }
       const payload = {
         email: this.email,
       };
@@ -90,7 +90,7 @@ export default {
       let isValid = true;
 
       if (!/@[a-zA-Z0-9-]+/i.test(this.email)) {
-        this.error.email = 'Неправильный формат email';
+        this.error.email = 'Неправильно указан email';
         isValid = false;
       }
 

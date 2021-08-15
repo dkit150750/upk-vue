@@ -34,12 +34,13 @@ export default {
   gap: 5px;
   justify-content: start;
 }
+
 .footer-phone__link {
   display: inline-block;
   font-size: 16px;
   font-weight: 600;
   line-height: 1;
-  color: var(--color-gray-0);
+  color: inherit;
   text-decoration: none;
   outline: none;
   transition: color 0.3s;
@@ -47,13 +48,12 @@ export default {
 
 .footer-phone__link:focus,
 .footer-phone__link:hover {
-  --color-gray-0: hsl(0, 0%, 44%);
+  color: var(--color-gray-50);
 }
 
 .footer-phone__desc {
   display: block;
   font-size: 12px;
   line-height: 16px;
-  color: var(--color-gray-0);
 }
 </style>

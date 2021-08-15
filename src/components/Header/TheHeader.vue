@@ -2,19 +2,24 @@
   <header class="header">
     <div class="header__container">
       <HeaderLogo />
-      <template v-if="loggedIn">
-        <HeaderBurger
-          class="header__burger"
-          @click="openMenu"
-          :isOpen="isOpenMenu"
-        />
-      </template>
-      <template v-else>
-        <router-link class="header__link" :to="{ name: 'login' }">
-          <HeaderLinkIcon class="header__link-icon" />
-          Войти
-        </router-link>
-      </template>
+
+      <div class="header__left">
+        <HeaderTheme />
+
+        <template v-if="loggedIn">
+          <HeaderBurger
+            class="header__burger"
+            @click="openMenu"
+            :isOpen="isOpenMenu"
+          />
+        </template>
+        <template v-else>
+          <router-link class="header__link" :to="{ name: 'login' }">
+            <HeaderLinkIcon />
+            Войти
+          </router-link>
+        </template>
+      </div>
 
       <transition name="header-menu">
         <HeaderMenu v-if="isOpenMenu" @close="isOpenMenu = false" />
@@ -25,16 +30,18 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import HeaderLinkIcon from '@/components/header/HeaderLinkIcon.vue';
-import HeaderLogo from '@/components/header/HeaderLogo.vue';
-import HeaderBurger from '@/components/header/HeaderBurger.vue';
-import HeaderMenu from '@/components/header/HeaderMenu.vue';
+import HeaderLinkIcon from '@/components/Header/HeaderLinkIcon.vue';
+import HeaderLogo from '@/components/Header/HeaderLogo.vue';
+import HeaderTheme from '@/components/Header/HeaderTheme.vue';
+import HeaderBurger from '@/components/Header/HeaderBurger.vue';
+import HeaderMenu from '@/components/Header/HeaderMenu.vue';
 
 export default {
   name: 'TheHeader',
 
   components: {
     HeaderLogo,
+    HeaderTheme,
     HeaderBurger,
     HeaderLinkIcon,
     HeaderMenu,
@@ -63,29 +70,38 @@ export default {
   position: relative;
   display: flex;
   align-items: center;
+  gap: 20px;
   justify-content: space-between;
   max-width: var(--max-width);
   height: 84px;
-  padding: 10px 16px;
+  padding: 0 16px;
   margin: 0 auto;
 }
 
 @media (min-width: 550px) {
   .header__container {
-    padding: 30px 40px;
+    padding: 0 40px;
   }
 }
 
 @media (min-width: 768px) {
   .header__container {
     height: 108px;
-    padding: 36px 40px;
+    padding: 0 40px;
   }
+}
+
+.header__left {
+  display: grid;
+  grid-template-columns: min-content min-content;
+  align-items: center;
+  gap: 20px;
 }
 
 .header__link {
   display: flex;
   align-items: center;
+  gap: 5px;
   font-size: 15px;
   font-weight: 400;
   line-height: 1;
@@ -100,12 +116,13 @@ export default {
   }
 }
 
-.header__link:focus,
-.header__link:hover {
+.light .header__link:focus,
+.light .header__link:hover {
   color: var(--color-primary-900);
 }
 
-.header__link-icon {
-  margin-right: 5px;
+.dark .header__link:focus,
+.dark .header__link:hover {
+  color: var(--color-primary-600);
 }
 </style>

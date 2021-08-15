@@ -10,7 +10,7 @@
       <img
         class="profile-avatar__img"
         v-else
-        :src="require('@/assets/images/picture.webp')"
+        :src="require('@/assets/images/avatar.webp')"
         :alt="fullName"
       />
     </div>

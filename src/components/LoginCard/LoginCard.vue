@@ -3,7 +3,7 @@
     <div class="login-card__header">
       <h1 class="login-card__title">{{ title }}</h1>
     </div>
-    <form class="login-card__form" @submit.prevent="$emit('form-submit')">
+    <form class="login-card__form" novalidate @submit.prevent="$emit('formSubmit')">
       <slot />
       <button class="login-card__submit" type="submit">{{ buttonName }}</button>
     </form>
@@ -44,7 +44,7 @@ export default {
   },
 
   emits: {
-    'form-submit': null,
+    'formSubmit': null,
   },
 
   methods: {
@@ -54,12 +54,22 @@ export default {
 </script>
 
 <style>
+.light .login-card {
+  --login-card-background: var(--page-background);
+  --login-card-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dark .login-card  {
+  --login-card-background: var(--color-gray-1000);
+  --login-card-shadow: none;
+}
+
 .login-card {
   --shadow-color: hsl(0, 0%, 87%);
   padding: 52px 15px 36px;
-  background-color: var(--color-gray-0);
+  background-color: var(--login-card-background);
   border-radius: 5px;
-  box-shadow: 0 0 140px -10px var(--shadow-color);
+  box-shadow: var(--login-card-shadow);
 }
 
 @media (min-width: 350px) {
@@ -92,9 +102,9 @@ export default {
   display: block;
   padding: 12px 0;
   margin: 40px 0 24px;
-  color: var(--color-gray-0);
+  color: var(--color-white);
   cursor: pointer;
-  background-color: var(--color-primary-700);
+  background-color: var(--color-primary-600);
   border: 0;
   outline: none;
   transition: background-color 0.3s;
@@ -113,7 +123,7 @@ export default {
 
 .login-card-link {
   font-size: 15px;
-  color: #b4b9cb;
+  color: var(--color-gray-400);
   text-decoration: none;
   font-family: inherit;
   border: 0;

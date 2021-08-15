@@ -27,8 +27,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  name: 'CourseCard',
+  name: 'CourseListItem',
 
   props: {
     courseId: {
@@ -42,7 +44,20 @@ export default {
     },
     background: {
       type: String,
-      default: 'hsl(60, 11%, 94%)',
+      default: null,
+    },
+  },
+
+  computed: {
+    ...mapGetters('theme', ['theme']),
+    backgroundColor() {
+      if (this.background) {
+        return this.background;
+      }
+      if (this.theme === 'light') {
+        return 'hsl(60, 10%, 95%)';
+      }
+      return '#232a34';
     },
   },
 };
@@ -56,7 +71,7 @@ export default {
   gap: 10px;
   min-height: 130px;
   padding: 20px 16px;
-  background-color: v-bind(background);
+  background-color: v-bind(backgroundColor);
   border-radius: 10px;
 }
 
@@ -119,7 +134,7 @@ export default {
     content: '';
     border-radius: 10px;
     transition: transform 0.3s;
-    background-color: v-bind(background);
+    background-color: v-bind(backgroundColor);
   }
 
   .course-card__title:focus::before,
@@ -131,7 +146,7 @@ export default {
 .course-card__title-null {
   display: block;
   height: 1em;
-  background-color: var(--color-gray-100);
+  background-color: var(--color-null);
 }
 
 .course-card__pic {
@@ -143,6 +158,6 @@ export default {
   display: block;
   width: 100%;
   padding-top: 100%;
-  background-color: var(--color-gray-100);
+  background-color: var(--color-null);
 }
 </style>

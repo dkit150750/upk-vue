@@ -1,6 +1,5 @@
-import router from '@/router';
-import { getErrorData } from '@/utils/helpers';
-import AuthService from '@/services/AuthService';
+import { getErrorData } from '@/utils/helpers.js';
+import AuthService from '@/services/AuthService.js';
 
 const state = () => ({
   user: null,
@@ -56,9 +55,6 @@ const actions = {
       await AuthService.logout();
       commit('SET_USER', null);
       dispatch('setGuest', { value: 'isGuest' });
-      if (router.currentRoute.name !== 'login') {
-        router.push({ name: 'login' });
-      }
     } catch (error) {
       commit('SET_ERROR', getErrorData(error));
     }

@@ -127,7 +127,7 @@ export default {
   background-color: transparent;
   border: none;
   border-radius: 0;
-  border-bottom: 1px solid var(--color-gray-100);
+  border-bottom: 1px solid var(--color-gray-300);
   outline: none;
 }
 
@@ -155,7 +155,7 @@ export default {
 
 .login-field--error::before {
   width: 100%;
-  background-color: var(--color-red-700);
+  background-color: var(--color-red-600);
 }
 
 .login-field__error {
@@ -163,6 +163,6 @@ export default {
   top: 100%;
   font-size: 13px;
   line-height: 1.6;
-  color: var(--color-red-700);
+  color: var(--color-red-600);
 }
 </style>

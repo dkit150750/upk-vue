@@ -1,5 +1,5 @@
 <template>
-  <button :class="burgerClass" class="burger" aria-label="открыть меню">
+  <button :class="burgerClass" class="burger" type="button" aria-label="открыть меню">
     <span class="burger__line"></span>
     <span class="burger__line"></span>
     <span class="burger__line"></span>
@@ -36,6 +36,7 @@ export default {
   height: 40px;
   padding: 8px 8px;
   margin: 0;
+  color: inherit;
   background-color: transparent;
   border: 0;
   cursor: pointer;
@@ -46,7 +47,7 @@ export default {
   width: 100%;
   height: 2px;
   border-radius: 4px;
-  background-color: var(--color-gray-900);
+  background-color: currentColor;
 }
 
 .burger--close {
@@ -56,6 +57,7 @@ export default {
 .burger--close .burger__line:nth-child(3) {
   display: none;
 }
+
 .burger--close .burger__line:nth-child(1) {
   transform: translateY(50%) rotate(45deg);
 }

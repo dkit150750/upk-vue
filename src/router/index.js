@@ -10,35 +10,35 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    meta: {},
+    meta: { layout: 'LayoutDefault' },
     component: () =>
       import(/* webpackChunkName: "home-page" */ '@/views/HomePage.vue'),
   },
   {
     path: '/courses/:courseId(\\d+)',
     name: 'course',
-    meta: {},
+    meta: { layout: 'LayoutDefault' },
     component: () =>
       import(/* webpackChunkName: "courses-show" */ '@/views/CoursesShow.vue'),
   },
   {
     path: '/login',
     name: 'login',
-    meta: { middleware: [guest] },
+    meta: { layout: 'LayoutDefault', middleware: [guest] },
     component: () =>
       import(/* webpackChunkName: "the-login" */ '@/views/TheLogin.vue'),
   },
   {
     path: '/register',
     name: 'register',
-    meta: { middleware: [guest] },
+    meta: { layout: 'LayoutDefault', middleware: [guest] },
     component: () =>
       import(/* webpackChunkName: "the-register" */ '@/views/TheRegister'),
   },
   {
     path: '/forgot-password',
     name: 'forgotPassword',
-    meta: { middleware: [guest] },
+    meta: { layout: 'LayoutDefault', middleware: [guest] },
     component: () =>
       import(
         /* webpackChunkName: "the-forgot-password" */ '@/views/TheForgotPassword'
@@ -47,7 +47,7 @@ const routes = [
   {
     path: '/reset-password',
     name: 'resetPassword',
-    meta: { middleware: [guest] },
+    meta: { layout: 'LayoutDefault', middleware: [guest] },
     component: () =>
       import(
         /* webpackChunkName: "the-reset-password" */ '@/views/TheResetPassword'
@@ -56,7 +56,7 @@ const routes = [
   {
     path: '/verify-email',
     name: 'verifyEmail',
-    meta: { middleware: [auth] },
+    meta: { layout: 'LayoutDefault', middleware: [auth] },
     component: () =>
       import(
         /* webpackChunkName: "the-verify-email" */ '@/views/TheVerifyEmail'
@@ -65,7 +65,7 @@ const routes = [
   {
     path: '/profile',
     name: 'profile',
-    meta: { middleware: [auth, email] },
+    meta: { layout: 'LayoutDefault', middleware: [auth, email] },
     component: () =>
       import(/* webpackChunkName: "profile-page" */ '@/views/RrofilePage'),
   },
@@ -93,6 +93,7 @@ const routes = [
   {
     path: '/:catchAll(.*)',
     name: 'notFound',
+    meta: { layout: 'LayoutDefault' },
     component: () =>
       import(/* webpackChunkName: "the-not-found" */ '@/views/TheNotFound'),
   },
@@ -102,24 +103,6 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
-
-// router.beforeEach((to, from, next) => {
-//   const authUser = store.getters['auth/authUser'];
-// const reqAuth = to.meta.requiresAuth;
-//   const loginQuery = { name: 'login', query: { redirect: to.fullPath } };
-
-//   if (reqAuth && !authUser) {
-//     store.dispatch('auth/getAuthUser').then(() => {
-//       if (!store.getters['auth/authUser']) {
-//         next(loginQuery);
-//       } else {
-//         next();
-//       }
-//     });
-//   } else {
-//     next(); // обязательно всегда вызывайте next()!
-//   }
-// });
 
 router.beforeEach((to, from, next) => {
   const middleware = to.meta.middleware;
