@@ -1,32 +1,17 @@
 <template>
-  <component :is="layout">
+  <AppLayout>
     <router-view />
-  </component>
+  </AppLayout>
 </template>
 
 <script>
-import LayoutDefault from '@/layouts/LayoutDefault';
-import { shallowRef, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import AppLayout from '@/layouts/AppLayout.vue';
 
 export default {
   name: 'App',
 
-  setup() {
-    const layout = shallowRef(LayoutDefault);
-    const route = useRoute();
-    watch(
-      () => route.meta,
-      async (meta) => {
-        try {
-          const component = await require(`@/layouts/${meta.layout}.vue`);
-          layout.value = component?.default || LayoutDefault;
-        } catch (e) {
-          layout.value = LayoutDefault;
-        }
-      }
-    );
-    return { layout };
+  components: {
+    AppLayout,
   },
 };
 </script>
@@ -41,23 +26,57 @@ export default {
 }
 
 :root {
-  --max-width: 1250px;
-  --color-primary-700: hsl(241, 80%, 70%);
-  --color-primary-800: hsl(237, 54%, 55%);
-  --color-primary-900: hsl(237, 54%, 45%);
-  --color-gray-0: hsl(210, 0%, 100%);
-  --color-gray-50: hsl(210, 10%, 98%);
-  --color-gray-60: hsl(210, 20%, 98%);
-  --color-gray-70: hsl(0, 0%, 93%);
-  --color-gray-100: hsl(0, 0%, 80%);
-  --color-gray-200: hsl(210, 1%, 63%);
-  --color-gray-500: hsl(240, 10%, 50%);
-  --color-gray-800: hsl(240, 0%, 14%);
-  --color-gray-900: hsl(0, 1%, 10%);
-  --color-red-100: hsl(0, 100%, 95%);
-  --color-red-700: hsl(11, 100%, 60%);
-  --color-red-800: hsl(11, 100%, 44%);
-  --color-green-700: hsl(123, 41%, 45%);
+  --color-primary-100: #c6ccff;
+  --color-primary-200: #b2b8ff;
+  --color-primary-300: #9ea4ff;
+  --color-primary-400: #8a90ff;
+  --color-primary-500: #767cf2;
+  --color-primary-600: #6268de;
+  --color-primary-700: #4e54ca;
+  --color-primary-800: #3a40b6;
+  --color-primary-900: #262ca2;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-150: #f6f6f4;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d3d5da;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #384252;
+  --color-gray-800: #232a34;
+  --color-gray-900: #181b20;
+  --color-gray-1000: #121316;
+  --color-gray-1100: #070709;
+  --color-red-100: #fff5f5;
+  --color-red-200: #fed7d7;
+  --color-red-300: #feb2b2;
+  --color-red-400: #fc8181;
+  --color-red-500: #f56565;
+  --color-red-600: #e53e3e;
+  --color-red-700: #c53030;
+  --color-red-800: #9b2c2c;
+  --color-red-900: #742a2a;
+  --color-green-100: #f0fff4;
+  --color-green-200: #c6f6d5;
+  --color-green-300: #9ae6b4;
+  --color-green-400: #68d391;
+  --color-green-500: #48bb78;
+  --color-green-600: #38a169;
+  --color-green-700: #2f855a;
+  --color-green-800: #276749;
+  --color-green-900: #22543d;
+  --color-purple-100: #faf5ff;
+  --color-purple-200: #e9d8fd;
+  --color-purple-300: #d6bcfa;
+  --color-purple-400: #b794f4;
+  --color-purple-500: #9f7aea;
+  --color-purple-600: #805ad5;
+  --color-purple-700: #6b46c1;
+  --color-purple-800: #553c9a;
+  --color-purple-900: #44337a;
 }
 
 .sr-only {

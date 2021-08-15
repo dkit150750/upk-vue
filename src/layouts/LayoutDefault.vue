@@ -37,6 +37,10 @@ export default {
 </script>
 
 <style>
+#layout {
+  --max-width: 1250px;
+}
+
 #layout.light {
   --color-null: var(--color-gray-300);
   --page-color: var(--color-gray-1000);
