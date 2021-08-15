@@ -1,5 +1,5 @@
 <template>
-  <form class="profile-info-form" @submit.prevent="updateUser">
+  <form class="profile-section-form" @submit.prevent="updateUser">
     <ProfileFormField
       label="Фамилия"
       name="lastname"
@@ -28,9 +28,9 @@
       placeholder="8 (999) 750 15 03"
       :error="error.telephone"
     />
-    <div class="profile-info-form__buttons">
+    <div class="profile-section-form__buttons">
       <button
-        class="profile-info-form__button"
+        class="profile-section-form__button"
         type="submit"
         :disabled="isDisabledSaveInfo"
       >
@@ -48,7 +48,7 @@ import AuthService from '@/services/AuthService';
 import ProfileFormField from '@/components/RrofilePage/ProfileFormField.vue';
 
 export default {
-  name: 'ProfileInfoForm',
+  name: 'ProfileSectionForm',
 
   components: {
     ProfileFormField,
@@ -134,25 +134,28 @@ export default {
 </script>
 
 <style>
-.profile-info-form__button {
+.profile-section-form__button {
+  --button-color: var(--color-white);
+  --button-background: var(--color-primary-800);
   padding: 12px 24px;
   margin-top: 25px;
-  color: var(--color-gray-0);
+  color: var(--button-color);
   cursor: pointer;
-  background-color: var(--color-primary-800);
+  background-color: var(--button-background);
   border: 0;
   border-radius: 5px;
+  outline: none;
   transition: background-color 0.15s ease-out;
 }
 
-.profile-info-form__button:disabled {
-  --color-gray-0: hsl(48, 4%, 50%);
-  --color-primary-800: hsl(0, 0%, 90%);
+.profile-section-form__button:disabled {
+  --button-color: var(--color-white);
+  --button-background: var(--color-gray-300);
   cursor: auto;
 }
 
-.profile-info-form__button:not(:disabled):focus,
-.profile-info-form__button:not(:disabled):hover {
-  background-color: var(--color-gray-900);
+.profile-section-form__button:not(:disabled):focus,
+.profile-section-form__button:not(:disabled):hover {
+  --button-background: var(--color-gray-900);
 }
 </style>

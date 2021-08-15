@@ -1,17 +1,17 @@
 <template>
   <ProfileWrapper>
     <ProfileHeader class="profile__header" @update="showPopup" />
-    <ProfileInfo
+    <ProfileSection
       class="profile__profile-info"
       title="О себе"
       description="Просьба заполнять реальные данные"
     >
-      <ProfileInfoForm @update="showPopup" />
-    </ProfileInfo>
+      <ProfileSectionForm @update="showPopup" />
+    </ProfileSection>
 
-    <ProfileInfo title="Изменение пароля">
+    <ProfileSection title="Изменение пароля">
       <ProfilePasswordForm @update="showPopup" />
-    </ProfileInfo>
+    </ProfileSection>
 
     <Records>
       <template v-if="!isLoading">
@@ -81,8 +81,8 @@ import { getErrorData } from '@/utils/helpers';
 
 import ProfileWrapper from '@/components/RrofilePage/ProfileWrapper.vue';
 import ProfileHeader from '@/components/RrofilePage/ProfileHeader.vue';
-import ProfileInfo from '@/components/RrofilePage/ProfileInfo.vue';
-import ProfileInfoForm from '@/components/RrofilePage/ProfileInfoForm.vue';
+import ProfileSection from '@/components/RrofilePage/ProfileSection.vue';
+import ProfileSectionForm from '@/components/RrofilePage/ProfileSectionForm.vue';
 import ProfilePasswordForm from '@/components/RrofilePage/ProfilePasswordForm.vue';
 
 import Records from '@/components/RrofilePage/records/Records.vue';
@@ -99,8 +99,8 @@ export default {
   components: {
     ProfileWrapper,
     ProfileHeader,
-    ProfileInfo,
-    ProfileInfoForm,
+    ProfileSection,
+    ProfileSectionForm,
     ProfilePasswordForm,
     Records,
     RecordsList,

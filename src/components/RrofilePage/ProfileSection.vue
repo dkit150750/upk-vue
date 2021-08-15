@@ -1,9 +1,9 @@
 <template>
-  <div class="profile-info">
-    <div class="profile-info__inner">
-      <div class="profile-info__header">
-        <h2 class="profile-info__title">{{ title }}</h2>
-        <p class="profile-info__description" v-if="description">
+  <div class="profile-section">
+    <div class="profile-section__inner">
+      <div class="profile-section__header">
+        <h2 class="profile-section__title">{{ title }}</h2>
+        <p class="profile-section__description" v-if="description">
           {{ description }}
         </p>
       </div>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'ProfileInfo',
+  name: 'ProfileSection',
 
   props: {
     title: {
@@ -30,33 +30,33 @@ export default {
 </script>
 
 <style>
-.profile-info {
+.profile-section {
   padding: 32px 16px;
-  background-color: var(--profile-card-backgrouind);
+  background-color: var(--color-gray-150);
   border-radius: 20px;
 }
 
 @media (min-width: 1024px) {
-  .profile-info {
+  .profile-section {
     padding: 40px 80px;
   }
 }
 
 @media (min-width: 1280px) {
-  .profile-info {
+  .profile-section {
     padding: 48px 98px;
   }
 }
 
 @media (min-width: 768px) {
-  .profile-info__inner {
+  .profile-section__inner {
     max-width: 456px;
     margin: 0 auto;
   }
 }
 
 @media (min-width: 1024px) {
-  .profile-info__inner {
+  .profile-section__inner {
     display: grid;
     grid-template-columns: 2fr 3fr;
     gap: 32px;
@@ -64,18 +64,18 @@ export default {
   }
 }
 
-.profile-info__header {
+.profile-section__header {
   margin-bottom: 20px;
 }
 
-.profile-info__title {
+.profile-section__title {
   margin: 0;
   margin-bottom: 14px;
   font-size: 18px;
   font-weight: 600;
 }
 
-.profile-info__description {
+.profile-section__description {
   margin: 0;
   font-size: 14px;
 }

@@ -54,7 +54,6 @@ export default {
 }
 
 #layout {
-  --profile-card-backgrouind: hsl(375, 8%, 95%);
   --max-width: 1250px;
   display: grid;
   grid-template-rows: min-content 1fr min-content;
