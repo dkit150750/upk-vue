@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import TheAside from '@/components/admin/aside/TheAside.vue';
-import TheMain from '@/components/admin/main/TheMain.vue';
+import TheAside from '@/components/admin/Aside/TheAside.vue';
+import TheMain from '@/components/admin/Main/TheMain.vue';
 export default {
   name: 'LayoutAdmin',
 
