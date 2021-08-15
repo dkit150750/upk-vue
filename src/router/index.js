@@ -88,6 +88,15 @@ const routes = [
       ),
   },
   {
+    path: '/admin/lecture/:lectureId(\\d+)/users',
+    name: 'lecture-users',
+    meta: { layout: 'LayoutAdmin' },
+    component: () =>
+      import(
+        /* webpackChunkName: "lecture-users" */ '@/views/admin/LectureUsers.vue'
+      ),
+  },
+  {
     path: '/admin/users',
     name: 'users',
     meta: { layout: 'LayoutAdmin' },

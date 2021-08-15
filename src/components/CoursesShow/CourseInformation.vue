@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'CourseInformation',
 
@@ -55,7 +57,22 @@ export default {
     },
     background: {
       type: String,
-      default: 'hsl(60, 11%, 94%)',
+      default: null,
+    },
+  },
+
+  computed: {
+    ...mapGetters('theme', ['theme']),
+    backgroundColor() {
+      if (this.background) {
+        return this.background;
+      }
+
+      if (this.theme === 'light') {
+        return 'var(--color-gray-150)';
+      }
+
+      return 'var(--color-gray-800)';
     },
   },
 };
@@ -67,7 +84,7 @@ export default {
   margin: 0 auto;
   margin-bottom: 50px;
   color: var(--color-gray-900);
-  background-color: v-bind(background);
+  background-color: v-bind(backgroundColor);
   border-radius: 10px;
 }
 
@@ -162,7 +179,7 @@ export default {
 .course-information__title-null {
   display: block;
   height: 1em;
-  background-color: var(--color-gray-100);
+  background-color: var(--color-null);
 }
 
 .course-information__title-null--short {
@@ -202,7 +219,7 @@ export default {
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: var(--color-gray-100);
+  background-color: var(--color-null);
 }
 
 .course-information__description {

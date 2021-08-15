@@ -96,7 +96,7 @@ export default {
     };
   },
 
-  async beforeRouteUpdate(to) {
+  beforeRouteUpdate(to) {
     this.getCourse(to.params.courseId);
   },
 

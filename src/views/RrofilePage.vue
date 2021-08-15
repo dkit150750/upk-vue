@@ -116,7 +116,7 @@ export default {
     this.getRecords(pageNumber);
   },
 
-  async beforeRouteUpdate(to) {
+  beforeRouteUpdate(to) {
     const page = to.query.page;
     const pageNumber = page ? page : 1;
     this.getRecords(pageNumber);

@@ -34,7 +34,7 @@ export default {
     Lectures,
   },
 
-  async beforeRouteUpdate(to) {
+  beforeRouteUpdate(to) {
     this.getCourse(to.params.courseId);
   },
 
@@ -64,6 +64,7 @@ export default {
         this.course = response.data.data;
         this.isLoading = false;
       } catch (error) {
+        this.$router.go(-1);
         console.log(getErrorData(error));
       }
     },

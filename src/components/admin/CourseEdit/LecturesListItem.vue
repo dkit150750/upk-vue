@@ -7,12 +7,16 @@
       @click="deleteLecture"
     ></button>
     <span class="admin-course-lecture__time">{{ time }} {{ cabinet }}</span>
-    <span class="admin-course-lecture__users"
-      >Мест: {{ places }}/{{ total_places }}</span
+    <span class="admin-course-lecture__users">
+      Мест: {{ places }}/{{ total_places }}
+    </span>
+    <router-link
+      class="admin-course-lecture__users-list"
+      v-if="id"
+      :to="{ name: 'lecture-users', params: { lectureId: id } }"
     >
-    <a class="admin-course-lecture__users-list" href="./users.html"
-      >Участники</a
-    >
+      Участники
+    </router-link>
   </div>
 </template>
 

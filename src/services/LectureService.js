@@ -7,4 +7,7 @@ export default {
   deleteLecture(id) {
     return API.apiClient.delete(`/lectures/${id}`);
   },
+  getUsers(id) {
+    return API.apiClient.get(`/lectures/${id}/users`);
+  },
 };

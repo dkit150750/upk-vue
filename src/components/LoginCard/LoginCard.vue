@@ -16,8 +16,10 @@
         Забыли пароль?
       </router-link>
     </div>
-    <div class="login-card__footer" v-if="isExit" @click="logout">
-      <button class="login-card-link" type="button">Выйти</button>
+    <div class="login-card__footer" v-if="isExit">
+      <button class="login-card-link" type="button" @click="logoutHandler">
+        Выйти
+      </button>
     </div>
   </div>
 </template>
@@ -53,6 +55,10 @@ export default {
 
   methods: {
     ...mapActions('auth', ['logout']),
+    logoutHandler() {
+      this.$router.push({ name: 'home' });
+      this.logout();
+    },
   },
 };
 </script>
