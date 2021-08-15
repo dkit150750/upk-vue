@@ -40,7 +40,7 @@ export default {
   --color-gray-50: #f9fafb;
   --color-gray-100: #f3f4f6;
   --color-gray-150: #f6f6f4;
-  --color-gray-200: #e5e7eb;
+  --color-gray-200: #e9e8e7;
   --color-gray-300: #d3d5da;
   --color-gray-400: #9ca3af;
   --color-gray-500: #6b7280;

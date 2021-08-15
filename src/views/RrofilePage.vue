@@ -6,7 +6,7 @@
       title="О себе"
       description="Просьба заполнять реальные данные"
     >
-      <ProfileSectionForm @update="showPopup" />
+      <ProfileInfoForm @update="showPopup" />
     </ProfileSection>
 
     <ProfileSection title="Изменение пароля">
@@ -82,7 +82,7 @@ import { getErrorData } from '@/utils/helpers';
 import ProfileWrapper from '@/components/RrofilePage/ProfileWrapper.vue';
 import ProfileHeader from '@/components/RrofilePage/ProfileHeader.vue';
 import ProfileSection from '@/components/RrofilePage/ProfileSection.vue';
-import ProfileSectionForm from '@/components/RrofilePage/ProfileSectionForm.vue';
+import ProfileInfoForm from '@/components/RrofilePage/ProfileInfoForm.vue';
 import ProfilePasswordForm from '@/components/RrofilePage/ProfilePasswordForm.vue';
 
 import Records from '@/components/RrofilePage/records/Records.vue';
@@ -100,7 +100,7 @@ export default {
     ProfileWrapper,
     ProfileHeader,
     ProfileSection,
-    ProfileSectionForm,
+    ProfileInfoForm,
     ProfilePasswordForm,
     Records,
     RecordsList,

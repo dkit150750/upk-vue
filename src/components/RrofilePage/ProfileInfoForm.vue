@@ -48,7 +48,7 @@ import AuthService from '@/services/AuthService';
 import ProfileFormField from '@/components/RrofilePage/ProfileFormField.vue';
 
 export default {
-  name: 'ProfileSectionForm',
+  name: 'ProfileInfoForm',
 
   components: {
     ProfileFormField,
@@ -94,6 +94,9 @@ export default {
       ) {
         return true;
       }
+
+      console.log(this.user.telephone);
+      console.log(this.authUser.telephone);
 
       return (
         this.user.lastname === this.authUser.lastname &&
@@ -149,8 +152,8 @@ export default {
 }
 
 .profile-section-form__button:disabled {
-  --button-color: var(--color-white);
-  --button-background: var(--color-gray-300);
+  --button-color: var(--color-gray-500);
+  --button-background: var(--color-gray-200);
   cursor: auto;
 }
 
