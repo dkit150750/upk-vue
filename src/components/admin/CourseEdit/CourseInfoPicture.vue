@@ -1,7 +1,12 @@
 <template>
   <div class="course-info-picture">
     <div class="course-info-picture__img-wrapper">
-      <img class="course-info-picture__img" :src="picture" :alt="title" />
+      <img
+        class="course-info-picture__img"
+        v-if="picture"
+        :src="picture"
+        alt=""
+      />
     </div>
     <div class="course-info-picture__avatar-icon-wrapper">
       <CourseInfoPictureIcon />

@@ -80,6 +80,14 @@ export default {
 </script>
 
 <style>
+.light .record-card {
+  --record-background: var(--color-gray-150);
+}
+
+.dark .record-card {
+  --record-background: var(--color-gray-1000);
+}
+
 .record-card {
   position: relative;
   display: grid;
@@ -90,7 +98,7 @@ export default {
   max-width: 600px;
   min-height: 130px;
   padding: 20px 16px;
-  background-color: var(--profile-card-backgrouind);
+  background-color: var(--record-background);
   border-radius: 10px;
 }
 

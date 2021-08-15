@@ -30,6 +30,14 @@ export default {
   padding-bottom: 100%;
 }
 
+.light .records-pagination-item__page {
+  --page-background: var(--color-gray-150);
+}
+
+.dark .records-pagination-item__page {
+  --page-background: var(--color-gray-800);
+}
+
 .records-pagination-item__page {
   position: absolute;
   top: 0;
@@ -43,26 +51,31 @@ export default {
   line-height: 1;
   color: inherit;
   text-decoration: none;
-  background-color: var(--profile-card-backgrouind);
+  background-color: var(--page-background);
   border: 0;
   border-radius: 33%;
   outline: none;
-  transition: all 0.2s;
+  transition: all 0.1s;
 }
 
-.records-pagination-item__page:focus,
-.records-pagination-item__page:hover {
-  --bg-color: hsl(60, 5%, 88%);
+.light .records-pagination-item__page:focus,
+.light .records-pagination-item__page:hover {
+  --page-background: var(--color-gray-200);
+}
+
+.dark .records-pagination-item__page:focus,
+.dark .records-pagination-item__page:hover {
+  --page-background: var(--color-gray-700);
 }
 
 .records-pagination-item--active .records-pagination-item__page {
   background-color: var(--color-primary-800);
-  color: var(--color-gray-0);
+  color: var(--color-white);
 }
 
 .records-pagination-item--active .records-pagination-item__page:focus,
 .records-pagination-item--active .records-pagination-item__page:hover {
   background-color: var(--color-primary-800);
-  color: var(--color-gray-0);
+  color: var(--color-white);
 }
 </style>

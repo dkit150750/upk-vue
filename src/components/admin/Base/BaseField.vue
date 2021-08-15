@@ -74,8 +74,9 @@ export default {
   font-family: inherit;
   font-size: 16px;
   color: inherit;
-  background-color: var(--color-gray-50);
+  background-color: var(--color-white);
   border: 0;
+  box-shadow: 0 0 0 2px var(--color-gray-300);
   border-radius: 5px;
   outline: none;
 }

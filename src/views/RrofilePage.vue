@@ -68,7 +68,7 @@
       <p v-else>Загрузка...</p>
     </Records>
   </ProfileWrapper>
-  <teleport to="#app">
+  <teleport to="#layout">
     <transition name="flash-message">
       <FlashMessage v-if="message" :message="message" @close="message = null" />
     </transition>

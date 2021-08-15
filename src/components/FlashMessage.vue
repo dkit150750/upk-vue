@@ -6,7 +6,6 @@
         width="16"
         height="16"
         fill="currentColor"
-        class="bi bi-check-circle-fill"
         viewBox="0 0 16 16"
       >
         <path
@@ -20,7 +19,6 @@
         width="16"
         height="16"
         fill="currentColor"
-        class="bi bi-x-circle-fill"
         viewBox="0 0 16 16"
       >
         <path
@@ -41,7 +39,6 @@
         width="16"
         height="16"
         fill="currentColor"
-        class="bi bi-x-lg"
         viewBox="0 0 16 16"
       >
         <path
@@ -115,7 +112,7 @@ export default {
   align-items: center;
   padding: 12px 10px;
   border-radius: 10px;
-  background-color: var(---message-background, #ffffff);
+  background-color: var(--message-background, #ffffff);
   box-shadow: var(
     --message-shadow,
     0px 4px 16px rgb(0, 0, 0, 0.1),
@@ -159,7 +156,7 @@ export default {
 }
 
 .flash-message__icon--error svg {
-  color: var(--color-red-800);
+  color: var(--color-red-600);
 }
 
 .flash-message__text {
@@ -180,6 +177,7 @@ export default {
   margin: 0;
   background-color: transparent;
   border: 0;
+  color: inherit;
   cursor: pointer;
 }
 </style>

@@ -109,7 +109,7 @@ export default {
 .add-lecture {
   padding: 20px;
   margin-bottom: 50px;
-  background-color: var(--color-gray-70);
+  background-color: var(--color-gray-180);
   border-radius: 10px;
 }
 

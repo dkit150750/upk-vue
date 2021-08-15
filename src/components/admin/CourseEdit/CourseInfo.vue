@@ -60,7 +60,7 @@ export default {
 .admin-course-info {
   max-width: 700px;
   padding: 20px;
-  background-color: var(--color-gray-70);
+  background-color: var(--color-gray-180);
   border-radius: 10px;
 }
 
@@ -99,7 +99,7 @@ export default {
 }
 
 .admin-course-info__del {
-  background-color: var(--color-red-800);
+  background-color: var(--color-red-600);
 }
 
 @media (min-width: 640px) {

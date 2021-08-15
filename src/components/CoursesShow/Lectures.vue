@@ -24,7 +24,7 @@
       Записаться
     </button>
   </form>
-  <teleport to="#app">
+  <teleport to="#layout">
     <transition name="flash-message">
       <FlashMessage
         v-if="message || messageError"
@@ -77,7 +77,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters('auth', ['loggedIn']),
+    ...mapGetters('auth', ['isEmailVerified']),
 
     selectedLecture() {
       return this.lectures.find(
@@ -105,8 +105,8 @@ export default {
 
       this.isLoading = true;
 
-      if (!this.loggedIn) {
-        this.$router.push({ name: 'login' });
+      if (!this.isEmailVerified) {
+        this.$router.push({ name: 'profile' });
         return;
       }
 
@@ -164,23 +164,51 @@ export default {
   margin-bottom: 20px;
 }
 
+.light .lectures__button {
+  --button-color: var(--color-white);
+  --button-background: var(--color-primary-800);
+}
+
+.dark .lectures__button {
+  --button-color: var(--color-white);
+  --button-background: var(--color-primary-600);
+}
+
 .lectures__button {
   display: block;
   padding: 13px 20px;
   margin-top: 30px;
   font-family: inherit;
   font-size: 16px;
-  color: var(--color-gray-50);
+  color: var(--button-color);
   cursor: pointer;
-  background-color: var(--color-primary-800);
+  background-color: var(--button-background);
   border: 0;
   border-radius: 6px;
-  transition: all 0.3s;
+  transition: background-color 0.15s ease-out;
 }
 
 .lectures__button:disabled {
-  --color-gray-0: hsl(48, 4%, 50%);
-  --color-primary-800: hsl(0, 0%, 90%);
   cursor: auto;
+}
+
+.light .lectures__button:disabled {
+  --button-color: var(--color-gray-600);
+  --button-background: var(--color-gray-200);
+}
+
+.dark .lectures__button:disabled {
+  --button-color: var(--color-white);
+  --button-background: var(--color-gray-500);
+}
+
+.light .lectures__button:not(:disabled):focus,
+.light .lectures__button:not(:disabled):hover {
+  --button-background: var(--color-gray-900);
+}
+
+.dark .lectures__button:not(:disabled):focus,
+.dark .lectures__button:not(:disabled):hover {
+  --button-background: var(--color-primary-800);
 }
 </style>

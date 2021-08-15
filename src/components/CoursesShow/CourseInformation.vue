@@ -66,6 +66,7 @@ export default {
   max-width: 388px;
   margin: 0 auto;
   margin-bottom: 50px;
+  color: var(--color-gray-900);
   background-color: v-bind(background);
   border-radius: 10px;
 }

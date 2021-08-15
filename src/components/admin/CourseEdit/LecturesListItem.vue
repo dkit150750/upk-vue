@@ -73,7 +73,7 @@ export default {
   grid-template-columns: max-content max-content;
   gap: 10px 40px;
   padding: 20px;
-  background-color: var(--color-gray-70);
+  background-color: var(--color-gray-180);
   border-radius: 10px;
 }
 
@@ -105,7 +105,7 @@ export default {
   display: block;
   width: 60%;
   height: 3px;
-  background-color: var(--color-gray-50);
+  background-color: var(--color-white);
   border-radius: 5px;
   content: '';
 }

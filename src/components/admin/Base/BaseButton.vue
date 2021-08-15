@@ -23,9 +23,10 @@ export default {
   padding: 13px 20px;
   font-family: inherit;
   font-size: 14px;
-  color: var(--color-gray-50);
+  font-weight: 500;
+  color: var(--color-white);
   cursor: pointer;
-  background-color: var(--color-primary-800);
+  background-color: var(--color-primary-700);
   border: 0;
   border-radius: 6px;
 }

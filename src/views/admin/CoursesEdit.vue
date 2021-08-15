@@ -50,7 +50,7 @@
       @deleteLecture="deleteLecture"
     />
   </LecturesList>
-  <teleport to="#app">
+  <teleport to="#layout-admin">
     <transition name="flash-message">
       <FlashMessage v-if="message" :message="message" @close="message = null" />
     </transition>
@@ -96,6 +96,14 @@ export default {
     };
   },
 
+  async beforeRouteUpdate(to) {
+    this.getCourse(to.params.courseId);
+  },
+
+  created() {
+    this.getCourse(this.$route.params.courseId);
+  },
+
   methods: {
     async getCourse(id) {
       try {
@@ -120,6 +128,10 @@ export default {
           this.course[key] = response.data.data[key];
         });
         this.lectures = this.course.lectures ?? [];
+        this.message = 'Данные обновлены';
+        this.message = null;
+        await this.$nextTick();
+        this.message = 'Данные обновлены';
       } catch (error) {
         console.log(getErrorData(error));
       }
@@ -151,20 +163,6 @@ export default {
       await this.$nextTick();
       this.message = 'Запись удалена';
     },
-  },
-
-  created() {
-    this.getCourse(this.$route.params.courseId);
-
-    this.$watch(
-      () => this.$route.params.courseId,
-      (courseId) => {
-        if (!courseId) {
-          return;
-        }
-        this.getCourse(courseId);
-      }
-    );
   },
 };
 </script>

@@ -5,13 +5,13 @@
         class="profile-avatar__img"
         v-if="authUser.avatar"
         :src="authUser.avatar"
-        :alt="fullName"
+        alt="аватарка"
       />
       <img
         class="profile-avatar__img"
         v-else
         :src="require('@/assets/images/avatar.webp')"
-        :alt="fullName"
+        alt="аватарка"
       />
     </div>
     <div class="profile-avatar__avatar-icon-wrapper">

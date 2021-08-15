@@ -12,7 +12,7 @@
         подтвержения.
       </p>
     </LoginCard>
-    <teleport to="#app">
+    <teleport to="#layout">
       <transition name="flash-message">
         <FlashMessage
           v-if="message"
