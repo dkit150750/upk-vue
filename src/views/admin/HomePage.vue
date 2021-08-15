@@ -16,8 +16,8 @@
 import CourseService from '@/services/CourseService';
 import { getErrorData } from '@/utils/helpers';
 
-import BaseButton from '@/components/admin/base/BaseButton.vue';
-import Course from '@/components/admin/courses/Course.vue';
+import BaseButton from '@/components/admin/Base/BaseButton.vue';
+import Course from '@/components/admin/HomePage/Course.vue';
 
 export default {
   name: 'HomePage',

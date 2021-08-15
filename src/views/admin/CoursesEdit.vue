@@ -61,7 +61,7 @@
 import CourseService from '@/services/CourseService';
 import { getErrorData } from '@/utils/helpers';
 
-import BaseField from '@/components/admin/base/BaseField.vue';
+import BaseField from '@/components/admin/Base/BaseField.vue';
 import FlashMessage from '@/components/FlashMessage.vue';
 import CourseInfo from '@/components/admin/course/CourseInfo.vue';
 import CourseInfoPicture from '@/components/admin/course/CourseInfoPicture.vue';

@@ -43,8 +43,8 @@
 import LectureService from '@/services/LectureService';
 import { getErrorData } from '@/utils/helpers';
 
-import BaseButton from '@/components/admin/base/BaseButton.vue';
-import BaseField from '@/components/admin/base/BaseField.vue';
+import BaseButton from '@/components/admin/Base/BaseButton.vue';
+import BaseField from '@/components/admin/Base/BaseField.vue';
 
 export default {
   name: 'CourseInfoLectureAdd',
