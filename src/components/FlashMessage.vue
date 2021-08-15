@@ -91,27 +91,21 @@ export default {
       this.$emit('close');
     },
   },
-
-  watch: {
-    // message(mess) {
-    //   if (!mess === null) {
-    //     this.timeout = setTimeout(() => {
-    //       this.$emit('close');
-    //     }, 6000);
-    //   }
-    // },
-    // error(error) {
-    //   if (!error === null) {
-    //     this.closeError = setTimeout(() => {
-    //       this.$emit('close');
-    //     }, 6000);
-    //   }
-    // },
-  },
 };
 </script>
 
 <style>
+.light .flash-message {
+  --message-background: var(--page-background);
+  --message-shadow: 0px 4px 16px rgb(0, 0, 0, 0.1),
+    0px 4px 22px 10px rgb(0, 0, 0, 0.04);
+}
+
+.dark .flash-message {
+  --message-background: var(--color-gray-1100);
+  --message-shadow: 0 0 0 2px var(--color-gray-800);
+}
+
 .flash-message {
   position: fixed;
   top: 5%;
@@ -121,10 +115,12 @@ export default {
   align-items: center;
   padding: 12px 10px;
   border-radius: 10px;
-  background-color: var(--color-gray-0);
-  box-shadow: 0px 4px 16px rgb(0, 0, 0, 0.1),
-    0px 4px 22px 10px rgb(0, 0, 0, 0.04);
-  transform: translateX(-50%);
+  background-color: var(---message-background, #ffffff);
+  box-shadow: var(
+    --message-shadow,
+    0px 4px 16px rgb(0, 0, 0, 0.1),
+    0px 4px 22px 10px rgb(0, 0, 0, 0.04)
+  );
   width: calc(100% - 36px);
 }
 

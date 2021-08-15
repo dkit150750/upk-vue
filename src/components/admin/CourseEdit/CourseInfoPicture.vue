@@ -27,7 +27,7 @@
 import FileService from '@/services/FileService';
 import { getErrorData } from '@/utils/helpers';
 
-import CourseInfoPictureIcon from '@/components/admin/course/CourseInfoPictureIcon.vue';
+import CourseInfoPictureIcon from '@/components/admin/CourseEdit/CourseInfoPictureIcon.vue';
 
 export default {
   name: 'ProfileHeaderAvatar',

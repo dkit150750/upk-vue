@@ -88,7 +88,7 @@ export default {
 .admin-main__header-btn-liner {
   width: 100%;
   height: 2px;
-  background-color: #1b1d21;
+  background-color: var(--color-gray-1100);
   border-radius: 1px;
 }
 

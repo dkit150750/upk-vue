@@ -76,7 +76,8 @@ export default {
   flex-shrink: 0;
   width: 240px;
   padding: 20px;
-  background-color: var(--color-gray-0);
+  background-color: var(--admin-page-backgound);
+  border-right: 2px solid var(--color-gray-200);
   transition: all 0.3s cubic-bezier(0.26, 0.63, 0.58, 1);
 }
 
@@ -130,14 +131,14 @@ export default {
 .logo {
   display: flex;
   gap: 10px;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .logo__title {
   margin: 0;
   font-size: 33px;
   font-weight: 800;
-  color: var(--color-primary-800);
+  color: var(--color-primary-900);
 }
 
 .aside__header-btn {
@@ -184,10 +185,9 @@ export default {
   display: block;
   padding: 13px 19px;
   font-size: 16px;
-  color: #808191;
+  color: var(--color-gray-600);
   text-decoration: none;
   border-radius: 10px;
-  outline: none;
 }
 
 .aside-nav__link:focus,
@@ -196,12 +196,12 @@ export default {
 }
 
 .aside-nav__link--active {
-  color: #ffffff;
+  color: var(--color-white);
   background-color: var(--color-primary-800);
 }
 
 .aside-nav__link--active:focus,
 .aside-nav__link--active:hover {
-  color: #ffffff;
+  color: var(--color-white);
 }
 </style>

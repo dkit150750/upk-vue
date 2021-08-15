@@ -63,11 +63,11 @@ import { getErrorData } from '@/utils/helpers';
 
 import BaseField from '@/components/admin/Base/BaseField.vue';
 import FlashMessage from '@/components/FlashMessage.vue';
-import CourseInfo from '@/components/admin/course/CourseInfo.vue';
-import CourseInfoPicture from '@/components/admin/course/CourseInfoPicture.vue';
-import CourseInfoLectureAdd from '@/components/admin/course/CourseInfoLectureAdd.vue';
-import LecturesList from '@/components/admin/course/LecturesList.vue';
-import LecturesListItem from '@/components/admin/course/LecturesListItem.vue';
+import CourseInfo from '@/components/admin/CourseEdit/CourseInfo.vue';
+import CourseInfoPicture from '@/components/admin/CourseEdit/CourseInfoPicture.vue';
+import CourseInfoLectureAdd from '@/components/admin/CourseEdit/CourseInfoLectureAdd.vue';
+import LecturesList from '@/components/admin/CourseEdit/LecturesList.vue';
+import LecturesListItem from '@/components/admin/CourseEdit/LecturesListItem.vue';
 
 export default {
   name: 'TheCourse',

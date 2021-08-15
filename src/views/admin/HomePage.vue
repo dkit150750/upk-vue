@@ -1,15 +1,18 @@
 <template>
   <h1 class="main__title">Список курсов</h1>
   <BaseButton @click="addCourse">Добавить курс</BaseButton>
-  <div class="admin-courses">
-    <Course
-      v-for="course in courses"
-      :key="course.id"
-      :courseId="course.id"
-      :title="course.title"
-      :picture="course.picture"
-    />
-  </div>
+  <template v-if="courses.length">
+    <div class="admin-courses">
+      <Course
+        v-for="course in courses"
+        :key="course.id"
+        :courseId="course.id"
+        :title="course.title"
+        :picture="course.picture"
+      />
+    </div>
+  </template>
+  <p class="admin-courses-null" v-else>Пока нет курсов</p>
 </template>
 
 <script>
@@ -67,5 +70,9 @@ export default {
   .admin-courses {
     grid-template-columns: repeat(2, minmax(auto, 450px));
   }
+}
+
+.admin-courses-null {
+  font-size: 20px;
 }
 </style>

@@ -47,7 +47,7 @@ export default {
   --color-gray-600: #4b5563;
   --color-gray-700: #384252;
   --color-gray-800: #272b30;
-  --color-gray-900: #181b20;
+  --color-gray-900: #191b1f;
   --color-gray-1000: #121316;
   --color-gray-1100: #070709;
   --color-red-100: #fff5f5;

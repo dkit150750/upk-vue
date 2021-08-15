@@ -46,10 +46,14 @@ export default {
 
 <style>
 #layout-admin {
+  --admin-color-null: var(--color-gray-300);
+  --admin-page-color: var(--color-gray-1000);
+  --admin-page-backgound: var(--color-white);
   display: flex;
   min-height: 100vh;
   overflow-x: hidden;
-  background-color: var(--color-gray-60);
+  color: var(--admin-page-color);
+  background-color: var(--admin-page-backgound);
 }
 
 .page-lock {
