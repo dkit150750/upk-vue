@@ -54,9 +54,11 @@ export default {
       if (this.background) {
         return this.background;
       }
+
       if (this.theme === 'light') {
         return 'hsl(60, 10%, 95%)';
       }
+
       return '#232a34';
     },
   },
@@ -71,8 +73,10 @@ export default {
   gap: 10px;
   min-height: 130px;
   padding: 20px 16px;
+  color: var(--color-gray-800);
   background-color: v-bind(backgroundColor);
   border-radius: 10px;
+  z-index: 1;
 }
 
 @media (min-width: 500px) {
