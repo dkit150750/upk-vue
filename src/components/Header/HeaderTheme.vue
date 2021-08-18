@@ -40,7 +40,7 @@ export default {
   methods: {
     ...mapActions('theme', ['setTheme']),
     changeTheme() {
-      const layout = document.querySelector('#layout');
+      const layout = document.querySelector('body');
 
       if (layout.classList.contains('dark')) {
         layout.classList.add('transiton-lock');

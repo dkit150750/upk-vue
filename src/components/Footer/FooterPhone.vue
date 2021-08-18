@@ -40,6 +40,7 @@ export default {
   font-size: 16px;
   font-weight: 600;
   line-height: 1;
+  letter-spacing: 0.04em;
   color: inherit;
   text-decoration: none;
   outline: none;
@@ -53,7 +54,7 @@ export default {
 
 .footer-phone__desc {
   display: block;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 16px;
 }
 </style>

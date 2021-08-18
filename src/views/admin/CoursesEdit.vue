@@ -50,7 +50,7 @@
       @deleteLecture="deleteLecture"
     />
   </LecturesList>
-  <teleport to="#layout-admin">
+  <teleport to="body">
     <transition name="flash-message">
       <FlashMessage v-if="message" :message="message" @close="message = null" />
     </transition>
@@ -62,7 +62,7 @@ import CourseService from '@/services/CourseService';
 import { getErrorData } from '@/utils/helpers';
 
 import BaseField from '@/components/admin/Base/BaseField.vue';
-import FlashMessage from '@/components/FlashMessage.vue';
+import FlashMessage from '@/components/admin/FlashMessage.vue';
 import CourseInfo from '@/components/admin/CourseEdit/CourseInfo.vue';
 import CourseInfoPicture from '@/components/admin/CourseEdit/CourseInfoPicture.vue';
 import CourseInfoLectureAdd from '@/components/admin/CourseEdit/CourseInfoLectureAdd.vue';

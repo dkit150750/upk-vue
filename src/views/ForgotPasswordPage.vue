@@ -24,7 +24,7 @@
       </router-link>
     </LoginFooter>
   </LoginWrapper>
-  <teleport to="#layout">
+  <teleport to="body">
     <transition name="flash-message">
       <FlashMessage v-if="message" :message="message" @close="message = null" />
     </transition>

@@ -3,8 +3,7 @@
     <div class="footer__container">
       <address class="footer__contacts">
         <ul class="footer__phones">
-          <FooterPhone tel="8 (800) 500-05-22" desc="Контактный центр" />
-          <FooterPhone tel="+7 499 444 90 36" desc="Отдел заботы о студентах" />
+          <FooterPhone tel="+7 (48746) 3-68-85" desc="Телефон для справок" />
         </ul>
         <p class="footer__address">
           Донской, микрорайон Бобрик-Гора, ул. 30 лет Победы, 4
@@ -40,6 +39,7 @@ export default {
 .footer {
   background-color: var(--footer-background);
   color: var(--footer-color);
+  min-height: 282px;
 }
 
 .dark {

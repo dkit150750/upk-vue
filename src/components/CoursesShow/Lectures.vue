@@ -24,7 +24,7 @@
       Записаться
     </button>
   </form>
-  <teleport to="#layout">
+  <teleport to="body">
     <transition name="flash-message">
       <FlashMessage
         v-if="message || messageError"

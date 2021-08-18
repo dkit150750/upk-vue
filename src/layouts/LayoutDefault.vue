@@ -1,5 +1,5 @@
 <template>
-  <div id="layout" class="light">
+  <div id="layout">
     <TheHeader />
     <TheMain>
       <router-view />
@@ -25,7 +25,7 @@ export default {
 
   mounted() {
     const theme = localStorage.getItem('theme') || 'light';
-    const layout = document.querySelector('#layout');
+    const layout = document.querySelector('body');
     layout.classList.add(theme);
     this.setTheme(theme);
   },
@@ -41,17 +41,17 @@ export default {
   --max-width: 1250px;
 }
 
-#layout.transiton-lock * {
+body.transiton-lock * {
   transition: none !important;
 }
 
-#layout.light {
+.light #layout {
   --color-null: var(--color-gray-300);
   --page-color: var(--color-gray-1000);
   --page-background: var(--color-white);
 }
 
-#layout.dark {
+.dark #layout {
   --color-null: var(--color-gray-1000);
   --page-color: var(--color-gray-100);
   --page-background: var(--color-gray-900);
