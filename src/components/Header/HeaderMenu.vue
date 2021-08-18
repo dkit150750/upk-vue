@@ -134,6 +134,7 @@ export default {
   line-height: 20px;
   font-size: 16px;
   font-family: inherit;
+  font-weight: 400;
   text-decoration: none;
   color: var(--page-color);
   border: 0;
